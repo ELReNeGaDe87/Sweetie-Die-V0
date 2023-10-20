@@ -1,0 +1,347 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.3f1 (7cdc2969a641) revision 8182825'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22621) 64bit Core' Language: 'ca' Physical Memory: 16251 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.3f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+C:/Git hub/Sweetie-Die-V0/Sweetie-Die
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+63797
+Successfully changed project path to: C:/Git hub/Sweetie-Die-V0/Sweetie-Die
+C:/Git hub/Sweetie-Die-V0/Sweetie-Die
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [14000] Host "[IP] 192.168.1.211 [Port] 0 [Flags] 2 [Guid] 2817000092 [EditorId] 2817000092 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-VUKV9B3N) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [14000] Host "[IP] 192.168.1.211 [Port] 0 [Flags] 2 [Guid] 2817000092 [EditorId] 2817000092 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-VUKV9B3N) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.3f1 (7cdc2969a641)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Git hub/Sweetie-Die-V0/Sweetie-Die/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 (ID=0x1f99)
+    Vendor:   NVIDIA
+    VRAM:     3962 MB
+    Driver:   27.21.14.6230
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.3f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.3f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56152
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.024246 seconds.
+- Loaded All Assemblies, in  0.819 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.608 seconds
+Domain Reload Profiling: 1423ms
+	BeginReloadAssembly (168ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (88ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (325ms)
+	LoadAllAssembliesAndSetupDomain (215ms)
+		LoadAssemblies (164ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (201ms)
+			TypeCache.Refresh (199ms)
+				TypeCache.ScanAssembly (179ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (608ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (499ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (27ms)
+			SetLoadedEditorAssemblies (23ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (6ms)
+			ProcessInitializeOnLoadAttributes (354ms)
+			ProcessInitializeOnLoadMethodAttributes (89ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.545 seconds
+Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.498 seconds
+Domain Reload Profiling: 1041ms
+	BeginReloadAssembly (225ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (15ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (33ms)
+	RebuildCommonClasses (55ms)
+	RebuildNativeTypeToScriptingClass (18ms)
+	initialDomainReloadingComplete (32ms)
+	LoadAllAssembliesAndSetupDomain (211ms)
+		LoadAssemblies (113ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (202ms)
+			TypeCache.Refresh (201ms)
+				TypeCache.ScanAssembly (190ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (499ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (277ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (38ms)
+			ProcessInitializeOnLoadAttributes (179ms)
+			ProcessInitializeOnLoadMethodAttributes (32ms)
+			AfterProcessingInitializeOnLoad (12ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3 unused Assets / (44.1 KB). Loaded Objects now: 481.
+Memory consumption went from 45.5 MB to 45.5 MB.
+Total: 7.622300 ms (FindLiveObjects: 0.086300 ms CreateObjectMapping: 0.011100 ms MarkObjects: 7.406900 ms  DeleteObjects: 0.115900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1401477.793100 seconds.
+  path: Assets/Material/Textures
+  artifactKey: Guid(1f1f430c904d42e428f062efb0f89e5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Material/Textures using Guid(1f1f430c904d42e428f062efb0f89e5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae08eb7e8befcc65e9632eec2b4693f0') in 0.006934 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 31.772568 seconds.
+  path: Assets/Assets/Textures/Plaster_001_NORM.jpg
+  artifactKey: Guid(9f0aac11892918b4ca27e72ace6feaa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Plaster_001_NORM.jpg using Guid(9f0aac11892918b4ca27e72ace6feaa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a6dc00cac89b5000c3f8084f7aa99a8') in 0.171085 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 23.825506 seconds.
+  path: Assets/Assets/Textures/New Material.mat
+  artifactKey: Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/New Material.mat using Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81ccb6ee7967dbc7120b808cc1bbd65e') in 0.160139 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 170.622761 seconds.
+  path: Assets/Assets/Textures/Plaster_001.mat
+  artifactKey: Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Plaster_001.mat using Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e66044e15a76d765bf7c2a50b5007b83') in 0.593772 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 169.196968 seconds.
+  path: Assets/Material/Plaster_001.mat
+  artifactKey: Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Material/Plaster_001.mat using Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '322ed3d6fff376969982e8418dd256a8') in 0.047606 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 142.997049 seconds.
+  path: Assets/Assets/Textures/Plaster 001
+  artifactKey: Guid(09569839a0309524499acd020992d606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Plaster 001 using Guid(09569839a0309524499acd020992d606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60edf7c57103e4d303a6536a74c0510c') in 0.003573 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 14.633553 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco
+  artifactKey: Guid(b27abd7a15992944895b5ee682eb6a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco using Guid(b27abd7a15992944895b5ee682eb6a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f982b3efc6ce0f3ce9ed3c6b03dfe164') in 0.000808 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 12.251901 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_ambientOcclusion.jpg
+  artifactKey: Guid(34f90dc214e4cb149a5b0d166f9d41ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_ambientOcclusion.jpg using Guid(34f90dc214e4cb149a5b0d166f9d41ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e41ea299937ce25d692173c6e778357d') in 0.032230 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000152 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_roughness.jpg
+  artifactKey: Guid(63e8fdd51e514274cac93de939e3a44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_roughness.jpg using Guid(63e8fdd51e514274cac93de939e3a44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc1a0e89c42f6e839aa983d3795622fe') in 0.086671 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_metallic.jpg
+  artifactKey: Guid(9fa545fbe41c60a4eb6ad6a11f13ee47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_metallic.jpg using Guid(9fa545fbe41c60a4eb6ad6a11f13ee47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8753c4dc409513277054af378a778f8a') in 0.027196 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 6.761082 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/New Material.mat
+  artifactKey: Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/New Material.mat using Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3664d631217a18d333d94f9a622d543d') in 0.030406 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 37.523368 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_normal.jpg
+  artifactKey: Guid(0792ddb86c8892f428c3e34fd8b6736c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002_normal.jpg using Guid(0792ddb86c8892f428c3e34fd8b6736c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fad67aad73279e37b2320d42fae222e1') in 0.024278 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 56.691725 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/New Material.mat
+  artifactKey: Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/New Material.mat using Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef9e43e34169fc8b686383199a96c7e7') in 0.726546 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 24.200914 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002.mat
+  artifactKey: Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper_ArtDeco_002.mat using Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7dc14f56684e840fe30d6572470b24a0') in 0.041334 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 13.077286 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper ArtDeco 002.mat
+  artifactKey: Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco/Wallpaper ArtDeco 002.mat using Guid(30756dde0cc79534cb97adb2c1dc40af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63ec170fa18dcced4019be30f0f313b1') in 0.036428 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 18.352664 seconds.
+  path: Assets/Assets/Textures/Wallpaper Art Deco 002
+  artifactKey: Guid(b27abd7a15992944895b5ee682eb6a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Wallpaper Art Deco 002 using Guid(b27abd7a15992944895b5ee682eb6a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63699d76a196550a37878dc84d599200') in 0.001475 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 138.678006 seconds.
+  path: Assets/Assets/Textures/Teracotta Tiles 006
+  artifactKey: Guid(e6833d50f940e0340801f0025eee0256) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Teracotta Tiles 006 using Guid(e6833d50f940e0340801f0025eee0256) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b48d705dd7bad77c7e4049dab927b2d') in 0.001199 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 10.737613 seconds.
+  path: Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_ambientOcclusion.jpg
+  artifactKey: Guid(8b43fa85cf152534683e8e691a7b56c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_ambientOcclusion.jpg using Guid(8b43fa85cf152534683e8e691a7b56c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '858d15917cd1af0a6e0fe55988ec7cae') in 0.034017 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_roughness.jpg
+  artifactKey: Guid(f5ce351efe9488c448782a5175596e77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_roughness.jpg using Guid(f5ce351efe9488c448782a5175596e77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0d6993777321a5af60ba192832c76a4') in 0.035997 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_height.png
+  artifactKey: Guid(f738d508139e3cb4ab4287fd4a87429c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_height.png using Guid(f738d508139e3cb4ab4287fd4a87429c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe9bbe2bb219377b81965412ccc1199d') in 0.035438 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_normal.jpg
+  artifactKey: Guid(84a8551edcd7b7847aed19b2d26574a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/Textures/Teracotta Tiles 006/Terracotta_Tiles_006_normal.jpg using Guid(84a8551edcd7b7847aed19b2d26574a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '091879de8fd5cd82a79025a676a1110a') in 0.042075 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
