@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;
     private Vector3 moveDirection;
     private float verticalRotation = 0.0f;
+    private bool isCrouching = false;
+    public float vibrationIntensity = 0.1f;
 
     void Start()
     {
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
+        
 
         // Rotacion
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -43,10 +46,29 @@ public class PlayerController : MonoBehaviour
 
         playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
         transform.rotation *= Quaternion.Euler(0, mouseX, 0);
+          if (Input.GetKeyDown(KeyCode.LeftControl))  
+    {
+        ToggleCrouch();
+    }
     }
     float SetGravity(){
         return moveDirection.y=-gravity* Time.deltaTime;
         
     }
+    private void ToggleCrouch()
+{
+    isCrouching = !isCrouching;
+    // Ajusta la altura del CharacterController y la velocidad de movimiento según sea necesario.
+    if (isCrouching)
+    {
+        characterController.height = 1.0f; // Establece la altura del jugador cuando está agachado.
+        moveSpeed = 2.0f; // Reduz la velocidad de movimiento cuando está agachado (ajusta según tus necesidades).
+    }
+    else
+    {
+        characterController.height = 2.0f; // Restablece la altura normal del jugador.
+        moveSpeed = 5.0f; // Restablece la velocidad de movimiento normal (ajusta según tus necesidades).
+    }
+}
 }
 
