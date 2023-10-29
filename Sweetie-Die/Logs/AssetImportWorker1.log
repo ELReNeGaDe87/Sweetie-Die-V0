@@ -22,7 +22,7 @@ AssetImportWorker1
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-57393
+63459
 Successfully changed project path to: /Users/oscarmarcussen/UPV/DV3D/Sweetie-Die-V0/Sweetie-Die
 /Users/oscarmarcussen/UPV/DV3D/Sweetie-Die-V0/Sweetie-Die
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -56,9 +56,9 @@ Successfully changed project path to: /Users/oscarmarcussen/UPV/DV3D/Sweetie-Die
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [7947948800] Host "[IP] 10.236.36.200 [Port] 0 [Flags] 2 [Guid] 2260769875 [EditorId] 2260769875 [Version] 1048832 [Id] OSXEditor(0,Oscars-MacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [7947948800] Host "[IP] 10.236.36.200 [Port] 0 [Flags] 2 [Guid] 1221691006 [EditorId] 1221691006 [Version] 1048832 [Id] OSXEditor(0,Oscars-MacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [7947948800] Host "[IP] 10.236.36.200 [Port] 0 [Flags] 2 [Guid] 2260769875 [EditorId] 2260769875 [Version] 1048832 [Id] OSXEditor(0,Oscars-MacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [7947948800] Host "[IP] 10.236.36.200 [Port] 0 [Flags] 2 [Guid] 1221691006 [EditorId] 1221691006 [Version] 1048832 [Id] OSXEditor(0,Oscars-MacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
@@ -75,44 +75,44 @@ Initialize mono
 Mono path[0] = '/Applications/Unity/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
 Mono config path = '/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56619
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56515
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.000700 seconds.
-- Loaded All Assemblies, in  0.201 seconds
+Registered in 0.000724 seconds.
+- Loaded All Assemblies, in  0.241 seconds
 Native extension for OSXStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.148 seconds
-Domain Reload Profiling: 349ms
-	BeginReloadAssembly (57ms)
+- Finished resetting the current domain, in  0.161 seconds
+Domain Reload Profiling: 402ms
+	BeginReloadAssembly (83ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (0ms)
-	RebuildCommonClasses (22ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (27ms)
 	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (28ms)
-	LoadAllAssembliesAndSetupDomain (86ms)
-		LoadAssemblies (57ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (93ms)
+		LoadAssemblies (83ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (84ms)
-			TypeCache.Refresh (83ms)
-				TypeCache.ScanAssembly (77ms)
+		AnalyzeDomain (91ms)
+			TypeCache.Refresh (90ms)
+				TypeCache.ScanAssembly (83ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (148ms)
+	FinalizeReload (161ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (111ms)
+		SetupLoadedEditorAssemblies (121ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (4ms)
-			SetLoadedEditorAssemblies (5ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (1ms)
-			ProcessInitializeOnLoadAttributes (75ms)
-			ProcessInitializeOnLoadMethodAttributes (26ms)
+			ProcessInitializeOnLoadAttributes (82ms)
+			ProcessInitializeOnLoadMethodAttributes (30ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -120,39 +120,39 @@ Domain Reload Profiling: 349ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.192 seconds
+- Loaded All Assemblies, in  0.214 seconds
 Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
 Native extension for OSXStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.175 seconds
-Domain Reload Profiling: 367ms
-	BeginReloadAssembly (69ms)
+- Finished resetting the current domain, in  0.188 seconds
+Domain Reload Profiling: 403ms
+	BeginReloadAssembly (79ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (15ms)
+		CreateAndSetChildDomain (16ms)
 	RebuildCommonClasses (23ms)
 	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (10ms)
-	LoadAllAssembliesAndSetupDomain (83ms)
-		LoadAssemblies (31ms)
+	initialDomainReloadingComplete (11ms)
+	LoadAllAssembliesAndSetupDomain (93ms)
+		LoadAssemblies (43ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (82ms)
-			TypeCache.Refresh (79ms)
-				TypeCache.ScanAssembly (75ms)
+		AnalyzeDomain (88ms)
+			TypeCache.Refresh (86ms)
+				TypeCache.ScanAssembly (81ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (176ms)
+	FinalizeReload (189ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (98ms)
+		SetupLoadedEditorAssemblies (104ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (2ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (17ms)
-			ProcessInitializeOnLoadAttributes (64ms)
+			BeforeProcessingInitializeOnLoad (19ms)
+			ProcessInitializeOnLoadAttributes (67ms)
 			ProcessInitializeOnLoadMethodAttributes (11ms)
 			AfterProcessingInitializeOnLoad (1ms)
 			EditorAssembliesLoaded (0ms)
@@ -164,8 +164,8 @@ Refreshing native plugins compatible for Editor in 0.00 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 348 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 3 unused Assets / (43.1 KB). Loaded Objects now: 822.
-Memory consumption went from 59.9 MB to 59.9 MB.
-Total: 1.929542 ms (FindLiveObjects: 0.031084 ms CreateObjectMapping: 0.007833 ms MarkObjects: 1.833458 ms  DeleteObjects: 0.056833 ms)
+Memory consumption went from 60.4 MB to 60.3 MB.
+Total: 2.058792 ms (FindLiveObjects: 0.039334 ms CreateObjectMapping: 0.009416 ms MarkObjects: 1.957625 ms  DeleteObjects: 0.051959 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
@@ -180,61 +180,17 @@ AssetImportParameters requested are different than current active one (requested
   custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 29302.562082 seconds.
-  path: Assets/New Terrain.asset
-  artifactKey: Guid(71d9fa4dc7b0a944eaaadb8f08d69596) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/New Terrain.asset using Guid(71d9fa4dc7b0a944eaaadb8f08d69596) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33e7563d2100eb263f218ce8296a9c7c') in 0.010063 seconds
+  Time since last request: 47577.635685 seconds.
+  path: Assets/Textures/Plaster 001/Plaster_001_NORM.jpg
+  artifactKey: Guid(9f0aac11892918b4ca27e72ace6feaa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Plaster 001/Plaster_001_NORM.jpg using Guid(9f0aac11892918b4ca27e72ace6feaa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf17bce23b390a0c28a054b15d21bc7f') in 0.280701 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 52.216768 seconds.
-  path: Assets/Prefab/Mesh_wall_corner_room Variant.prefab
-  artifactKey: Guid(b58608d9d1ba3d145a0b6da06916590e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Mesh_wall_corner_room Variant.prefab using Guid(b58608d9d1ba3d145a0b6da06916590e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '192ec8948e967aa0ab9f4017c6ea12f1') in 0.068632 seconds
+  Time since last request: 3.804698 seconds.
+  path: Assets/Material/Plaster_001.mat
+  artifactKey: Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Material/Plaster_001.mat using Guid(f2a4062d884ef784ab85d9786279575c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7599326dcfed7c0dbb436c2b9f73bb3') in 0.124459 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000058 seconds.
-  path: Assets/Prefab/Mesh_wall_deadend Variant.prefab
-  artifactKey: Guid(dca3a0bd67ebd26429be9f677f7e052a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Mesh_wall_deadend Variant.prefab using Guid(dca3a0bd67ebd26429be9f677f7e052a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '885936b47df864965771770f1c8e4db0') in 0.009718 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/Prefab/Mesh_wall_door_doorframe Variant.prefab
-  artifactKey: Guid(7a950acfd02da9b4f91432f064e131dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Mesh_wall_door_doorframe Variant.prefab using Guid(7a950acfd02da9b4f91432f064e131dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a134f4e75b26a1b0db438a3d9ee09383') in 0.020993 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 50
-========================================================================
-Received Import Request.
-  Time since last request: 0.000043 seconds.
-  path: Assets/Prefab/Mesh_wall_double-corner_corridor Variant.prefab
-  artifactKey: Guid(8c3dbb73a1685c146967ade3042b6d13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Mesh_wall_double-corner_corridor Variant.prefab using Guid(8c3dbb73a1685c146967ade3042b6d13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48098da1dea51284f75000d451f374b6') in 0.008892 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 28
-========================================================================
-Received Import Request.
-  Time since last request: 0.000197 seconds.
-  path: Assets/Prefab/Mesh_wall_corridor Variant.prefab
-  artifactKey: Guid(e43226fbfa1edbb4987eb360ff8933c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Mesh_wall_corridor Variant.prefab using Guid(e43226fbfa1edbb4987eb360ff8933c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e323218c6a275c5d0c10735fdc14d28') in 0.008145 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000043 seconds.
-  path: Assets/Prefab/Mesh_wall_single Variant.prefab
-  artifactKey: Guid(cee263db91c479e4fb697ad0b0529dc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Mesh_wall_single Variant.prefab using Guid(cee263db91c479e4fb697ad0b0529dc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31143092f0e3b35a1cf7416406ffdebe') in 0.007889 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-TcpMessagingSession - receive error: operation aborted. errorcode: 89, details: Operation aborted.
-AssetImportWorker is now disconnected from the server
-Process exiting
+Number of asset objects unloaded after import = 4
