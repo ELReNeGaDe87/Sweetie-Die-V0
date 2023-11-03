@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8bef76ca6b84c264f974ede60e81cc8e
+guid: 923d70c8de365e744a118bdf73be22c4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -12,17 +12,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Corridor_wall_mat.002
-    second: {fileID: 2100000, guid: f2a4062d884ef784ab85d9786279575c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: Room_wall_mat.001
-    second: {fileID: 2100000, guid: 30756dde0cc79534cb97adb2c1dc40af, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Room_wall_mat.002
     second: {fileID: 2100000, guid: 30756dde0cc79534cb97adb2c1dc40af, type: 2}
   materials:
     materialImportMode: 2
