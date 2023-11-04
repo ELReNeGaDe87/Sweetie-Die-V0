@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4785413a82ec91c479ff1a3706bf109d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4785413a82ec91c479ff1a3706bf109d, type: 3}
       propertyPath: m_LocalScale.z
@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4785413a82ec91c479ff1a3706bf109d, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1c31a00cecadeb3428cc4098e5c188c1, type: 2}
     - target: {fileID: 919132149155446097, guid: 4785413a82ec91c479ff1a3706bf109d, type: 3}
       propertyPath: m_Name
       value: Mesh_wall_door_doorframe Variant
