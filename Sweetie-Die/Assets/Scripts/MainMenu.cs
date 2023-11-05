@@ -11,21 +11,25 @@ public class MainMenu : MonoBehaviour
     public GameObject background;
     public GameObject startButton;
     public GameObject optionsButton;
+    public GameObject creditsButton;
     public GameObject exitButton;
 
     Image backgroundImage;
     Image startButtonImage;
     Image optionsButtonImage;
+    Image creditsButtonImage;
     Image exitButtonImage;
 
     public Sprite background_sweet;
     public Sprite startButton_sweet;
     public Sprite optionsButton_sweet;
+    public Sprite creditsButton_sweet;
     public Sprite exitButton_sweet;
 
     public Sprite background_creepy;
     public Sprite startButton_creepy;
     public Sprite optionsButton_creepy;
+    public Sprite creditsButton_creepy;
     public Sprite exitButton_creepy;
 
     private float sweetInterval = 3f;
@@ -36,6 +40,7 @@ public class MainMenu : MonoBehaviour
         backgroundImage = background.GetComponent<Image>();
         startButtonImage = startButton.GetComponent<Image>();
         optionsButtonImage = optionsButton.GetComponent<Image>();
+        creditsButtonImage = creditsButton.GetComponent<Image>();
         exitButtonImage = exitButton.GetComponent<Image>();
 
         StartCoroutine(SwitchMenus());
@@ -51,6 +56,7 @@ public class MainMenu : MonoBehaviour
             backgroundImage.sprite = background_creepy;
             startButtonImage.sprite = startButton_creepy;
             optionsButtonImage.sprite = optionsButton_creepy;
+            creditsButtonImage.sprite = creditsButton_creepy;
             exitButtonImage.sprite = exitButton_creepy;
 
             yield return new WaitForSeconds(creepyInterval);
@@ -58,6 +64,7 @@ public class MainMenu : MonoBehaviour
             backgroundImage.sprite = background_sweet;
             startButtonImage.sprite = startButton_sweet;
             optionsButtonImage.sprite = optionsButton_sweet;
+            creditsButtonImage.sprite = creditsButton_sweet;
             exitButtonImage.sprite = exitButton_sweet;
         }
     }
@@ -73,5 +80,4 @@ public class MainMenu : MonoBehaviour
         Debug.Log("QUIT!");
         Application.Quit();
     }
-
 }
