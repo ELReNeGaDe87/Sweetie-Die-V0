@@ -334,6 +334,7 @@
 "Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/Puerta.cs"
+"Assets/Scripts/splash.cs"
 -langversion:9.0
 
 /deterministic
