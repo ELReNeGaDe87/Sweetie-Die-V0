@@ -42,11 +42,11 @@ public class MainMenu : MonoBehaviour
         optionsButtonImage = optionsButton.GetComponent<Image>();
         creditsButtonImage = creditsButton.GetComponent<Image>();
         exitButtonImage = exitButton.GetComponent<Image>();
-
-        StartCoroutine(SwitchMenus());
+        
+        StartCoroutine(SwitchMenus());   
     }
-
-    private IEnumerator SwitchMenus()
+  
+    public IEnumerator SwitchMenus()
     {
         while (true) 
         {
@@ -68,7 +68,6 @@ public class MainMenu : MonoBehaviour
             exitButtonImage.sprite = exitButton_sweet;
         }
     }
-
 
     public void PlayGame ()
     {
