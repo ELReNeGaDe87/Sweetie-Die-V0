@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4785413a82ec91c479ff1a3706bf109d
+guid: 2835c96c56025804fb313d35e3bc13e4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Corridor_wall_mat.004
-    second: {fileID: 2100000, guid: f2a4062d884ef784ab85d9786279575c, type: 2}
+    second: {fileID: 2100000, guid: 1c31a00cecadeb3428cc4098e5c188c1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Door_corridor_mat
-    second: {fileID: 2100000, guid: 72ba1112661109745a1205e689fbcea0, type: 2}
+    second: {fileID: 2100000, guid: 8dc5c562cc87b374696397a71079a67b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Door_depth_mat
-    second: {fileID: 2100000, guid: 72ba1112661109745a1205e689fbcea0, type: 2}
+    second: {fileID: 2100000, guid: 8dc5c562cc87b374696397a71079a67b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Door_room_mat
-    second: {fileID: 2100000, guid: 72ba1112661109745a1205e689fbcea0, type: 2}
+    second: {fileID: 2100000, guid: 8dc5c562cc87b374696397a71079a67b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
