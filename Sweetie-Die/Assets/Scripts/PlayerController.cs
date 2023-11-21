@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         // Movimiento
         float moveX = Input.GetAxis("Horizontal") * moveSpeed;
         float moveZ = Input.GetAxis("Vertical") * moveSpeed;

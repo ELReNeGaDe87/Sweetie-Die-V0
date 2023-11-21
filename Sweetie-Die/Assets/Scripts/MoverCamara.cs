@@ -19,6 +19,7 @@ public class CameraBob : MonoBehaviour
 
     void Update()
     {
+
         float waveslice = 0.0f;
         float vertical = Input.GetAxis("Vertical");
 
