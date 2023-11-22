@@ -26,6 +26,8 @@ public class ConversationStarter : MonoBehaviour
     public Sprite filledHeart;
     public Sprite unfilledHeart;
 
+    public static bool ConversationIsActive = false;
+
     private void Start()
     {
         heart1Image = heart1.GetComponent<Image>();
@@ -61,33 +63,55 @@ public class ConversationStarter : MonoBehaviour
 
     private void ConversationStart()
     {
+        ConversationIsActive = true;
         UnityEngine.Debug.Log("A conversation has began.");
         heartMonitor.SetActive(true);
-        heart1Image.sprite = filledHeart;
-        heart2Image.sprite = filledHeart;
-        heart3Image.sprite = filledHeart;
+        fillHearts(4);
+        Cursor.lockState = CursorLockMode.Confined;
+
     }
     private void ConversationEnd()
     {
+        ConversationIsActive = false;
         heartMonitor.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Debug.Log("A conversation has ended.");
     }
 
-    private void fillHearts()
+    private void fillHearts(int numHearts)
     {
-
-    }
-
-    private void Update()
-    {
-        if (ConversationManager.Instance != null)
+        if (numHearts >= 1)
         {
-            if (ConversationManager.Instance.IsConversationActive)
-            {
-                if (Input.GetKeyDown(KeyCode.UpArrow)) ConversationManager.Instance.SelectPreviousOption();
-                else if (Input.GetKeyDown(KeyCode.DownArrow)) ConversationManager.Instance.SelectNextOption();
-                else if (Input.GetKeyDown(KeyCode.Return)) ConversationManager.Instance.PressSelectedOption();
-            }
+            heart1Image.sprite = filledHeart;
+        }
+        if (numHearts >= 2)
+        {
+            heart2Image.sprite = filledHeart;
+        }
+        if (numHearts >= 3)
+        {
+            heart3Image.sprite = filledHeart;
+        }
+        if (numHearts >= 4)
+        {
+            heart4Image.sprite = filledHeart;
+        }
+        if (numHearts >= 5)
+        {
+            heart5Image.sprite = filledHeart;
         }
     }
+
+    //private void Update()
+    //{
+    //    if (ConversationManager.Instance != null)
+    //    {
+    //        if (ConversationManager.Instance.IsConversationActive)
+    //        {
+    //            if (Input.GetKeyDown(KeyCode.UpArrow)) ConversationManager.Instance.SelectPreviousOption();
+    //            else if (Input.GetKeyDown(KeyCode.DownArrow)) ConversationManager.Instance.SelectNextOption();
+    //            else if (Input.GetKeyDown(KeyCode.Return)) ConversationManager.Instance.PressSelectedOption();
+    //        }
+    //    }
+    //}
 }
