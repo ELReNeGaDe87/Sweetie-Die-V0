@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ceiling_light Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3bfb1df5b041c4343b0ba07f555320e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8453840853051091581, guid: 3bfb1df5b041c4343b0ba07f555320e9, type: 3}
       propertyPath: m_IsActive
       value: 1
