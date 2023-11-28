@@ -8,7 +8,6 @@ public class CameraBob : MonoBehaviour
     public float bobbingAmount = 0.03f;
     public float midpoint = 0.5f;
     public float transitionTime = 0.5f;
-
     private float timer = 0.0f;
     private float startY;
 
@@ -19,7 +18,6 @@ public class CameraBob : MonoBehaviour
 
     void Update()
     {
-
         float waveslice = 0.0f;
         float vertical = Input.GetAxis("Vertical");
 
