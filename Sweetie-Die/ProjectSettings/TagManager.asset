@@ -9,6 +9,7 @@ TagManager:
   - CloseDoor
   - MonsterDoor
   - SpawnCamera
+  - Obstacle
   layers:
   - Default
   - TransparentFX
