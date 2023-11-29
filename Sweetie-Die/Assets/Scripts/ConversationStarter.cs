@@ -38,18 +38,18 @@ public class ConversationStarter : MonoBehaviour
     }
 
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    //if (other.CompareTag("Player"))
-    //    //{
-    //        if (Input.GetKeyDown(KeyCode.F))
-    //        {
-    //            ConversationManager.Instance.StartConversation(monsterConversation);
-    //        }
-    //    //}
-    //}
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                ConversationManager.Instance.StartConversation(monsterConversation);
+            }
+        }
+    }
 
-    private void OnEnable()
+        private void OnEnable()
     {
         ConversationManager.OnConversationStarted += ConversationStart;
         ConversationManager.OnConversationEnded += ConversationEnd;
@@ -114,12 +114,4 @@ public class ConversationStarter : MonoBehaviour
     //        }
     //    }
     //}
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ConversationManager.Instance.StartConversation(monsterConversation);
-        }
-    }
 }
