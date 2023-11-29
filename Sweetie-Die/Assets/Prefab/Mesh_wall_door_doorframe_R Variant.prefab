@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340727950466530077}
   m_Layer: 3
-  m_Name: Spawnpoint
+  m_Name: SpawnPoint
   m_TagString: SpawnCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ Transform:
   - {fileID: 1617398462311085182}
   - {fileID: 5340727950466530077}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &9198459353270619467
 MeshFilter:

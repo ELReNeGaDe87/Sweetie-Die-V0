@@ -94815,6 +94815,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597615430}
     m_Modifications:
+    - target: {fileID: 1564394883283146403, guid: 4beb832218b7f6e4783d62075172b4e3, type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4111635330573795618, guid: 4beb832218b7f6e4783d62075172b4e3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -94858,6 +94862,10 @@ PrefabInstance:
     - target: {fileID: 4111635330573795618, guid: 4beb832218b7f6e4783d62075172b4e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967596817553146392, guid: 4beb832218b7f6e4783d62075172b4e3, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 7891444592387201168, guid: 4beb832218b7f6e4783d62075172b4e3, type: 3}
       propertyPath: m_Name
@@ -94952,6 +94960,10 @@ PrefabInstance:
     - target: {fileID: 1742844674748420095, guid: 5296bc2ef93c44e47a0fbeb1d4dede3a, type: 3}
       propertyPath: m_Name
       value: Mesh_wall_door_doorframe_L Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531839465232508761, guid: 5296bc2ef93c44e47a0fbeb1d4dede3a, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 5872951131307893825, guid: 5296bc2ef93c44e47a0fbeb1d4dede3a, type: 3}
       propertyPath: m_RootOrder
