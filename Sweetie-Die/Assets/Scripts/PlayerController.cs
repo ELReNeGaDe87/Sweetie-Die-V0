@@ -9,11 +9,9 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;
     private Vector3 moveDirection;
     private float verticalRotation = 0.0f;
-    private float horizontalRotation = 0.0f;
     private bool isCrouching = false;
     public float vibrationIntensity = 0.1f;
     private bool puedeMoverse = true;
-    private bool estaEnLaPuerta = false;
     public float teleportDistance = 5.0f;
     public Transform waypoint; // Asigna el Waypoint en el Inspector.
     public LayerMask EnemyLayer;
@@ -79,16 +77,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            if (estaEnLaPuerta == true)
-            {
-                float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-                horizontalRotation += mouseX;
-                horizontalRotation = Mathf.Clamp(horizontalRotation, -90f, 90f);
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, horizontalRotation, transform.rotation.eulerAngles.z);
-            }
-        }
     }
 
     private void TeleportToWaypoint()
@@ -123,10 +111,6 @@ public class PlayerController : MonoBehaviour
         puedeMoverse = !puedeMoverse;
     }
 
-    public void ToggleCamera()
-    {
-        estaEnLaPuerta = !estaEnLaPuerta;
-    }
     public void ReceiveAttack()
     {
         TeleportToWaypoint();

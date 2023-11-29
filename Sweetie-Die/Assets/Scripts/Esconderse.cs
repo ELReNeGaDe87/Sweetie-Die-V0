@@ -4,7 +4,6 @@ using UnityEngine;
 public class Esconderse : MonoBehaviour
 {
     private bool canHide = true;
-    private Vector3 originalPosition;
     private bool isHiding = false;
     private CambiarCamara switchCamera;
     private PlayerController playerController;
@@ -51,7 +50,6 @@ public class Esconderse : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        // Rotar la puerta de nuevo a su posición original
         yield return Rotate(door, -currentRotation);
 
         playerController.ToggleControls();
@@ -64,6 +62,7 @@ public class Esconderse : MonoBehaviour
 
     IEnumerator Unhide()
     {
+        isHiding = false;
         switchCamera.SwitchCamera();
         playerController.ToggleControls();
 
@@ -73,8 +72,6 @@ public class Esconderse : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         yield return Rotate(currentDoor, -currentRotation);
-
-        isHiding = false;
 
         yield return new WaitForSeconds(60f);
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupObject : MonoBehaviour
+public class RecogerObjeto : MonoBehaviour
 {
     public float pickupDistance = 1.0f;
     public Vector3 heldObjectPosition = new Vector3(0.6f, -0.4f, 1f);
@@ -33,5 +33,9 @@ public class PickupObject : MonoBehaviour
             heldObject.transform.rotation = originalRotation;
             heldObject = null;
         }
+    }
+    public bool HoldingObject()
+    {
+        return heldObject != null;
     }
 }
