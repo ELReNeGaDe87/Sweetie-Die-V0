@@ -79,8 +79,24 @@ public class MonsterAI : MonoBehaviour
 
     IEnumerator StopChasing()
     {
-        yield return new WaitForSeconds(timeToLose);
-        isChasing = false;
-        StartCoroutine(Patrol());
+        float elapsedTime = 0f;
+
+        while (elapsedTime < timeToLose)
+        {
+            yield return null;
+            elapsedTime += Time.deltaTime;
+
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            if (distanceToPlayer < detectionRadius && !DetectObstacle())
+            {
+                // Si el jugador está nuevamente dentro del rango, reiniciar la persecución
+                isChasing = true;
+                StopAllCoroutines();
+                StartCoroutine(ChasePlayer());
+                yield break;
+            }
+        }
     }
-}
+
+    }

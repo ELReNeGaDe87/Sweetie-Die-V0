@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CameraBob : MonoBehaviour
 {
     public float bobbingSpeed = 0.01f;
