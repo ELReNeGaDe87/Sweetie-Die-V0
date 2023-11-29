@@ -72,15 +72,15 @@ public class ConversationStarter : MonoBehaviour
 
     private void ConversationEnd()
     {
+        ConversationIsActive = false;
+        heartMonitor.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
         if (hasHadFirstConversation)
         {
             GameOver();
             return;
         }
         hasHadFirstConversation = true;
-        ConversationIsActive = false;
-        heartMonitor.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
         TeleportPlayer();
         
         UnityEngine.Debug.Log("A conversation has ended.");
