@@ -8,24 +8,28 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
+    public GameObject logo;
     public GameObject background;
     public GameObject startButton;
     public GameObject optionsButton;
     public GameObject creditsButton;
     public GameObject exitButton;
 
+    Image logoImage;
     Image backgroundImage;
     Image startButtonImage;
     Image optionsButtonImage;
     Image creditsButtonImage;
     Image exitButtonImage;
 
+    public Sprite logo_sweet;
     public Sprite background_sweet;
     public Sprite startButton_sweet;
     public Sprite optionsButton_sweet;
     public Sprite creditsButton_sweet;
     public Sprite exitButton_sweet;
 
+    public Sprite logo_creepy;
     public Sprite background_creepy;
     public Sprite startButton_creepy;
     public Sprite optionsButton_creepy;
@@ -37,6 +41,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        logoImage = logo.GetComponent<Image>();
         backgroundImage = background.GetComponent<Image>();
         startButtonImage = startButton.GetComponent<Image>();
         optionsButtonImage = optionsButton.GetComponent<Image>();
@@ -53,6 +58,7 @@ public class MainMenu : MonoBehaviour
 
             yield return new WaitForSeconds(sweetInterval);
 
+            logoImage.sprite = logo_creepy;
             backgroundImage.sprite = background_creepy;
             startButtonImage.sprite = startButton_creepy;
             optionsButtonImage.sprite = optionsButton_creepy;
@@ -61,6 +67,7 @@ public class MainMenu : MonoBehaviour
 
             yield return new WaitForSeconds(creepyInterval);
 
+            logoImage.sprite = logo_sweet;
             backgroundImage.sprite = background_sweet;
             startButtonImage.sprite = startButton_sweet;
             optionsButtonImage.sprite = optionsButton_sweet;
