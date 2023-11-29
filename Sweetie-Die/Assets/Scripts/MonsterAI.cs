@@ -52,10 +52,10 @@ public class MonsterAI : MonoBehaviour
         }
         else if (!isPatrolling && distanceToPlayer > detectionRadius)
         {
-            if (chaseCoroutine != null)
-            {
-                StopCoroutine(chaseCoroutine);
-            }
+            //if (chaseCoroutine != null)
+            //{
+            //    StopCoroutine(chaseCoroutine);
+            //}
 
             // Si hay tiempo restante de persecución, sigue persiguiendo
             if (timeRemainingForChase > 0)
@@ -65,6 +65,7 @@ public class MonsterAI : MonoBehaviour
             }
             else
             {
+                StopCoroutine(chaseCoroutine);
                 isPatrolling = true;
                 patrolCoroutine = StartCoroutine(Patrol());
             }

@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public float vibrationIntensity = 0.1f;
     private bool puedeMoverse = true;
     private bool estaEnLaPuerta = false;
+    public float teleportDistance = 5.0f;
+    public Transform waypoint; // Asigna el Waypoint en el Inspector.
+    public LayerMask EnemyLayer;
 
     void Start()
     {
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
         // Movimiento
         if (puedeMoverse)
         {
@@ -58,6 +62,22 @@ public class PlayerController : MonoBehaviour
             {
                 ToggleCrouch();
             }
+
+            // Detecta enemigos en un radio alrededor del jugador
+            Collider[] enemies = Physics.OverlapSphere(transform.position, teleportDistance, EnemyLayer);
+
+            // Si hay enemigos cercanos, teleporta al jugador al waypoint
+            if (enemies.Length > 0)
+            {
+                foreach (Collider enemyCollider in enemies)
+                {
+                    if (enemyCollider.CompareTag("Enemy"))
+                    {
+                        TeleportToWaypoint();
+                        break;
+                    }
+                }
+            }
         }
         else
         {
@@ -71,9 +91,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    float SetGravity()
+    private void TeleportToWaypoint()
     {
-        return moveDirection.y = -gravity * Time.deltaTime;
+        if (waypoint != null)
+        {
+            // Teleporta al jugador al waypoint
+            characterController.enabled = false; // Desactiva temporalmente el CharacterController para evitar problemas de colisión
+            transform.position = waypoint.position;
+            characterController.enabled = true; // Vuelve a activar el CharacterController
+        }
     }
 
     private void ToggleCrouch()
@@ -83,12 +109,12 @@ public class PlayerController : MonoBehaviour
         if (isCrouching)
         {
             characterController.height = 1.0f; // Establece la altura del jugador cuando está agachado.
-            moveSpeed = 2.0f; // Reduz la velocidad de movimiento cuando está agachado (ajusta según tus necesidades).
+            moveSpeed = 2.0f; // Reduzca la velocidad de movimiento cuando está agachado (ajuste según sus necesidades).
         }
         else
         {
             characterController.height = 2.0f; // Restablece la altura normal del jugador.
-            moveSpeed = 5.0f; // Restablece la velocidad de movimiento normal (ajusta según tus necesidades).
+            moveSpeed = 5.0f; // Restablece la velocidad de movimiento normal (ajuste según sus necesidades).
         }
     }
 

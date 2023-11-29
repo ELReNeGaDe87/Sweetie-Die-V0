@@ -1,31 +1,28 @@
 using UnityEngine;
 
-public class NPCAttack : MonoBehaviour
+public class MonsterAttack : MonoBehaviour
 {
     public Transform player;
-    public Transform teleportWaypoint;
-    public float attackRange = 3f;
+    public float attackRange = 2f;
+    public float attackCooldown = 2f;
 
-    // Update is called once per frame
+    private float nextAttackTime = 0f;
+
     void Update()
     {
-        // Calcula la distancia entre el NPC y el jugador
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Si el jugador está dentro del rango de ataque, teleporta al jugador al waypoint
-        if (distanceToPlayer < attackRange)
+        if (distanceToPlayer <= attackRange && Time.time >= nextAttackTime)
         {
-            TeleportPlayer();
+            Attack();
+            nextAttackTime = Time.time + 1f / attackCooldown;
         }
     }
 
-    void TeleportPlayer()
+    void Attack()
     {
-        // Teletransporta al jugador al waypoint
-        player.position = teleportWaypoint.position;
-
-        // Puedes agregar cualquier lógica adicional aquí, como reproducir un sonido, mostrar efectos, etc.
-
-        Debug.Log("¡El jugador ha sido teletransportado!");
+        // Aquí colocas la lógica de ataque del NPC
+        Debug.Log("NPC atacando al jugador");
     }
 }
+
