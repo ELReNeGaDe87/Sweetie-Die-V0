@@ -90,6 +90,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Teleport(Vector3 position)
+    {
+        if (position != null)
+        {
+            // Teleporta al jugador al waypoint
+            characterController.enabled = false; // Desactiva temporalmente el CharacterController para evitar problemas de colisión
+            transform.position = position;
+            characterController.enabled = true; // Vuelve a activar el CharacterController
+        }
+    }
+
     private void ToggleCrouch()
     {
         isCrouching = !isCrouching;

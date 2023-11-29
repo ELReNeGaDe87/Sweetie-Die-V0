@@ -40,7 +40,7 @@ public class Puertas : MonoBehaviour
                     audioSource.PlayOneShot(audioClip);
                 }
             }
-            //messageText.text = "Está cerrada";
+            //messageText.text = "Estï¿½ cerrada";
             //messageText.enabled = true;
             //StartCoroutine(DisableMessageAfterTime(2));
         }
@@ -60,16 +60,23 @@ public class Puertas : MonoBehaviour
 
     IEnumerator OpenDoorM(Transform door)
     {
-        if (recogerObjeto.HoldingObject())
-        {
-            currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
+        currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
 
-            yield return Rotate(door, currentRotation);
+        yield return Rotate(door, currentRotation);
 
-            yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);
 
-            yield return Rotate(door, -currentRotation);
-        }
+        yield return Rotate(door, -currentRotation);
+        //if (recogerObjeto.HoldingObject())
+        //{
+        //    currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
+
+        //    yield return Rotate(door, currentRotation);
+
+        //    yield return new WaitForSeconds(1);
+
+        //    yield return Rotate(door, -currentRotation);
+        //}
     }
 
     IEnumerator Rotate(Transform target, float rotation)

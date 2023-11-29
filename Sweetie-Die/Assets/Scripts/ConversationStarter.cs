@@ -24,6 +24,9 @@ public class ConversationStarter : MonoBehaviour
 
     public static bool ConversationIsActive = false;
 
+    private Vector3 teleportPosition = new Vector3(141.38f, 1.2f, -79.43f);
+
+
     private void Start()
     {
         heartImage = heart.GetComponent<Image>();
@@ -40,7 +43,7 @@ public class ConversationStarter : MonoBehaviour
             }
             else
             {
-                ConversationManager.Instance.StartConversation(GoodEndingConversation);
+                ConversationManager.Instance.StartConversation(BadEndingConversation);
             }
         }
     }
@@ -66,13 +69,53 @@ public class ConversationStarter : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
     }
+
     private void ConversationEnd()
     {
+        if (hasHadFirstConversation)
+        {
+            GameOver();
+            return;
+        }
         hasHadFirstConversation = true;
         ConversationIsActive = false;
         heartMonitor.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        TeleportPlayer();
+        
         UnityEngine.Debug.Log("A conversation has ended.");
+    }
+
+    private void TeleportPlayer()
+    {
+        GameObject player = GameObject.Find("Player");
+
+        // Check if the player GameObject is found
+        if (player != null)
+        {
+            // Get the TeleportScript component attached to the player GameObject
+            PlayerController playerController = player.GetComponent<PlayerController>();
+
+            // Check if the TeleportScript component is found
+            if (playerController != null)
+            {
+                // Call the Teleport function
+                playerController.Teleport(teleportPosition);
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("TeleportScript component not found on the player GameObject.");
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Player GameObject not found.");
+        }
+    }
+
+    private void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     private void fillHearts(int numHearts)
