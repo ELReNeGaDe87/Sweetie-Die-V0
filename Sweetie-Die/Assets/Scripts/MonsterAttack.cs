@@ -5,6 +5,7 @@ public class MonsterAttack : MonoBehaviour
     public Transform player;
     public float attackRange = 2f;
     public float attackCooldown = 2f;
+    public PlayerController playerController; // Asegúrate de asignar esto en el Inspector
 
     private float nextAttackTime = 0f;
 
@@ -21,8 +22,13 @@ public class MonsterAttack : MonoBehaviour
 
     void Attack()
     {
-        // Aquí colocas la lógica de ataque del NPC
+        // Lógica de ataque del NPC
         Debug.Log("NPC atacando al jugador");
+
+        // Llama al método ReceiveAttack del PlayerController
+        if (playerController != null)
+        {
+            playerController.ReceiveAttack();
+        }
     }
 }
-

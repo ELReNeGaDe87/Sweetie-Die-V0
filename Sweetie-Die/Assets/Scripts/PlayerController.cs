@@ -127,4 +127,8 @@ public class PlayerController : MonoBehaviour
     {
         estaEnLaPuerta = !estaEnLaPuerta;
     }
+    public void ReceiveAttack()
+    {
+        TeleportToWaypoint();
+    }
 }
