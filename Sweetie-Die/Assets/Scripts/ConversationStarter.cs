@@ -8,20 +8,16 @@ using UnityEngine.UI;
 
 public class ConversationStarter : MonoBehaviour
 {
-    [SerializeField] private NPCConversation monsterConversation;
+    [SerializeField] private NPCConversation FirstConversation;
+    [SerializeField] private NPCConversation GoodEndingConversation;
+    [SerializeField] private NPCConversation BadEndingConversation;
+
+    private bool hasHadFirstConversation = false;
 
     public GameObject heartMonitor;
-    public GameObject heart1;
-    public GameObject heart2;
-    public GameObject heart3;
-    public GameObject heart4;
-    public GameObject heart5;
+    public GameObject heart;
 
-    Image heart1Image;
-    Image heart2Image;
-    Image heart3Image;
-    Image heart4Image;
-    Image heart5Image;
+    Image heartImage;
 
     public Sprite filledHeart;
     public Sprite unfilledHeart;
@@ -30,26 +26,26 @@ public class ConversationStarter : MonoBehaviour
 
     private void Start()
     {
-        heart1Image = heart1.GetComponent<Image>();
-        heart2Image = heart2.GetComponent<Image>();
-        heart3Image = heart3.GetComponent<Image>();
-        heart4Image = heart4.GetComponent<Image>();
-        heart5Image = heart5.GetComponent<Image>();
+        heartImage = heart.GetComponent<Image>();
     }
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (!hasHadFirstConversation)
             {
-                ConversationManager.Instance.StartConversation(monsterConversation);
+                ConversationManager.Instance.StartConversation(FirstConversation);
+            }
+            else
+            {
+                ConversationManager.Instance.StartConversation(GoodEndingConversation);
             }
         }
     }
 
-        private void OnEnable()
+    private void OnEnable()
     {
         ConversationManager.OnConversationStarted += ConversationStart;
         ConversationManager.OnConversationEnded += ConversationEnd;
@@ -66,12 +62,13 @@ public class ConversationStarter : MonoBehaviour
         ConversationIsActive = true;
         UnityEngine.Debug.Log("A conversation has begun.");
         heartMonitor.SetActive(true);
-        fillHearts(4);
+        fillHearts(0);
         Cursor.lockState = CursorLockMode.Confined;
 
     }
     private void ConversationEnd()
     {
+        hasHadFirstConversation = true;
         ConversationIsActive = false;
         heartMonitor.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -82,36 +79,7 @@ public class ConversationStarter : MonoBehaviour
     {
         if (numHearts >= 1)
         {
-            heart1Image.sprite = filledHeart;
-        }
-        if (numHearts >= 2)
-        {
-            heart2Image.sprite = filledHeart;
-        }
-        if (numHearts >= 3)
-        {
-            heart3Image.sprite = filledHeart;
-        }
-        if (numHearts >= 4)
-        {
-            heart4Image.sprite = filledHeart;
-        }
-        if (numHearts >= 5)
-        {
-            heart5Image.sprite = filledHeart;
+            heartImage.sprite = filledHeart;
         }
     }
-
-    //private void Update()
-    //{
-    //    if (ConversationManager.Instance != null)
-    //    {
-    //        if (ConversationManager.Instance.IsConversationActive)
-    //        {
-    //            if (Input.GetKeyDown(KeyCode.UpArrow)) ConversationManager.Instance.SelectPreviousOption();
-    //            else if (Input.GetKeyDown(KeyCode.DownArrow)) ConversationManager.Instance.SelectNextOption();
-    //            else if (Input.GetKeyDown(KeyCode.Return)) ConversationManager.Instance.PressSelectedOption();
-    //        }
-    //    }
-    //}
 }
