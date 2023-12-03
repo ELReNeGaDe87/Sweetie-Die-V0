@@ -9,12 +9,14 @@ public class Esconderse : MonoBehaviour
     private PlayerController playerController;
     private Transform currentDoor;
     private float currentRotation;
+    private BoxCollider roomTrigger;
 
     void Start()
     {
         // Encuentra los componentes en el inicio
         switchCamera = FindObjectOfType<CambiarCamara>();
         playerController = FindObjectOfType<PlayerController>();
+        roomTrigger = GameObject.FindGameObjectWithTag("RoomTrigger").GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -41,9 +43,6 @@ public class Esconderse : MonoBehaviour
     {
         canHide = false;
 
-        // Rotar solo la puerta
-
-        // Línea que asigna el valor a currentRotation
         currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
 
         yield return Rotate(door, currentRotation);
@@ -52,12 +51,18 @@ public class Esconderse : MonoBehaviour
 
         yield return Rotate(door, -currentRotation);
 
-        playerController.ToggleControls();
-        switchCamera.SwitchCamera();
-        isHiding = true;
-
-        // Guarda la puerta actual para usarla en Unhide
-        currentDoor = door;
+        if (roomTrigger.bounds.Contains(transform.position))
+        {
+            playerController.ToggleControls();
+            switchCamera.SwitchCamera();
+            isHiding = true;
+            currentDoor = door;
+        }
+        else
+        {
+            yield return new WaitForSeconds(20f);
+            canHide = true;
+        }
     }
 
     IEnumerator Unhide()
