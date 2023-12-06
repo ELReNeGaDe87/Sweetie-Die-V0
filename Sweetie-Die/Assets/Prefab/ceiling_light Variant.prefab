@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8627591337240945208, guid: 3bfb1df5b041c4343b0ba07f555320e9, type: 3}
       propertyPath: m_Intensity
-      value: 1.5
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: -8627591337240945208, guid: 3bfb1df5b041c4343b0ba07f555320e9, type: 3}
       propertyPath: m_Shadows.m_Type
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9197938209004983987, guid: 3bfb1df5b041c4343b0ba07f555320e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.734
+      value: 0.641
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
