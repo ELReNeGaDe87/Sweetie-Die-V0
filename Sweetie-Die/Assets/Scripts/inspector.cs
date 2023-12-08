@@ -11,7 +11,7 @@ public class inspector : MonoBehaviour
     public GameObject objEnEscena;
     public GameObject player;
     public bool activa;
-   private bool controlesActivos = true;
+    private bool controlesActivos = true;
     private bool enModoInspeccion = false;
     private PlayerController playerController; // Referencia al script PlayerController
 
@@ -48,8 +48,7 @@ public class inspector : MonoBehaviour
                 ObjetoInspect.SetActive(false);
                 InspectCamera.SetActive(false);
                 MainCamera.SetActive(true);
-
-              controlesActivos = true;
+                controlesActivos = true;
                 playerController.enabled = true;
                 enModoInspeccion = false;
             }

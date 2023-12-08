@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CambiarCamara : MonoBehaviour
@@ -8,6 +10,7 @@ public class CambiarCamara : MonoBehaviour
     private float initialRotationY;
     public float sensitivity = 2.0f; // Sensibilidad del movimiento de la cámara
     public GameObject player; // Referencia al jugador
+    public bool justExited = false;
 
     void Start()
     {
@@ -30,10 +33,20 @@ public class CambiarCamara : MonoBehaviour
 
             // Limita la rotación a un rango de -50 a 50 grados respecto a la rotación inicial
             if (rotationY - initialRotationY > 180) rotationY -= 360; // Convierte el ángulo a -180 a 180
-            rotationY = Mathf.Clamp(rotationY, initialRotationY - 50f, initialRotationY + 50f);
+            rotationY = Mathf.Clamp(rotationY, initialRotationY - 42f, initialRotationY + 42f);
 
             transform.localRotation = Quaternion.Euler(0, rotationY, 0);
         }
+        if (justExited == true)
+        {
+            StartCoroutine(ResetJustExited());
+        }
+    }
+
+    IEnumerator ResetJustExited()
+    {
+        yield return new WaitForSeconds(3f);
+        justExited = false;
     }
 
     public void SwitchCamera()
@@ -60,6 +73,7 @@ public class CambiarCamara : MonoBehaviour
             movementActive = false;
             secondaryCamera.enabled = false;
             mainCamera.enabled = true;
+            justExited = true;
         }
     }
 
@@ -81,5 +95,14 @@ public class CambiarCamara : MonoBehaviour
             }
         }
         return closest;
+    }
+    public bool isCameraActive()
+    {
+        return movementActive;
+    }
+
+    public bool JustExited()
+    {
+        return justExited;
     }
 }

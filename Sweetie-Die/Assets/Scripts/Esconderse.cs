@@ -74,8 +74,10 @@ public class Esconderse : MonoBehaviour
         // Usa la puerta y la rotación guardadas
         yield return Rotate(currentDoor, currentRotation);
 
-        yield return new WaitForSeconds(1);
-
+        while (roomTrigger.bounds.Contains(transform.position))
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
         yield return Rotate(currentDoor, -currentRotation);
 
         yield return new WaitForSeconds(60f);
