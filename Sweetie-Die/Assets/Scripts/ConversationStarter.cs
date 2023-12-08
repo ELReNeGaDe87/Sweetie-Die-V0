@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class ConversationStarter : MonoBehaviour
 {
     [SerializeField] private NPCConversation FirstConversation;
+    [SerializeField] private NPCConversation MiddleConversation;
     [SerializeField] private NPCConversation GoodEndingConversation;
     [SerializeField] private NPCConversation BadEndingConversation;
 
@@ -16,6 +17,7 @@ public class ConversationStarter : MonoBehaviour
 
     public GameObject heartMonitor;
     public GameObject heart;
+    public GameObject teleportPositionObject;
 
     Image heartImage;
 
@@ -43,7 +45,7 @@ public class ConversationStarter : MonoBehaviour
             }
             else
             {
-                ConversationManager.Instance.StartConversation(BadEndingConversation);
+                ConversationManager.Instance.StartConversation(MiddleConversation);
             }
         }
     }
@@ -65,7 +67,6 @@ public class ConversationStarter : MonoBehaviour
         ConversationIsActive = true;
         UnityEngine.Debug.Log("A conversation has begun.");
         heartMonitor.SetActive(true);
-        fillHearts(0);
         Cursor.lockState = CursorLockMode.Confined;
 
     }
@@ -75,18 +76,10 @@ public class ConversationStarter : MonoBehaviour
         ConversationIsActive = false;
         heartMonitor.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-        if (hasHadFirstConversation)
-        {
-            GameOver();
-            return;
-        }
-        hasHadFirstConversation = true;
-        TeleportPlayer();
-        
         UnityEngine.Debug.Log("A conversation has ended.");
     }
 
-    private void TeleportPlayer()
+    public void TeleportPlayer()
     {
         GameObject player = GameObject.Find("Player");
 
@@ -113,16 +106,23 @@ public class ConversationStarter : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void SetHasHadFirstConversation()
+    {
+        hasHadFirstConversation = true;
+    }
+
+    public void GameOver()
     {
         SceneManager.LoadScene("GameOver");
     }
 
-    private void fillHearts(int numHearts)
+    public void GameWon()
     {
-        if (numHearts >= 1)
-        {
-            heartImage.sprite = filledHeart;
-        }
+        SceneManager.LoadScene("GameWon");
+    }
+
+    public void FillHeart()
+    {
+        heartImage.sprite = filledHeart;
     }
 }
