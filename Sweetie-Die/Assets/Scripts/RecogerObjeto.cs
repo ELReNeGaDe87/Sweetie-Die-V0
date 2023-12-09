@@ -7,7 +7,7 @@ public class RecogerObjeto : MonoBehaviour
     public float pickupDistance = 1.0f;
     private CambiarCamara switchCamera;
     public Vector3 heldObjectPosition = new Vector3(0.6f, -0.4f, 1f);
-    private GameObject heldObject = null;
+    public static GameObject heldObject = null;
     private Quaternion originalRotation;
     private float dropDelay = 3.0f;
     private float dropTimer = 0.0f;
@@ -64,7 +64,7 @@ public class RecogerObjeto : MonoBehaviour
             dropTimer = 0.0f;
         }
     }
-    public bool HoldingObject()
+    public static bool HoldingObject()
     {
         return heldObject != null;
     }

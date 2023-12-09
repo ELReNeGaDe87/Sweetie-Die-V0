@@ -12,6 +12,7 @@ TagManager:
   - Obstacle
   - Enemy
   - RoomTrigger
+  - GiftCone
   layers:
   - Default
   - TransparentFX

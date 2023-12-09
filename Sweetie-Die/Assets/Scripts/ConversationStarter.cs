@@ -45,7 +45,21 @@ public class ConversationStarter : MonoBehaviour
             }
             else
             {
-                ConversationManager.Instance.StartConversation(MiddleConversation);
+                if (RecogerObjeto.HoldingObject())
+                {
+                    if (RecogerObjeto.heldObject.CompareTag("GiftCone"))
+                    {
+                        ConversationManager.Instance.StartConversation(GoodEndingConversation);
+                    }
+                    else
+                    {
+                        ConversationManager.Instance.StartConversation(BadEndingConversation);
+                    }
+                }
+                else
+                {
+                    ConversationManager.Instance.StartConversation(MiddleConversation);
+                }
             }
         }
     }
