@@ -61,7 +61,7 @@ public class MonsterAI : MonoBehaviour
             if (timeRemainingForChase > 0)
             {
                 timeRemainingForChase -= Time.deltaTime;
-                Debug.Log("Tiempo de persecución: " + timeRemainingForChase);
+                //Debug.Log("Tiempo de persecución: " + timeRemainingForChase);
             }
             else
             {
@@ -93,7 +93,7 @@ public class MonsterAI : MonoBehaviour
 
         currentWaypointIndex = randomIndex;
         navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
-        Debug.Log("Dirigiéndose al Waypoint: " + currentWaypointIndex);
+        //Debug.Log("Dirigiéndose al Waypoint: " + currentWaypointIndex);
     }
 
     IEnumerator Patrol()
@@ -115,21 +115,21 @@ public class MonsterAI : MonoBehaviour
     IEnumerator ChasePlayer()
     {
         navMeshAgent.speed = chaseSpeed;
-        Debug.Log("¡Se ha activado la persecución!");
+        //Debug.Log("¡Se ha activado la persecución!");
         while (Vector3.Distance(transform.position, player.position) > 0.1f)
         {
             navMeshAgent.SetDestination(player.position);
             yield return null;
         }
 
-        Debug.Log("Persiguiendo al jugador");
+        //Debug.Log("Persiguiendo al jugador");
 
         // Asegurarse de detener la persecución antes de volver a patrullar
         if (chaseCoroutine != null)
         {
             StopCoroutine(chaseCoroutine);
         }
-        Debug.Log("¡Se ha desactivado la persecución!");
+        //Debug.Log("¡Se ha desactivado la persecución!");
         isPatrolling = true;
         patrolCoroutine = StartCoroutine(Patrol());
     }

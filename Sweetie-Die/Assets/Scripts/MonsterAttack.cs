@@ -21,7 +21,7 @@ public class MonsterAttack : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
+        Debug.Log("Puntos restantes: " + vida);
         if (distanceToPlayer <= attackRange && Time.time >= nextAttackTime)
         {
             Attack();
@@ -41,9 +41,8 @@ public class MonsterAttack : MonoBehaviour
         {
             if (playerController != null)
             {
-                playerController.ReceiveAttack();
                 vida--;
-
+                playerController.ReceiveAttack();
                 // Reproducir el video al recibir el ataque
                 if (videoPlayer != null)
                 {
