@@ -132,7 +132,7 @@ public class ConversationStarter : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("BadEnding");
     }
 
     public void GameWon()
