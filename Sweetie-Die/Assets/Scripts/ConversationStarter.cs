@@ -27,6 +27,8 @@ public class ConversationStarter : MonoBehaviour
 
     public Transform teleportPosition;
 
+    public Image blackScreen;
+
 
     private void Start()
     {
@@ -137,7 +139,7 @@ public class ConversationStarter : MonoBehaviour
 
     public void GameWon()
     {
-        SceneManager.LoadScene("GameWon");
+        SceneManager.LoadScene("GoodEnding");
     }
 
     public void FillHeart()
