@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: adfaa1a216032534da2b6cceaa7500c5
+guid: c92e521b580ab214bb89ce398c76590b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -12,13 +12,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 8f9e03822a391ad4baf228beaa74c5e7, type: 2}
+      name: Ojo dch
+    second: {fileID: 2100000, guid: 8563362e33d39aa4ea87f42b7027b5fd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: 8563362e33d39aa4ea87f42b7027b5fd, type: 2}
+      name: Ojo izq
+    second: {fileID: 2100000, guid: 8f9e03822a391ad4baf228beaa74c5e7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
