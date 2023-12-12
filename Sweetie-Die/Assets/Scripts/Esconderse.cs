@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Esconderse : MonoBehaviour
@@ -9,14 +10,21 @@ public class Esconderse : MonoBehaviour
     private PlayerController playerController;
     private Transform currentDoor;
     private float currentRotation;
-    private BoxCollider roomTrigger;
+    private List<BoxCollider> roomTriggers;
+    private BoxCollider currentRoomTrigger;
+    private float originalRotation;
+    private float hideTime;
 
     void Start()
     {
-        // Encuentra los componentes en el inicio
         switchCamera = FindObjectOfType<CambiarCamara>();
         playerController = FindObjectOfType<PlayerController>();
-        roomTrigger = GameObject.FindGameObjectWithTag("RoomTrigger").GetComponent<BoxCollider>();
+        GameObject[] roomTriggerObjects = GameObject.FindGameObjectsWithTag("RoomTrigger");
+        roomTriggers = new List<BoxCollider>();
+        foreach (GameObject roomTriggerObject in roomTriggerObjects)
+        {
+            roomTriggers.Add(roomTriggerObject.GetComponent<BoxCollider>());
+        }
     }
 
     void Update()
@@ -27,13 +35,12 @@ public class Esconderse : MonoBehaviour
         }
         if (canHide && Input.GetKeyDown(KeyCode.E))
         {
-            // Lanza un raycast para detectar la puerta
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f) && hit.transform.CompareTag("HidingDoor"))
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f) && hit.transform.tag.Contains("Hiding"))
             {
                 StartCoroutine(Hide(hit.transform));
             }
         }
-        else if ((!canHide && isHiding) && Input.GetKeyDown(KeyCode.E))
+        else if (((!canHide && isHiding) && Input.GetKeyDown(KeyCode.E)) || ((!canHide && isHiding) && Time.time - hideTime >= 30f))
         {
             StartCoroutine(Unhide());
         }
@@ -42,23 +49,31 @@ public class Esconderse : MonoBehaviour
     IEnumerator Hide(Transform door)
     {
         canHide = false;
-
-        currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
-
-        yield return Rotate(door, currentRotation);
-
-        yield return new WaitForSeconds(1);
-
-        yield return Rotate(door, -currentRotation);
-
-        if (roomTrigger.bounds.Contains(transform.position))
+        hideTime = Time.time;
+        originalRotation = door.localEulerAngles.y;
+        if (door.CompareTag("HidingL"))
         {
-            playerController.ToggleControls();
-            switchCamera.SwitchCamera();
-            isHiding = true;
-            currentDoor = door;
+            currentRotation = originalRotation - 90f;
         }
-        else
+        else if (door.CompareTag("HidingR"))
+        {
+            currentRotation = originalRotation + 90f;
+        }
+        yield return Rotate(door, currentRotation);
+        yield return new WaitForSeconds(1);
+        yield return Rotate(door, originalRotation);
+        foreach (BoxCollider roomTrigger in roomTriggers)
+        {
+            if (roomTrigger.bounds.Contains(transform.position))
+            {
+                currentRoomTrigger = roomTrigger;
+                playerController.ToggleControls();
+                switchCamera.SwitchCamera();
+                isHiding = true;
+                currentDoor = door;
+            }
+        }
+        if (isHiding == false)
         {
             yield return new WaitForSeconds(20f);
             canHide = true;
@@ -70,29 +85,30 @@ public class Esconderse : MonoBehaviour
         isHiding = false;
         switchCamera.SwitchCamera();
         playerController.ToggleControls();
-
-        // Usa la puerta y la rotación guardadas
         yield return Rotate(currentDoor, currentRotation);
-
-        while (roomTrigger.bounds.Contains(transform.position))
+        while (currentRoomTrigger.bounds.Contains(transform.position))
         {
             yield return new WaitForSeconds(0.1f);
         }
-        yield return Rotate(currentDoor, -currentRotation);
-
+        yield return Rotate(currentDoor, originalRotation);
         yield return new WaitForSeconds(60f);
-
         canHide = true;
     }
 
-    IEnumerator Rotate(Transform target, float rotation)
+    IEnumerator Rotate(Transform target, float targetRotation)
     {
+        float currentRotation = target.localEulerAngles.y;
+        float deltaRotation = Mathf.DeltaAngle(currentRotation, targetRotation);
+        float rotationSpeed = deltaRotation / 1f;
+
         float timer = 0;
         while (timer < 1f)
         {
-            target.Rotate(0, rotation * Time.deltaTime, 0);
+            float rotation = currentRotation + rotationSpeed * timer;
+            target.localEulerAngles = new Vector3(target.localEulerAngles.x, rotation, target.localEulerAngles.z);
             timer += Time.deltaTime;
             yield return null;
         }
+        target.localEulerAngles = new Vector3(target.localEulerAngles.x, targetRotation, target.localEulerAngles.z);
     }
 }

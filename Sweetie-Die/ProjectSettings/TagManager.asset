@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HidingDoor
   - OpenDoor
   - CloseDoor
   - MonsterDoor
@@ -13,6 +12,8 @@ TagManager:
   - Enemy
   - RoomTrigger
   - GiftCone
+  - HidingL
+  - HidingR
   layers:
   - Default
   - TransparentFX
