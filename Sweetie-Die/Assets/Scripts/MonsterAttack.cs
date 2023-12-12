@@ -6,9 +6,14 @@ public class MonsterAttack : MonoBehaviour
     public float attackRange = 2f;
     public float attackCooldown = 2f;
     public PlayerController playerController; // Asegúrate de asignar esto en el Inspector
+    private int vida = 5;
+    private GameOverScript gameOver;
 
     private float nextAttackTime = 0f;
-
+    void Start()
+    {
+        gameOver = GetComponent<GameOverScript>();
+    }
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
@@ -24,11 +29,18 @@ public class MonsterAttack : MonoBehaviour
     {
         // Lógica de ataque del NPC
         Debug.Log("NPC atacando al jugador");
-
-        // Llama al método ReceiveAttack del PlayerController
-        if (playerController != null)
+        if (vida < 1)
         {
-            playerController.ReceiveAttack();
+            gameOver.GameOver();
         }
+        else
+        {
+            if (playerController != null)
+            {
+                playerController.ReceiveAttack();
+                vida--;
+            }
+        }
+
     }
 }
