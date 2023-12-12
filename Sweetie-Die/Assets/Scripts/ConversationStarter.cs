@@ -17,7 +17,6 @@ public class ConversationStarter : MonoBehaviour
 
     public GameObject heartMonitor;
     public GameObject heart;
-    public GameObject teleportPositionObject;
 
     Image heartImage;
 
@@ -26,7 +25,7 @@ public class ConversationStarter : MonoBehaviour
 
     public static bool ConversationIsActive = false;
 
-    private Vector3 teleportPosition = new Vector3(141.38f, 1.2f, -79.43f);
+    public Transform teleportPosition;
 
 
     private void Start()
@@ -81,7 +80,10 @@ public class ConversationStarter : MonoBehaviour
         ConversationIsActive = true;
         UnityEngine.Debug.Log("A conversation has begun.");
         heartMonitor.SetActive(true);
-        Cursor.lockState = CursorLockMode.Confined;
+        if (Cursor.lockState != CursorLockMode.Confined)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 
     }
 
@@ -89,7 +91,10 @@ public class ConversationStarter : MonoBehaviour
     {
         ConversationIsActive = false;
         heartMonitor.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         UnityEngine.Debug.Log("A conversation has ended.");
     }
 
