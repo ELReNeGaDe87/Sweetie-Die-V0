@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Hotel.unity
     guid: 421e20b4ce0809f46b09734f4ec492f4
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
+    path: Assets/Scenes/BadEnding.unity
     guid: f044b3c35336c4b4dbc423a49f656f17
   - enabled: 1
-    path: Assets/Scenes/GameWon.unity
+    path: Assets/Scenes/GoodEnding.unity
     guid: 09202e7c35cf447cfb62a25ae7aaab0c
   m_configObjects: {}
