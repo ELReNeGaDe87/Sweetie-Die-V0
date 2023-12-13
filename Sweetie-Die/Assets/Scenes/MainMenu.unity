@@ -467,7 +467,7 @@ MonoBehaviour:
   m_text: OPCIONES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
-  m_sharedMaterial: {fileID: -60803618019399505, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
+  m_sharedMaterial: {fileID: 3414757824564367106, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1636,7 +1636,7 @@ MonoBehaviour:
   m_text: Volver
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
-  m_sharedMaterial: {fileID: -3626329921569761411, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
+  m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_text: "\t\t\tJUGAR"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
-  m_sharedMaterial: {fileID: -60803618019399505, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
+  m_sharedMaterial: {fileID: 3414757824564367106, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2159,7 +2159,7 @@ MonoBehaviour:
   m_text: Volumen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
-  m_sharedMaterial: {fileID: -3626329921569761411, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
+  m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2295,7 +2295,7 @@ MonoBehaviour:
     Timm Marcussen\nRoberto Gomez Temprado\nAndreu Trull Mart\xED"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
-  m_sharedMaterial: {fileID: -3626329921569761411, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
+  m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2521,10 +2521,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CREDITOS
+  m_text: "CR\xC9DITOS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
-  m_sharedMaterial: {fileID: -60803618019399505, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
+  m_sharedMaterial: {fileID: 3414757824564367106, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2659,7 +2659,7 @@ MonoBehaviour:
   m_text: "\t\t\tOPCIONES"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
-  m_sharedMaterial: {fileID: -60803618019399505, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
+  m_sharedMaterial: {fileID: 3414757824564367106, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3571,7 +3571,7 @@ MonoBehaviour:
   m_text: "\t\t\tSALIR"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
-  m_sharedMaterial: {fileID: -60803618019399505, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
+  m_sharedMaterial: {fileID: 3414757824564367106, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5027,7 +5027,7 @@ MonoBehaviour:
   m_text: Volver
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
-  m_sharedMaterial: {fileID: -3626329921569761411, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
+  m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5272,10 +5272,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Graficos
+  m_text: "Gr\xE1ficos"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
-  m_sharedMaterial: {fileID: -3626329921569761411, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
+  m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5407,10 +5407,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\t\t\tCREDITOS"
+  m_text: "\t\t\tCR\xC9DITOS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
-  m_sharedMaterial: {fileID: -60803618019399505, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
+  m_sharedMaterial: {fileID: 3414757824564367106, guid: 8fdd87fe1d41c8c46b23968f4af9710e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
