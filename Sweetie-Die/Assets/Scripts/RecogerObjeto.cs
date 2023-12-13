@@ -19,7 +19,7 @@ public class RecogerObjeto : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1) || switchCamera.isCameraActive())
+        if (Input.GetMouseButton(0) || switchCamera.isCameraActive())
         {
             if (heldObject == null)
             {
