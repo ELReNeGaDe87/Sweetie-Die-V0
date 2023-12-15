@@ -27,7 +27,7 @@ public class ConversationStarter : MonoBehaviour
 
     public Transform teleportPosition;
 
-    public Image blackScreen;
+    public GameObject aimDot;
 
 
     private void Start()
@@ -81,22 +81,17 @@ public class ConversationStarter : MonoBehaviour
     {
         ConversationIsActive = true;
         UnityEngine.Debug.Log("A conversation has begun.");
+        aimDot.SetActive(false);
         heartMonitor.SetActive(true);
-        if (Cursor.lockState != CursorLockMode.Confined)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void ConversationEnd()
     {
         ConversationIsActive = false;
+        aimDot.SetActive(true);
         heartMonitor.SetActive(false);
-        if (Cursor.lockState != CursorLockMode.Locked)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Debug.Log("A conversation has ended.");
     }
 
