@@ -11,6 +11,8 @@ public class RecogerObjeto : MonoBehaviour
     private Quaternion originalRotation;
     private float dropDelay = 3.0f;
     private float dropTimer = 0.0f;
+    [SerializeField]
+    private GameObject pickUpObjectText;
 
     void Start()
     {
@@ -67,5 +69,10 @@ public class RecogerObjeto : MonoBehaviour
     public static bool HoldingObject()
     {
         return heldObject != null;
+    }
+
+    private void DisplayText(bool value)
+    {
+        pickUpObjectText.SetActive(value);
     }
 }

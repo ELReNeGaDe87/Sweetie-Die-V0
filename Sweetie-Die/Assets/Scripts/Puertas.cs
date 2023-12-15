@@ -13,6 +13,9 @@ public class Puertas : MonoBehaviour
     public string lockedDoorTag = "CloseDoor";
     private RecogerObjeto recogerObjeto;
 
+    [SerializeField]
+    private GameObject OpenDoorText;
+
     void Start()
     {
         recogerObjeto = FindObjectOfType<RecogerObjeto>();
@@ -112,5 +115,10 @@ public class Puertas : MonoBehaviour
             }
         }
         return nearestObject;
+    }
+
+    private void DisplayOpenDoorText(bool value)
+    {
+        OpenDoorText.SetActive(value);
     }
 }
