@@ -8,10 +8,11 @@ public class Puertas : MonoBehaviour
     private float currentRotation;
     private RaycastHit hit;
     public AudioClip audioClip;
-    // public Text messageText;
+    public bool puedesAbrir = true;
     public GameObject player;
-    public string lockedDoorTag = "CloseDoor";
+    private bool canInteract = true;
     private RecogerObjeto recogerObjeto;
+    private float originalRotation;
 
     [SerializeField]
     private GameObject OpenDoorText;
@@ -24,17 +25,17 @@ public class Puertas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("OpenDoor") && Input.GetKeyDown(KeyCode.E))
+        if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor") && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(OpenDoor(hit.transform));
         }
-        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("MonsterDoor") && Input.GetKeyDown(KeyCode.E))
+        else if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor") && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(OpenDoorM(hit.transform));
         }
-        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag(lockedDoorTag) && Input.GetKeyDown(KeyCode.E))
+        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
         {
-            GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, lockedDoorTag);
+            GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
             if (nearestLockedDoor != null)
             {
                 AudioSource audioSource = nearestLockedDoor.GetComponent<AudioSource>();
@@ -43,61 +44,61 @@ public class Puertas : MonoBehaviour
                     audioSource.PlayOneShot(audioClip);
                 }
             }
-            //messageText.text = "Est� cerrada";
-            //messageText.enabled = true;
-            //StartCoroutine(DisableMessageAfterTime(2));
         }
     }
 
     IEnumerator OpenDoor(Transform door) 
     {
-        currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
-
+        canInteract = false;
+        originalRotation = door.localEulerAngles.y;
+        if (door.CompareTag("OpenDoorL"))
+        {
+            currentRotation = originalRotation - 90f;
+        }
+        else if (door.CompareTag("OpenDoorR"))
+        {
+            currentRotation = originalRotation + 90f;
+        }
         yield return Rotate(door, currentRotation);
-
         yield return new WaitForSeconds(1);
-
-        yield return Rotate(door, -currentRotation);
-        
+        yield return Rotate(door, originalRotation);
+        canInteract = true;
     }
 
     IEnumerator OpenDoorM(Transform door)
     {
-        currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
-
+        canInteract = false;
+        originalRotation = door.localEulerAngles.y;
+        if (door.CompareTag("MonsterDoorL"))
+        {
+            currentRotation = originalRotation - 90f;
+        }
+        else if (door.CompareTag("MonsterDoorR"))
+        {
+            currentRotation = originalRotation + 90f;
+        }
         yield return Rotate(door, currentRotation);
-
         yield return new WaitForSeconds(1);
-
-        yield return Rotate(door, -currentRotation);
-        //if (recogerObjeto.HoldingObject())
-        //{
-        //    currentRotation = door.localEulerAngles.y >= 0 && door.localEulerAngles.y < 180 ? -90f : 90f;
-
-        //    yield return Rotate(door, currentRotation);
-
-        //    yield return new WaitForSeconds(1);
-
-        //    yield return Rotate(door, -currentRotation);
-        //}
+        yield return Rotate(door, originalRotation);
+        canInteract = true;
     }
 
-    IEnumerator Rotate(Transform target, float rotation)
+    IEnumerator Rotate(Transform target, float targetRotation)
     {
+        float currentRotation = target.localEulerAngles.y;
+        float deltaRotation = Mathf.DeltaAngle(currentRotation, targetRotation);
+        float rotationSpeed = deltaRotation / 1f;
+
         float timer = 0;
         while (timer < 1f)
         {
-            target.Rotate(0, rotation * Time.deltaTime, 0);
+            float rotation = currentRotation + rotationSpeed * timer;
+            target.localEulerAngles = new Vector3(target.localEulerAngles.x, rotation, target.localEulerAngles.z);
             timer += Time.deltaTime;
             yield return null;
         }
+        target.localEulerAngles = new Vector3(target.localEulerAngles.x, targetRotation, target.localEulerAngles.z);
     }
-
-    /*IEnumerator DisableMessageAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        messageText.enabled = false;
-    }*/
 
     GameObject FindNearestWithTag(Vector3 position, string tag)
     {

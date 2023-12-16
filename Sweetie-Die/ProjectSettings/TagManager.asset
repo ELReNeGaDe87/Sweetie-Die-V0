@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - OpenDoor
   - CloseDoor
-  - MonsterDoor
   - SpawnCamera
   - Obstacle
   - Enemy
@@ -14,6 +12,10 @@ TagManager:
   - GiftCone
   - HidingL
   - HidingR
+  - OpenDoorR
+  - OpenDoorL
+  - MonsterDoorR
+  - MonsterDoorL
   layers:
   - Default
   - TransparentFX

@@ -9,10 +9,10 @@ public class Esconderse : MonoBehaviour
     private CambiarCamara switchCamera;
     private PlayerController playerController;
     private Transform currentDoor;
-    private float currentRotation;
     private List<BoxCollider> roomTriggers;
     private BoxCollider currentRoomTrigger;
     private float originalRotation;
+    private float currentRotation;
     private float hideTime;
 
     void Start()
@@ -100,7 +100,6 @@ public class Esconderse : MonoBehaviour
         float currentRotation = target.localEulerAngles.y;
         float deltaRotation = Mathf.DeltaAngle(currentRotation, targetRotation);
         float rotationSpeed = deltaRotation / 1f;
-
         float timer = 0;
         while (timer < 1f)
         {

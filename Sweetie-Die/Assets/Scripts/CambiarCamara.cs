@@ -10,7 +10,6 @@ public class CambiarCamara : MonoBehaviour
     private float initialRotationY;
     public float sensitivity = 2.0f; // Sensibilidad del movimiento de la cámara
     public GameObject player; // Referencia al jugador
-    public bool justExited = false;
 
     void Start()
     {
@@ -37,16 +36,6 @@ public class CambiarCamara : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(0, rotationY, 0);
         }
-        if (justExited == true)
-        {
-            StartCoroutine(ResetJustExited());
-        }
-    }
-
-    IEnumerator ResetJustExited()
-    {
-        yield return new WaitForSeconds(3f);
-        justExited = false;
     }
 
     public void SwitchCamera()
@@ -64,6 +53,7 @@ public class CambiarCamara : MonoBehaviour
             initialRotationY = secondaryCamera.transform.localEulerAngles.y;
 
             mainCamera.enabled = false;
+            
             secondaryCamera.enabled = true;
             movementActive = true;
         }
@@ -73,7 +63,6 @@ public class CambiarCamara : MonoBehaviour
             movementActive = false;
             secondaryCamera.enabled = false;
             mainCamera.enabled = true;
-            justExited = true;
         }
     }
 
@@ -99,10 +88,5 @@ public class CambiarCamara : MonoBehaviour
     public bool isCameraActive()
     {
         return movementActive;
-    }
-
-    public bool JustExited()
-    {
-        return justExited;
     }
 }
