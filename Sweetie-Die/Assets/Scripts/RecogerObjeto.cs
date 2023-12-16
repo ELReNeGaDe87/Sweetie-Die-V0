@@ -9,8 +9,6 @@ public class RecogerObjeto : MonoBehaviour
     public Vector3 heldObjectPosition = new Vector3(0.6f, -0.4f, 1f);
     public static GameObject heldObject = null;
     private Quaternion originalRotation;
-    private float dropDelay = 3.0f;
-    private float dropTimer = 0.0f;
     [SerializeField]
     private GameObject pickUpObjectText;
 
@@ -21,7 +19,7 @@ public class RecogerObjeto : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) || switchCamera.isCameraActive())
+        if (Input.GetMouseButtonDown(0))
         {
             if (heldObject == null)
             {
@@ -38,21 +36,6 @@ public class RecogerObjeto : MonoBehaviour
                     }
                 }
             }
-        }
-        else if (heldObject != null)
-        {
-            if (switchCamera.JustExited())
-            {
-                dropTimer += Time.deltaTime;
-                if (dropTimer >= dropDelay)
-                {
-                    heldObject.GetComponent<Rigidbody>().isKinematic = false;
-                    heldObject.transform.SetParent(null);
-                    heldObject.transform.rotation = originalRotation;
-                    heldObject = null;
-                    dropTimer = 0.0f;
-                }
-            }
             else
             {
                 heldObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -60,10 +43,6 @@ public class RecogerObjeto : MonoBehaviour
                 heldObject.transform.rotation = originalRotation;
                 heldObject = null;
             }
-        }
-        else
-        {
-            dropTimer = 0.0f;
         }
     }
     public static bool HoldingObject()

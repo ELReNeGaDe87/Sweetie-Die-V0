@@ -21,7 +21,6 @@ public class MonsterAttack : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        Debug.Log("Puntos restantes: " + vida);
         if (distanceToPlayer <= attackRange && Time.time >= nextAttackTime)
         {
             Attack();
