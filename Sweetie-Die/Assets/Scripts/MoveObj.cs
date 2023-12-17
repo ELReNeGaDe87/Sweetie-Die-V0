@@ -14,9 +14,10 @@ public class MoveObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!PauseMenu.GameIsPaused){
         moveH += speedH * Input.GetAxis("Mouse X");
         moveV -= speedV * Input.GetAxis("Mouse Y");
         transform.eulerAngles = new Vector3(moveV, moveH, 0f);
-        
+        }
     }
 }

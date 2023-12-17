@@ -24,40 +24,41 @@ public class inspector : MonoBehaviour
         playerController = player.GetComponent<PlayerController>(); // Obtener la referencia al script PlayerController
     }
 
-    // Start is called before the first frame update
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && activa == true)
+           // Verifica si el juego está pausado antes de procesar la entrada de teclado
+        if (!PauseMenu.GameIsPaused)
         {
-            if (!enModoInspeccion)
+            if (Input.GetKeyDown(KeyCode.E) && activa == true)
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                // Entrar en modo inspecci�n
-                Texto.SetActive(true);
-                ObjetoInspect.SetActive(true);
-                InspectCamera.SetActive(true);
-                MainCamera.SetActive(false);
+                if (!enModoInspeccion)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    Texto.SetActive(true);
+                    ObjetoInspect.SetActive(true);
+                    InspectCamera.SetActive(true);
+                    MainCamera.SetActive(false);
 
-                controlesActivos = false;
-                playerController.enabled = false;
-                enModoInspeccion = true;
+                    controlesActivos = false;
+                    playerController.enabled = false;
+                    enModoInspeccion = true;
 
-                helperText.SetActive(false);
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                // Salir del modo inspecci�n
-                Texto.SetActive(false);
-                ObjetoInspect.SetActive(false);
-                InspectCamera.SetActive(false);
-                MainCamera.SetActive(true);
-                controlesActivos = true;
-                playerController.enabled = true;
-                enModoInspeccion = false;
-                helperText.SetActive(true);
+                    helperText.SetActive(false);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    Texto.SetActive(false);
+                    ObjetoInspect.SetActive(false);
+                    InspectCamera.SetActive(false);
+                    MainCamera.SetActive(true);
+                    controlesActivos = true;
+                    playerController.enabled = true;
+                    enModoInspeccion = false;
+                    helperText.SetActive(true);
+                }
             }
         }
     }
@@ -86,7 +87,7 @@ public class inspector : MonoBehaviour
             playerController.enabled = true;
             showHelperText(false);
 
-            // Aseg�rate de que al salir del �rea de activaci�n, la c�mara principal se reactive
+            // Asegúrate de que al salir del área de activación, la cámara principal se reactive
             MainCamera.SetActive(true);
         }
     }
