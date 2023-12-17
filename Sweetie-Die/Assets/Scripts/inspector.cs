@@ -14,6 +14,10 @@ public class inspector : MonoBehaviour
     private bool controlesActivos = true;
     private bool enModoInspeccion = false;
     private PlayerController playerController; // Referencia al script PlayerController
+    [SerializeField]
+    private GameObject helperText;
+    [SerializeField]
+    private GameObject aimDot;
 
     void Start()
     {
@@ -29,7 +33,7 @@ public class inspector : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                // Entrar en modo inspección
+                // Entrar en modo inspecciï¿½n
                 Texto.SetActive(true);
                 ObjetoInspect.SetActive(true);
                 InspectCamera.SetActive(true);
@@ -38,12 +42,14 @@ public class inspector : MonoBehaviour
                 controlesActivos = false;
                 playerController.enabled = false;
                 enModoInspeccion = true;
+
+                helperText.SetActive(false);
             }
             else
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                // Salir del modo inspección
+                // Salir del modo inspecciï¿½n
                 Texto.SetActive(false);
                 ObjetoInspect.SetActive(false);
                 InspectCamera.SetActive(false);
@@ -51,6 +57,7 @@ public class inspector : MonoBehaviour
                 controlesActivos = true;
                 playerController.enabled = true;
                 enModoInspeccion = false;
+                helperText.SetActive(true);
             }
         }
     }
@@ -60,6 +67,7 @@ public class inspector : MonoBehaviour
         if (other.tag == "Player")
         {
             activa = true;
+            showHelperText(true);
         }
     }
 
@@ -76,9 +84,16 @@ public class inspector : MonoBehaviour
             objEnEscena.SetActive(true);
             controlesActivos = true;
             playerController.enabled = true;
+            showHelperText(false);
 
-            // Asegúrate de que al salir del área de activación, la cámara principal se reactive
+            // Asegï¿½rate de que al salir del ï¿½rea de activaciï¿½n, la cï¿½mara principal se reactive
             MainCamera.SetActive(true);
         }
+    }
+
+    private void showHelperText(bool value)
+    {
+        helperText.SetActive(value);
+        aimDot.SetActive(!value);
     }
 }
