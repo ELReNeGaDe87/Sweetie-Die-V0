@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5883413416786380288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7909985014472571224}
+  - component: {fileID: 3563233766687722717}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7909985014472571224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883413416786380288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3563233766687722717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883413416786380288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989fd7db967994fd49123a3a11ee03db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  output: {fileID: 24300002, guid: 0291f4ad61ccf495d84066f9944009cf, type: 2}
+  sounds:
+  - name: BackgroundNoise
+    clip: {fileID: 8300000, guid: 097bce4cdecfe9e40991e3edaca3037b, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: JumpscareMonster
+    clip: {fileID: 8300000, guid: def79f5f35a580647a5c13d24a9c1ea6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: JumpscareEntity
+    clip: {fileID: 8300000, guid: c9f0bbf46ec97434f9afdbdeec612f7e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: 828ce712d3ff2e24092cf0f83fc7401c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LaughterEntity
+    clip: {fileID: 8300000, guid: 58c3787aed5d9c7439d41470411488b6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LaughterMonster1
+    clip: {fileID: 8300000, guid: c81e22a9deda1e44c82e17ee242cb8af, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LaughterMonster2
+    clip: {fileID: 8300000, guid: 7ac19c3262ee39e41945dffaf76c5ba5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LaughterMonster3
+    clip: {fileID: 8300000, guid: d1d77de1ba3927c488aade9172a5c876, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StepsPlayer
+    clip: {fileID: 8300000, guid: 1a110f65c9cb9a04eb20d89febd06539, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StepsMonster
+    clip: {fileID: 8300000, guid: bc20f7bf9cdc19d469ab7f1a36c17adc, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

@@ -84,6 +84,8 @@ public class ConversationStarter : MonoBehaviour
         aimDot.SetActive(false);
         heartMonitor.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
+        FindObjectOfType<AudioManager>().Play("Music");
+        FindObjectOfType<AudioManager>().Pause("BackgroundNoise");
     }
 
     private void ConversationEnd()
@@ -93,6 +95,8 @@ public class ConversationStarter : MonoBehaviour
         heartMonitor.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Debug.Log("A conversation has ended.");
+        FindObjectOfType<AudioManager>().Stop("Music");
+        FindObjectOfType<AudioManager>().Play("BackgroundNoise");
     }
 
     public void TeleportPlayer()
