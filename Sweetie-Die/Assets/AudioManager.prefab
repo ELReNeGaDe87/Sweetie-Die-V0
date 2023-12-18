@@ -102,9 +102,9 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: StepsPlayer
     clip: {fileID: 8300000, guid: 1a110f65c9cb9a04eb20d89febd06539, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: StepsMonster
     clip: {fileID: 8300000, guid: bc20f7bf9cdc19d469ab7f1a36c17adc, type: 3}
