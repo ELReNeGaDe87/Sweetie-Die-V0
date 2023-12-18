@@ -120,4 +120,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public bool IsPlaying(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            UnityEngine.Debug.LogWarning("Sound: " + name + " not found!");
+        }
+        return s.source.isPlaying;
+    }
+
 }

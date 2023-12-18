@@ -5,6 +5,7 @@ using DialogueEditor;
 using System.Diagnostics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class ConversationStarter : MonoBehaviour
 {
@@ -29,10 +30,19 @@ public class ConversationStarter : MonoBehaviour
 
     public GameObject aimDot;
 
+    public float minWaitBetweenPlays = 3f;
+    public float maxWaitBetweenPlays = 15f;
+    public float waitTimeCountdown = -1f;
+    private List<string> laughters = new List<string> { "LaughterMonster1", "LaughterMonster2", "LaughterMonster3" };
+    private string currentLaugh;
+
+    private AudioManager audioManager;
+
 
     private void Start()
     {
         heartImage = heart.GetComponent<Image>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
 
@@ -84,8 +94,8 @@ public class ConversationStarter : MonoBehaviour
         aimDot.SetActive(false);
         heartMonitor.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
-        FindObjectOfType<AudioManager>().Play("Music");
-        FindObjectOfType<AudioManager>().Pause("BackgroundNoise");
+        audioManager.Play("Music");
+        audioManager.Pause("BackgroundNoise");
     }
 
     private void ConversationEnd()
@@ -95,8 +105,8 @@ public class ConversationStarter : MonoBehaviour
         heartMonitor.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Debug.Log("A conversation has ended.");
-        FindObjectOfType<AudioManager>().Stop("Music");
-        FindObjectOfType<AudioManager>().Play("BackgroundNoise");
+        audioManager.Stop("Music");
+        audioManager.Play("BackgroundNoise");
     }
 
     public void TeleportPlayer()
@@ -144,5 +154,24 @@ public class ConversationStarter : MonoBehaviour
     public void FillHeart()
     {
         heartImage.sprite = filledHeart;
+    }
+
+    public void Update()
+    {
+        if (!ConversationIsActive) return;
+        foreach (string laugh in laughters)
+        {
+            if (audioManager.IsPlaying(laugh)) return;
+        }
+        if (ConversationIsActive && waitTimeCountdown < 0f)
+        {
+            currentLaugh = laughters[UnityEngine.Random.Range(0, laughters.Count)];
+            audioManager.Play(currentLaugh);
+            waitTimeCountdown = UnityEngine.Random.Range(minWaitBetweenPlays, maxWaitBetweenPlays);
+        }
+        else
+        {
+            waitTimeCountdown -= Time.deltaTime;
+        }
     }
 }
