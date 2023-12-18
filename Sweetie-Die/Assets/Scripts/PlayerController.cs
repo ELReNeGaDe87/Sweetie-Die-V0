@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     public Transform waypoint; // Asigna el Waypoint en el Inspector.
     public LayerMask EnemyLayer;
 
+    public Transform Waypoint_CommonArea1;
+    public Transform Waypoint_CommonArea2;
+    public Transform Waypoint_CommonArea3;
+    public Transform Waypoint_MonsterRoom;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -28,6 +33,24 @@ public class PlayerController : MonoBehaviour
         if (PauseMenu.GameIsPaused | ConversationStarter.ConversationIsActive)
         {
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Teleport(Waypoint_CommonArea1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Teleport(Waypoint_CommonArea2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Teleport(Waypoint_CommonArea3);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Teleport(Waypoint_MonsterRoom);
         }
 
         // Movimiento
