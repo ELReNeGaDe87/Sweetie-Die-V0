@@ -89,11 +89,12 @@ public class ConversationStarter : MonoBehaviour
 
     private void ConversationStart()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         ConversationIsActive = true;
         UnityEngine.Debug.Log("A conversation has begun.");
         aimDot.SetActive(false);
         heartMonitor.SetActive(true);
-        Cursor.lockState = CursorLockMode.Confined;
         audioManager.Play("Music");
         audioManager.Pause("BackgroundNoise");
     }
@@ -104,6 +105,7 @@ public class ConversationStarter : MonoBehaviour
         aimDot.SetActive(true);
         heartMonitor.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         UnityEngine.Debug.Log("A conversation has ended.");
         audioManager.Stop("Music");
         audioManager.Play("BackgroundNoise");

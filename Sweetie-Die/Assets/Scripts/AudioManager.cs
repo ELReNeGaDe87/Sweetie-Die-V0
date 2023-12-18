@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            Play("Music");
+            Play("MusicMenu");
         }
         else if (SceneManager.GetActiveScene().name == "Hotel")
         {

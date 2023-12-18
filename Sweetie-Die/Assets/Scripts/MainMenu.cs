@@ -36,8 +36,8 @@ public class MainMenu : MonoBehaviour
     public Sprite creditsButton_creepy;
     public Sprite exitButton_creepy;
 
-    private float sweetInterval = 3f;
-    private float creepyInterval = 0.5f;
+    public float sweetInterval = 4f;
+    public float creepyInterval = 1f;
 
     private void Start()
     {

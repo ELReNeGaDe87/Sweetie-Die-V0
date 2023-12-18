@@ -4142,6 +4142,8 @@ MonoBehaviour:
   optionsButton_creepy: {fileID: 21300000, guid: 137a35c21a72b014fa2d26c5009976f4, type: 3}
   creditsButton_creepy: {fileID: 21300000, guid: 6e9fd4c1accdcbc4c899defb4357ac0d, type: 3}
   exitButton_creepy: {fileID: 21300000, guid: e91e1940bec05b74dbcb7f86bde1d794, type: 3}
+  sweetInterval: 4
+  creepyInterval: 1
 --- !u!1 &1739466288
 GameObject:
   m_ObjectHideFlags: 0

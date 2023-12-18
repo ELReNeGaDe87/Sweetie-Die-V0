@@ -66,6 +66,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Music
     clip: {fileID: 8300000, guid: 828ce712d3ff2e24092cf0f83fc7401c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MusicMenu
+    clip: {fileID: 8300000, guid: aa43bb37e435d4b6f9674fcfbeed6740, type: 3}
     volume: 0.5
     pitch: 1
     loop: 1
