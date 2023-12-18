@@ -16,6 +16,7 @@ TagManager:
   - OpenDoorL
   - MonsterDoorR
   - MonsterDoorL
+  - OpenDoorPlayerRoom
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,8 @@ TagManager:
   - Obstacle
   - EnemyLayer
   - ceiling
-  - 
-  - 
+  - DoorsHidingRooms
+  - stopped
   - 
   - 
   - 

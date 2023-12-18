@@ -11,6 +11,7 @@ public class inspector : MonoBehaviour
     public GameObject objEnEscena;
     public GameObject player;
     public bool activa;
+    [SerializeField]
     private bool controlesActivos = true;
     private bool enModoInspeccion = false;
     private PlayerController playerController; // Referencia al script PlayerController
@@ -18,10 +19,11 @@ public class inspector : MonoBehaviour
     private GameObject helperText;
     [SerializeField]
     private GameObject aimDot;
-
+   
     void Start()
     {
         playerController = player.GetComponent<PlayerController>(); // Obtener la referencia al script PlayerController
+        
     }
 
     void Update()
@@ -30,7 +32,7 @@ public class inspector : MonoBehaviour
         if (!PauseMenu.GameIsPaused)
         {
             if (Input.GetKeyDown(KeyCode.E) && activa == true)
-            {
+            {               
                 if (!enModoInspeccion)
                 {
                     Cursor.lockState = CursorLockMode.None;
@@ -89,6 +91,7 @@ public class inspector : MonoBehaviour
 
             // Asegúrate de que al salir del área de activación, la cámara principal se reactive
             MainCamera.SetActive(true);
+            ChangeDoorTags();
         }
     }
 
@@ -96,5 +99,14 @@ public class inspector : MonoBehaviour
     {
         helperText.SetActive(value);
         aimDot.SetActive(!value);
+    }
+    private void ChangeDoorTags()
+    {
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("OpenDoorPlayerRoom");
+
+        foreach (GameObject door in doors)
+        {
+            door.tag = "OpenDoorL";
+        }
     }
 }
