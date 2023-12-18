@@ -156,22 +156,22 @@ public class ConversationStarter : MonoBehaviour
         heartImage.sprite = filledHeart;
     }
 
-    public void Update()
-    {
-        if (!ConversationIsActive) return;
-        foreach (string laugh in laughters)
-        {
-            if (audioManager.IsPlaying(laugh)) return;
-        }
-        if (ConversationIsActive && waitTimeCountdown < 0f)
-        {
-            currentLaugh = laughters[UnityEngine.Random.Range(0, laughters.Count)];
-            audioManager.Play(currentLaugh);
-            waitTimeCountdown = UnityEngine.Random.Range(minWaitBetweenPlays, maxWaitBetweenPlays);
-        }
-        else
-        {
-            waitTimeCountdown -= Time.deltaTime;
-        }
-    }
+    //public void Update()
+    //{
+    //    if (!ConversationIsActive) return;
+    //    foreach (string laugh in laughters)
+    //    {
+    //        if (audioManager.IsPlaying(laugh)) return;
+    //    }
+    //    if (ConversationIsActive && waitTimeCountdown < 0f)
+    //    {
+    //        currentLaugh = laughters[UnityEngine.Random.Range(0, laughters.Count)];
+    //        audioManager.Play(currentLaugh);
+    //        waitTimeCountdown = UnityEngine.Random.Range(minWaitBetweenPlays, maxWaitBetweenPlays);
+    //    }
+    //    else
+    //    {
+    //        waitTimeCountdown -= Time.deltaTime;
+    //    }
+    //}
 }
