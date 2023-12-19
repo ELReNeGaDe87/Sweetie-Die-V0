@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsButton;
     public GameObject creditsButton;
     public GameObject exitButton;
+    public GameObject backgroundOptCre;
 
     Image logoImage;
     Image backgroundImage;
@@ -21,6 +22,7 @@ public class MainMenu : MonoBehaviour
     Image optionsButtonImage;
     Image creditsButtonImage;
     Image exitButtonImage;
+    Image backgroundOptCreImage;
 
     public Sprite logo_sweet;
     public Sprite background_sweet;
@@ -28,6 +30,7 @@ public class MainMenu : MonoBehaviour
     public Sprite optionsButton_sweet;
     public Sprite creditsButton_sweet;
     public Sprite exitButton_sweet;
+    public Sprite backgroundOptCre_sweet;
 
     public Sprite logo_creepy;
     public Sprite background_creepy;
@@ -35,6 +38,7 @@ public class MainMenu : MonoBehaviour
     public Sprite optionsButton_creepy;
     public Sprite creditsButton_creepy;
     public Sprite exitButton_creepy;
+    public Sprite backgroundOptCre_creepy;
 
     public float sweetInterval = 4f;
     public float creepyInterval = 1f;
@@ -47,7 +51,8 @@ public class MainMenu : MonoBehaviour
         optionsButtonImage = optionsButton.GetComponent<Image>();
         creditsButtonImage = creditsButton.GetComponent<Image>();
         exitButtonImage = exitButton.GetComponent<Image>();
-        
+        backgroundOptCreImage = backgroundOptCre.GetComponent<Image>();
+
         StartCoroutine(SwitchMenus());   
     }
   
@@ -64,6 +69,8 @@ public class MainMenu : MonoBehaviour
             optionsButtonImage.sprite = optionsButton_creepy;
             creditsButtonImage.sprite = creditsButton_creepy;
             exitButtonImage.sprite = exitButton_creepy;
+            backgroundOptCreImage.sprite = backgroundOptCre_creepy;
+
 
             yield return new WaitForSeconds(creepyInterval);
 
@@ -73,6 +80,7 @@ public class MainMenu : MonoBehaviour
             optionsButtonImage.sprite = optionsButton_sweet;
             creditsButtonImage.sprite = creditsButton_sweet;
             exitButtonImage.sprite = exitButton_sweet;
+            backgroundOptCreImage.sprite = backgroundOptCre_sweet;
         }
     }
 

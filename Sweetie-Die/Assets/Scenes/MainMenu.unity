@@ -4130,18 +4130,21 @@ MonoBehaviour:
   optionsButton: {fileID: 1960521908}
   creditsButton: {fileID: 1235613009}
   exitButton: {fileID: 1619091601}
+  backgroundOptCre: {fileID: 2015918242}
   logo_sweet: {fileID: 21300000, guid: 60884c8f38460a54096050c81b6d996b, type: 3}
   background_sweet: {fileID: 21300000, guid: c6ad20cba7e2fc14bb5c955d1e946b3f, type: 3}
   startButton_sweet: {fileID: 21300000, guid: 9d56b399b23ef9e43a9dd22bdb275eea, type: 3}
   optionsButton_sweet: {fileID: 21300000, guid: 9d56b399b23ef9e43a9dd22bdb275eea, type: 3}
   creditsButton_sweet: {fileID: 21300000, guid: 9d56b399b23ef9e43a9dd22bdb275eea, type: 3}
   exitButton_sweet: {fileID: 21300000, guid: 9d56b399b23ef9e43a9dd22bdb275eea, type: 3}
+  backgroundOptCre_sweet: {fileID: 21300000, guid: c0b98ec54a268ba409ef0eb7658c14f8, type: 3}
   logo_creepy: {fileID: 21300000, guid: 341ae931be467a049bb94a7f73a9cf0f, type: 3}
   background_creepy: {fileID: 21300000, guid: 9662973c08a47fc478bd651526722130, type: 3}
   startButton_creepy: {fileID: 21300000, guid: e3f9663249f011c448d54d476474c71d, type: 3}
   optionsButton_creepy: {fileID: 21300000, guid: 137a35c21a72b014fa2d26c5009976f4, type: 3}
   creditsButton_creepy: {fileID: 21300000, guid: 6e9fd4c1accdcbc4c899defb4357ac0d, type: 3}
   exitButton_creepy: {fileID: 21300000, guid: e91e1940bec05b74dbcb7f86bde1d794, type: 3}
+  backgroundOptCre_creepy: {fileID: 21300000, guid: 00ad83726721f024fa6d9c9cd4716cbd, type: 3}
   sweetInterval: 4
   creepyInterval: 1
 --- !u!1 &1739466288
