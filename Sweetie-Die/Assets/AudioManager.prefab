@@ -48,7 +48,7 @@ MonoBehaviour:
   sounds:
   - name: BackgroundNoise
     clip: {fileID: 8300000, guid: 097bce4cdecfe9e40991e3edaca3037b, type: 3}
-    volume: 0.1
+    volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
