@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6091399821321642687
+--- !u!1001 &7560989396894305689
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,19 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 162.39615
+      value: 149.73431
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5773511
+      value: 0.100000024
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -125.975136
+      value: -133.52019
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,20 +62,20 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5161551134978632097}
+      addedObject: {fileID: -3412329220043464184}
   m_SourcePrefab: {fileID: 100100000, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
---- !u!1 &6361780930189467630 stripped
+--- !u!1 &7219109785989050568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 802ed347227342b4fbd5bf16fd64321f, type: 3}
-  m_PrefabInstance: {fileID: 6091399821321642687}
+  m_PrefabInstance: {fileID: 7560989396894305689}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &5161551134978632097
+--- !u!65 &-3412329220043464184
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6361780930189467630}
+  m_GameObject: {fileID: 7219109785989050568}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -88,5 +88,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.021265183, y: 0.010971754, z: 0.009205511}
-  m_Center: {x: 0.000027843751, y: 0.004527396, z: -0.00015214921}
+  m_Size: {x: 2.1265182, y: 1.0971755, z: 0.9205512}
+  m_Center: {x: 0.95168686, y: 0.42982858, z: 0.4596309}
