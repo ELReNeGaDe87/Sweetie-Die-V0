@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1770209405002166881}
   - component: {fileID: 7334686678016755799}
   - component: {fileID: 3960497814939727022}
-  - component: {fileID: -2936449686930168879}
   - component: {fileID: -6997844257738798307}
+  - component: {fileID: 524347774619900413}
   m_Layer: 0
   m_Name: valentines_card_01
   m_TagString: Untagged
@@ -85,28 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-2936449686930168879
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3371601604705992818}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8098959751293551652, guid: 770073eea805c6341a44dcfe06e1c03d, type: 3}
 --- !u!54 &-6997844257738798307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134,3 +112,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &524347774619900413
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3371601604705992818}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.49715555, y: 0.65856445, z: 0.30579597}
+  m_Center: {x: 0.08318415, y: 0.32928222, z: 0.00014673918}
