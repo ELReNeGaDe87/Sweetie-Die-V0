@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            
+                            if (MonsterVideo.isPlaying) return;
                             if (MonsterVideo != null)
                             {
                                 Debug.Log("MonsterVideo ejecutado");
