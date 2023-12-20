@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 using System.Diagnostics;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     public static AudioManager instance;
     private Scene scene;
+    private List<Sound> pauseSounds = new List<Sound>();
 
     // Start is called before the first frame update
     void Awake()
@@ -134,6 +137,29 @@ public class AudioManager : MonoBehaviour
             UnityEngine.Debug.LogWarning("SoundSource to: " + name + " not found!");
         }
         return s.source.isPlaying;
+    }
+
+    public void handlePause(bool pause)
+    {
+        if (pause)
+        {
+            foreach (Sound s in sounds)
+            {
+                if (IsPlaying(s.name))
+                {
+                    pauseSounds.Add(s);
+                    Pause(s.name);
+                }
+            }
+        }
+        else if (!pause)
+        {
+            foreach (Sound s in pauseSounds)
+            {
+                Play(s.name);
+            }
+            pauseSounds.Clear();
+        }
     }
 
 }

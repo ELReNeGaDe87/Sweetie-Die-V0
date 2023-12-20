@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
         GameIsPaused = false;
+        FindObjectOfType<AudioManager>().handlePause(false);
     }
 
     void Pause()
@@ -42,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         GameIsPaused = true;
+        FindObjectOfType<AudioManager>().handlePause(true);
     }
 
     public void LoadMenu()
