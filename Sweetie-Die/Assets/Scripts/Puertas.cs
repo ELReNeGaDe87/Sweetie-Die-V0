@@ -15,7 +15,9 @@ public class Puertas : MonoBehaviour
     private float originalRotation;
 
     [SerializeField]
-    private GameObject OpenDoorText;
+    private GameObject openDoorText;
+    [SerializeField]
+    private GameObject aimDot;
 
     void Start()
     {
@@ -25,15 +27,31 @@ public class Puertas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor") && Input.GetKeyDown(KeyCode.E))
+        if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor"))
         {
-            StartCoroutine(OpenDoor(hit.transform));
+            if (!openDoorText.activeSelf)
+            {
+                showOpenDoorText(true);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(OpenDoor(hit.transform));
+            }
+            return;
         }
-        else if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor") && Input.GetKeyDown(KeyCode.E))
+        if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor"))
         {
-            StartCoroutine(OpenDoorM(hit.transform));
+            if (!openDoorText.activeSelf)
+            {
+                showOpenDoorText(true);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(OpenDoorM(hit.transform));
+            }
+            return;
         }
-        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
         {
             GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
             if (nearestLockedDoor != null)
@@ -44,6 +62,11 @@ public class Puertas : MonoBehaviour
                     audioSource.PlayOneShot(audioClip);
                 }
             }
+            return;
+        }
+        if (openDoorText.activeSelf)
+        {
+            showOpenDoorText(false);
         }
     }
 
@@ -118,8 +141,9 @@ public class Puertas : MonoBehaviour
         return nearestObject;
     }
 
-    private void DisplayOpenDoorText(bool value)
+    private void showOpenDoorText(bool value)
     {
-        OpenDoorText.SetActive(value);
+        openDoorText.SetActive(value);
+        aimDot.SetActive(!value);
     }
 }
