@@ -28,13 +28,29 @@ public class Puertas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor") && Input.GetKeyDown(KeyCode.E))
+        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor"))
         {
-            StartCoroutine(OpenDoor(hit.transform));
+            if (!openDoorText.activeSelf)
+            {
+                showOpenDoorText(true);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(OpenDoor(hit.transform));
+            }
+            return;
         }
-        else if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor") && Input.GetKeyDown(KeyCode.E))
+        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor"))
         {
-            StartCoroutine(OpenDoorM(hit.transform));
+            if (!openDoorText.activeSelf)
+            {
+                showOpenDoorText(true);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(OpenDoorM(hit.transform));
+            }
+            return;
         }
         if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
         {
