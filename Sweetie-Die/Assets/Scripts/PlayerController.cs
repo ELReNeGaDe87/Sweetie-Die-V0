@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.Video;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform Waypoint_CommonArea2;
     public Transform Waypoint_CommonArea3;
     public Transform Waypoint_MonsterRoom;
+    public VideoPlayer MonsterVideo;
 
     private bool wasMoving = false;
 
@@ -119,8 +120,15 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            TeleportToWaypoint();
-                            vida--;
+                            
+                            if (MonsterVideo != null)
+                            {
+                                Debug.Log("MonsterVideo ejecutado");
+                                MonsterVideo.Play();
+                                
+                            }
+                            Invoke("DelayedTeleport", 7.0f);
+                            
                             Debug.Log(vida);
                             break;
                         }
@@ -134,6 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (waypoint != null)
         {
+            vida--;
             // Teleporta al jugador al waypoint
             characterController.enabled = false; // Desactiva temporalmente el CharacterController para evitar problemas de colisión
             transform.position = waypoint.position;
@@ -177,4 +186,10 @@ public class PlayerController : MonoBehaviour
     {
         TeleportToWaypoint();
     }
+    private void DelayedTeleport()
+    {
+        MonsterVideo.Stop();
+        TeleportToWaypoint();
+    }
+
 }
