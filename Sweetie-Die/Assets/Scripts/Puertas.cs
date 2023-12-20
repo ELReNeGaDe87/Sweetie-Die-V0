@@ -16,7 +16,9 @@ public class Puertas : MonoBehaviour
     private float originalRotation;
 
     [SerializeField]
-    private GameObject OpenDoorText;
+    private GameObject openDoorText;
+    [SerializeField]
+    private GameObject aimDot;
 
     void Start()
     {
@@ -26,15 +28,15 @@ public class Puertas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canInteract && (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor") && Input.GetKeyDown(KeyCode.E)))
+        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor") && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(OpenDoor(hit.transform));
         }
-        else if (canInteract && (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor") && Input.GetKeyDown(KeyCode.E)))
+        else if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor") && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(OpenDoorM(hit.transform));
         }
-        else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
         {
             GameObject nearestLockedDoor = FindNearestWithAnyTag(player.transform.position, "CloseDoor");
             if (nearestLockedDoor != null)
@@ -45,6 +47,11 @@ public class Puertas : MonoBehaviour
                     audioSource.PlayOneShot(puertablock);
                 }
             }
+            return;
+        }
+        if (openDoorText.activeSelf)
+        {
+            showOpenDoorText(false);
         }
     }
 
@@ -173,8 +180,9 @@ public class Puertas : MonoBehaviour
         return nearestObject;
     }
 
-    private void DisplayOpenDoorText(bool value)
+    private void showOpenDoorText(bool value)
     {
-        OpenDoorText.SetActive(value);
+        openDoorText.SetActive(value);
+        aimDot.SetActive(!value);
     }
 }

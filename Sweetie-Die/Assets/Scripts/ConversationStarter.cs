@@ -36,13 +36,10 @@ public class ConversationStarter : MonoBehaviour
     private List<string> laughters = new List<string> { "LaughterMonster1", "LaughterMonster2", "LaughterMonster3" };
     private string currentLaugh;
 
-    private AudioManager audioManager;
-
 
     private void Start()
     {
         heartImage = heart.GetComponent<Image>();
-        audioManager = FindObjectOfType<AudioManager>();
     }
 
 
@@ -95,8 +92,8 @@ public class ConversationStarter : MonoBehaviour
         UnityEngine.Debug.Log("A conversation has begun.");
         aimDot.SetActive(false);
         heartMonitor.SetActive(true);
-        audioManager.Play("Music");
-        audioManager.Pause("BackgroundNoise");
+        FindObjectOfType<AudioManager>().handlePause(true);
+        FindObjectOfType<AudioManager>().Play("Music");
     }
 
     private void ConversationEnd()
@@ -107,8 +104,8 @@ public class ConversationStarter : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         UnityEngine.Debug.Log("A conversation has ended.");
-        audioManager.Stop("Music");
-        audioManager.Play("BackgroundNoise");
+        FindObjectOfType<AudioManager>().Stop("Music");
+        FindObjectOfType<AudioManager>().handlePause(false);
     }
 
     public void TeleportPlayer()
