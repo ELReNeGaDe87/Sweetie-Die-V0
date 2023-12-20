@@ -21,14 +21,13 @@ public class PlayerController : MonoBehaviour
     public Transform Waypoint_CommonArea3;
     public Transform Waypoint_MonsterRoom;
 
-    private AudioManager audioManager;
+    private bool wasMoving = false;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
-        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -56,19 +55,18 @@ public class PlayerController : MonoBehaviour
             Teleport(Waypoint_MonsterRoom);
         }
 
+        if (wasMoving && characterController.velocity.magnitude == 0)
+        {
+            FindObjectOfType<AudioManager>().Pause("StepsPlayer");
+            wasMoving = false;
+        }
         if (characterController.velocity.magnitude > 0)
         {
-            if (!audioManager.IsPlaying("StepsPlayer"))
+            if (!FindObjectOfType<AudioManager>().IsPlaying("StepsPlayer"))
             {
-                audioManager.Play("StepsPlayer");
+                FindObjectOfType<AudioManager>().Play("StepsPlayer");
             }
-        }
-        else
-        {
-            if (audioManager.IsPlaying("StepsPlayer"))
-            {
-                audioManager.Pause("StepsPlayer");
-            }
+            wasMoving = true;
         }
 
         // Movimiento

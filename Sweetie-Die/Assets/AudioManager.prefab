@@ -48,7 +48,7 @@ MonoBehaviour:
   sounds:
   - name: BackgroundNoise
     clip: {fileID: 8300000, guid: 097bce4cdecfe9e40991e3edaca3037b, type: 3}
-    volume: 0.5
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: StepsPlayer
-    clip: {fileID: 8300000, guid: 1a110f65c9cb9a04eb20d89febd06539, type: 3}
+    clip: {fileID: 8300000, guid: 950ea50a0d4807b4a8ea9bd9a6429850, type: 3}
     volume: 1
     pitch: 1
     loop: 1

@@ -17,19 +17,21 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+            Initialize();
         }
         else
         {
             Destroy(gameObject);
-            return;
         }
+    }
 
+    void Initialize()
+    {
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
         // Add the listener to be called when a scene is loaded
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        DontDestroyOnLoad(gameObject);
 
         scene = SceneManager.GetActiveScene();
 
@@ -126,6 +128,10 @@ public class AudioManager : MonoBehaviour
         if (s == null)
         {
             UnityEngine.Debug.LogWarning("Sound: " + name + " not found!");
+        }
+        if (s.source == null)
+        {
+            UnityEngine.Debug.LogWarning("SoundSource to: " + name + " not found!");
         }
         return s.source.isPlaying;
     }
