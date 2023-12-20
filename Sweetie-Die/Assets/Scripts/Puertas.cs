@@ -7,8 +7,9 @@ public class Puertas : MonoBehaviour
 {
     private float currentRotation;
     private RaycastHit hit;
-    public AudioClip audioClip;
-    public bool puedesAbrir = true;
+    public AudioClip puertablock;
+    public AudioClip abrirpuerta;
+    public AudioClip cerrarpuerta;
     public GameObject player;
     private bool canInteract = true;
     private RecogerObjeto recogerObjeto;
@@ -25,23 +26,23 @@ public class Puertas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor") && Input.GetKeyDown(KeyCode.E))
+        if (canInteract && (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor") && Input.GetKeyDown(KeyCode.E)))
         {
             StartCoroutine(OpenDoor(hit.transform));
         }
-        else if (puedesAbrir && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor") && Input.GetKeyDown(KeyCode.E))
+        else if (canInteract && (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor") && Input.GetKeyDown(KeyCode.E)))
         {
             StartCoroutine(OpenDoorM(hit.transform));
         }
         else if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
         {
-            GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
+            GameObject nearestLockedDoor = FindNearestWithAnyTag(player.transform.position, "CloseDoor");
             if (nearestLockedDoor != null)
             {
                 AudioSource audioSource = nearestLockedDoor.GetComponent<AudioSource>();
                 if (audioSource != null)
                 {
-                    audioSource.PlayOneShot(audioClip);
+                    audioSource.PlayOneShot(puertablock);
                 }
             }
         }
@@ -50,6 +51,7 @@ public class Puertas : MonoBehaviour
     IEnumerator OpenDoor(Transform door) 
     {
         canInteract = false;
+        GameObject nearestOpenDoor = FindNearestWithAnyTag(player.transform.position, "OpenDoorL", "OpenDoorR");
         originalRotation = door.localEulerAngles.y;
         if (door.CompareTag("OpenDoorL"))
         {
@@ -59,15 +61,32 @@ public class Puertas : MonoBehaviour
         {
             currentRotation = originalRotation + 90f;
         }
+        if (nearestOpenDoor != null)
+        {
+            AudioSource audioSource = nearestOpenDoor.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(abrirpuerta);
+            }
+        }
         yield return Rotate(door, currentRotation);
         yield return new WaitForSeconds(1);
         yield return Rotate(door, originalRotation);
+        if (nearestOpenDoor != null)
+        {
+            AudioSource audioSource = nearestOpenDoor.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(cerrarpuerta);
+            }
+        }
         canInteract = true;
     }
 
     IEnumerator OpenDoorM(Transform door)
     {
         canInteract = false;
+        GameObject nearestMonsterDoor = FindNearestWithAnyTag(player.transform.position, "MonsterDoorR", "MonsterDoorL");
         originalRotation = door.localEulerAngles.y;
         if (door.CompareTag("MonsterDoorL"))
         {
@@ -77,9 +96,25 @@ public class Puertas : MonoBehaviour
         {
             currentRotation = originalRotation + 90f;
         }
+        if (nearestMonsterDoor != null)
+        {
+            AudioSource audioSource = nearestMonsterDoor.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(abrirpuerta);
+            }
+        }
         yield return Rotate(door, currentRotation);
         yield return new WaitForSeconds(1);
         yield return Rotate(door, originalRotation);
+        if (nearestMonsterDoor != null)
+        {
+            AudioSource audioSource = nearestMonsterDoor.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(cerrarpuerta);
+            }
+        }
         canInteract = true;
     }
 
@@ -98,6 +133,26 @@ public class Puertas : MonoBehaviour
             yield return null;
         }
         target.localEulerAngles = new Vector3(target.localEulerAngles.x, targetRotation, target.localEulerAngles.z);
+    }
+
+    GameObject FindNearestWithAnyTag(Vector3 position, params string[] tags)
+    {
+        GameObject nearestObject = null;
+        float minDistance = Mathf.Infinity;
+        foreach (string tag in tags)
+        {
+            GameObject obj = FindNearestWithTag(position, tag);
+            if (obj != null)
+            {
+                float distance = Vector3.Distance(position, obj.transform.position);
+                if (distance < minDistance)
+                {
+                    nearestObject = obj;
+                    minDistance = distance;
+                }
+            }
+        }
+        return nearestObject;
     }
 
     GameObject FindNearestWithTag(Vector3 position, string tag)

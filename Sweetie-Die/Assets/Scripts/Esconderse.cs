@@ -59,9 +59,9 @@ public class Esconderse : MonoBehaviour
         {
             currentRotation = originalRotation + 90f;
         }
-        yield return Rotate(door, currentRotation);
+        yield return Rotate(door, currentRotation, 1f);
         yield return new WaitForSeconds(1);
-        yield return Rotate(door, originalRotation);
+        yield return Rotate(door, originalRotation, 1f);
         foreach (BoxCollider roomTrigger in roomTriggers)
         {
             if (roomTrigger.bounds.Contains(transform.position))
@@ -85,23 +85,23 @@ public class Esconderse : MonoBehaviour
         isHiding = false;
         switchCamera.SwitchCamera();
         playerController.ToggleControls();
-        yield return Rotate(currentDoor, currentRotation);
+        yield return Rotate(currentDoor, currentRotation, 1f);
         while (currentRoomTrigger.bounds.Contains(transform.position))
         {
             yield return new WaitForSeconds(0.1f);
         }
-        yield return Rotate(currentDoor, originalRotation);
+        yield return Rotate(currentDoor, originalRotation, 0.5f);
         yield return new WaitForSeconds(60f);
         canHide = true;
     }
 
-    IEnumerator Rotate(Transform target, float targetRotation)
+    IEnumerator Rotate(Transform target, float targetRotation, float rotationTime)
     {
         float currentRotation = target.localEulerAngles.y;
         float deltaRotation = Mathf.DeltaAngle(currentRotation, targetRotation);
-        float rotationSpeed = deltaRotation / 1f;
+        float rotationSpeed = deltaRotation / rotationTime;
         float timer = 0;
-        while (timer < 1f)
+        while (timer < rotationTime)
         {
             float rotation = currentRotation + rotationSpeed * timer;
             target.localEulerAngles = new Vector3(target.localEulerAngles.x, rotation, target.localEulerAngles.z);

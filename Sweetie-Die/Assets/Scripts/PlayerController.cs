@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public float teleportDistance = 5.0f;
     public Transform waypoint; // Asigna el Waypoint en el Inspector.
     public LayerMask EnemyLayer;
-
+    public int vida = 4;
+    private GameOverScript gameOver;
     public Transform Waypoint_CommonArea1;
     public Transform Waypoint_CommonArea2;
     public Transform Waypoint_CommonArea3;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gameOver = GetComponent<GameOverScript>();
         characterController = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -110,8 +112,18 @@ public class PlayerController : MonoBehaviour
                 {
                     if (enemyCollider.CompareTag("Enemy"))
                     {
-                        TeleportToWaypoint();
-                        break;
+                        Debug.Log(vida);
+                        if (vida < 1)
+                        {
+                            gameOver.GameOver();
+                        }
+                        else
+                        {
+                            TeleportToWaypoint();
+                            vida--;
+                            Debug.Log(vida);
+                            break;
+                        }
                     }
                 }
             }
