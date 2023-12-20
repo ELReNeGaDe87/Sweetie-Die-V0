@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public Transform Waypoint_CommonArea3;
     public Transform Waypoint_MonsterRoom;
     public VideoPlayer MonsterVideo;
+    private float timer = 0;
+    private bool canExecute = true;
 
     private bool wasMoving = false;
 
@@ -39,7 +41,15 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-
+        if (!canExecute)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 20)
+            {
+                canExecute = true;
+                timer = 0;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Teleport(Waypoint_CommonArea1);
@@ -105,16 +115,16 @@ public class PlayerController : MonoBehaviour
 
             // Detecta enemigos en un radio alrededor del jugador
             Collider[] enemies = Physics.OverlapSphere(transform.position, teleportDistance, EnemyLayer);
-
-            // Si hay enemigos cercanos, teleporta al jugador al waypoint
-            if (enemies.Length > 0)
+            if (enemies.Length > 0 && canExecute)
             {
                 foreach (Collider enemyCollider in enemies)
                 {
                     if (enemyCollider.CompareTag("Enemy"))
                     {
+                        Debug.Log(vida);
                         if (vida < 1)
                         {
+                            MonsterVideo.Play();
                             gameOver.GameOver();
                         }
                         else
@@ -125,13 +135,14 @@ public class PlayerController : MonoBehaviour
                             {
                                 Debug.Log("MonsterVideo ejecutado");
                                 MonsterVideo.Play();
-                                
+                                Debug.Log(vida);
                             }
-                            Invoke("DelayedTeleport", 1.6f);                        
+                            Invoke("DelayedTeleport", 1.6f);
                             break;
                         }
                     }
                 }
+                canExecute = false;
             }
         }
     }
