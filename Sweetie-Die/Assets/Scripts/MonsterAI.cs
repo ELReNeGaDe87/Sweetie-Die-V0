@@ -9,7 +9,7 @@ public class MonsterAI : MonoBehaviour
     public float chaseSpeed = 5f;
     public float detectionRadius = 15f;
     public float timeToLose = 15f;
-
+    private Vector3 lastCalculatedPoint;
     private Transform player;
     private NavMeshAgent navMeshAgent;
     private bool isPatrolling = true;
@@ -32,26 +32,26 @@ public class MonsterAI : MonoBehaviour
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer < detectionRadius && !DetectObstacle())
+    if (distanceToPlayer < detectionRadius && IsPlayerVisible())
+    {
+        if (isPatrolling)
         {
-            if (isPatrolling)
+            isPatrolling = false;
+
+            // Asegurarse de detener la patrulla antes de iniciar la persecución
+            if (patrolCoroutine != null)
             {
-                isPatrolling = false;
-
-                // Asegurarse de detener la patrulla antes de iniciar la persecución
-                if (patrolCoroutine != null)
-                {
-                    StopCoroutine(patrolCoroutine);
-                }
-
-                Debug.Log("Iniciando persecución");
-                chaseCoroutine = StartCoroutine(ChasePlayer());
+                StopCoroutine(patrolCoroutine);
             }
 
-            // Reiniciar el tiempo de persecución
-            timeRemainingForChase = timeToLose;
+            Debug.Log("Iniciando persecución");
+            chaseCoroutine = StartCoroutine(ChasePlayer());
         }
-        else if (!isPatrolling && distanceToPlayer > detectionRadius)
+
+        // Reiniciar el tiempo de persecución
+        timeRemainingForChase = timeToLose;
+    }
+         else if (!isPatrolling && (distanceToPlayer > detectionRadius || !IsPlayerVisible()))
         {
             // Si hay tiempo restante de persecución, sigue persiguiendo
             if (timeRemainingForChase > 0)
@@ -61,27 +61,13 @@ public class MonsterAI : MonoBehaviour
             }
             else
             {
+                // Volver a la rutina de patrullaje
                 StopCoroutine(chaseCoroutine);
                 isPatrolling = true;
                 patrolCoroutine = StartCoroutine(Patrol());
                 Debug.Log("Fin de la persecución. Volviendo a patrullar.");
             }
         }
-    }
-
-    bool DetectObstacle()
-    {
-        NavMeshHit hit;
-        if (NavMesh.Raycast(transform.position, player.position, out hit, NavMesh.AllAreas))
-        {
-            bool obstacleDetected = hit.hit;
-            if (obstacleDetected)
-            {
-                Debug.Log("¡Obstáculo detectado en la línea de visión!");
-            }
-            return obstacleDetected;
-        }
-        return false;
     }
 
     void SetNextWaypoint()
@@ -97,7 +83,24 @@ public class MonsterAI : MonoBehaviour
         navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
         Debug.Log("Dirigiéndose al Waypoint: " + currentWaypointIndex);
     }
+    bool IsPlayerVisible()
+{
+    Vector3 directionToPlayer = player.position - transform.position;
+    RaycastHit hit;
 
+    // Verificar si hay obstáculos (colisiones) entre el monstruo y el jugador
+    if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRadius))
+    {
+        if (hit.collider.CompareTag("Player"))
+        {
+            // El jugador está en la línea de visión del monstruo
+            return true;
+        }
+    }
+
+    // El jugador no está en la línea de visión del monstruo
+    return false;
+}
     IEnumerator Patrol()
     {
         while (isPatrolling)
@@ -121,33 +124,41 @@ public class MonsterAI : MonoBehaviour
 
         while (Vector3.Distance(transform.position, player.position) > 0.1f)
         {
-            NavMeshPath path = new NavMeshPath();
-            navMeshAgent.CalculatePath(player.position, path);
-
-            // Verificar si hay una ruta directa al jugador
-            if (path.status == NavMeshPathStatus.PathComplete)
+            NavMeshHit playerHit;
+            if (NavMesh.SamplePosition(player.position, out playerHit, 20f, NavMesh.AllAreas))
             {
-                navMeshAgent.SetDestination(player.position);
-            }
-            else
-            {
-                // Si no hay una ruta directa, encontrar el punto más cercano al jugador
-                Vector3 closestPoint = GetClosestPointToPlayer();
+                Vector3 playerSampledPosition = playerHit.position;
 
-                // Verificar si el punto más cercano está dentro del rango de detección
-                if (Vector3.Distance(transform.position, closestPoint) <= detectionRadius)
+                NavMeshPath path = new NavMeshPath();
+                navMeshAgent.CalculatePath(playerSampledPosition, path);
+
+                if (path.status == NavMeshPathStatus.PathComplete)
                 {
-                    navMeshAgent.SetDestination(closestPoint);
+                    navMeshAgent.SetDestination(playerSampledPosition);
                 }
                 else
                 {
-                    // Si el punto más cercano está fuera del rango de detección, volver al patrullaje
-                    Debug.Log("No se encontró una ruta válida. Volviendo a patrullar.");
-                    StopCoroutine(chaseCoroutine);
-                    isPatrolling = true;
-                    patrolCoroutine = StartCoroutine(Patrol());
-                    yield break; // Salir del bucle y la función ChasePlayer
+                    // Si no hay una ruta directa, encontrar el punto más cercano al jugador
+                    Vector3 closestPoint = GetClosestPointToPlayer();
+
+                    // Verificar si el punto más cercano está dentro del rango de detección
+                    if (Vector3.Distance(transform.position, closestPoint) <= detectionRadius)
+                    {
+                        navMeshAgent.SetDestination(closestPoint);
+                    }
+                    else
+                    {
+                        // Si el punto más cercano está fuera del rango de detección, volver al patrullaje
+                        Debug.Log("No se encontró una ruta válida. Volviendo a patrullar.");
+                        break; // Salir del bucle y la función ChasePlayer
+                    }
                 }
+            }
+            else
+            {
+                // Si no se pudo samplear la posición del jugador en el NavMesh, volver al patrullaje
+                Debug.Log("No se pudo samplear la posición del jugador en el NavMesh. Volviendo a patrullar.");
+                break; // Salir del bucle y la función ChasePlayer
             }
 
             yield return null;
@@ -169,12 +180,13 @@ public class MonsterAI : MonoBehaviour
     Vector3 GetClosestPointToPlayer()
     {
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(player.position, out hit, 10f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(player.position, out hit, 20f, NavMesh.AllAreas))
         {
-            return hit.position;
+            lastCalculatedPoint = hit.position;
+            return lastCalculatedPoint;
         }
 
-        // Si no se encuentra un punto válido, devolver la posición del jugador
+        // Si no se encuentra un punto válido, devolver la posición actual del jugador
         return player.position;
     }
 }
