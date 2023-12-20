@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
                                 MonsterVideo.Play();
                                 
                             }
-                            Invoke("DelayedTeleport", 6.0f);
+                            Invoke("DelayedTeleport", 1.6f);
                             
                             Debug.Log(vida);
                             break;
