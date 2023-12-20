@@ -5,12 +5,7 @@ using UnityEngine.UI;
 
 public class GameOverScript : MonoBehaviour
 {
-    public Image blackScreen; // Asegúrate de tener una imagen negra en tu escena y arrástrala aquí en el inspector
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
+    public Image blackScreen; // Asegï¿½rate de tener una imagen negra en tu escena y arrï¿½strala aquï¿½ en el inspector
 
     public void GameOver()
     {
@@ -26,7 +21,8 @@ public class GameOverScript : MonoBehaviour
             //blackScreen.color = new Color(0, 0, 0, i);
             yield return null;
         }
-       
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         // Cambia a la escena de GameOver
         SceneManager.LoadScene("GameOver");
         yield return null;
