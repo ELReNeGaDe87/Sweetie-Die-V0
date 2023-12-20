@@ -7,7 +7,7 @@ public class RecogerObjeto : MonoBehaviour
     public float pickupDistance = 1.0f;
     private CambiarCamara switchCamera;
     public Vector3 heldObjectPosition = new Vector3(0.6f, -0.4f, 1f);
-    public static GameObject heldObject = null;
+    public GameObject heldObject = null;
     private Quaternion originalRotation;
     [SerializeField]
     private GameObject pickUpObjectText;
@@ -19,10 +19,9 @@ public class RecogerObjeto : MonoBehaviour
 
     void Update()
     {
-
         if (heldObject != null)
         {
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 heldObject.GetComponent<Rigidbody>().isKinematic = false;
                 heldObject.transform.SetParent(null);
@@ -74,7 +73,7 @@ public class RecogerObjeto : MonoBehaviour
         }
 
     }
-    public static bool HoldingObject()
+    public bool HoldingObject()
     {
         return heldObject != null;
     }

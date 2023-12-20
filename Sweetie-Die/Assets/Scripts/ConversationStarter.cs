@@ -23,7 +23,7 @@ public class ConversationStarter : MonoBehaviour
 
     public Sprite filledHeart;
     public Sprite unfilledHeart;
-
+    public RecogerObjeto recogerObjeto;
     public static bool ConversationIsActive = false;
 
     public Transform teleportPosition;
@@ -53,9 +53,9 @@ public class ConversationStarter : MonoBehaviour
             }
             else
             {
-                if (RecogerObjeto.HoldingObject())
+                if (recogerObjeto.HoldingObject())
                 {
-                    if (RecogerObjeto.heldObject.CompareTag("Gift") && RecogerObjeto.heldObject.name == "Cone")
+                    if (recogerObjeto.heldObject.CompareTag("Gift") && recogerObjeto.heldObject.name == "Cone")
                     {
                         ConversationManager.Instance.StartConversation(GoodEndingConversation);
                     }
