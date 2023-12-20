@@ -55,7 +55,7 @@ public class ConversationStarter : MonoBehaviour
             {
                 if (RecogerObjeto.HoldingObject())
                 {
-                    if (RecogerObjeto.heldObject.CompareTag("GiftCone"))
+                    if (RecogerObjeto.heldObject.CompareTag("Gift") && RecogerObjeto.heldObject.name == "Cone")
                     {
                         ConversationManager.Instance.StartConversation(GoodEndingConversation);
                     }

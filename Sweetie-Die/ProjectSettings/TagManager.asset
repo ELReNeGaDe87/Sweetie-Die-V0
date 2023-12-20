@@ -17,6 +17,7 @@ TagManager:
   - MonsterDoorR
   - MonsterDoorL
   - OpenDoorPlayerRoom
+  - Gift
   layers:
   - Default
   - TransparentFX

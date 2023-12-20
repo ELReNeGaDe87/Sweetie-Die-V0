@@ -19,39 +19,63 @@ public class RecogerObjeto : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (heldObject != null)
         {
-            if (heldObject == null)
-            {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, pickupDistance))
-                {
-                    if (hit.transform.gameObject != this.gameObject && hit.transform.gameObject.GetComponent<Rigidbody>() != null)
-                    {
-                        heldObject = hit.transform.gameObject;
-                        originalRotation = heldObject.transform.rotation;
-                        heldObject.GetComponent<Rigidbody>().isKinematic = true;
-                        heldObject.transform.SetParent(transform);
-                        heldObject.transform.localPosition = heldObjectPosition;
-                    }
-                }
-            }
-            else
+            if (Input.GetMouseButtonUp(0))
             {
                 heldObject.GetComponent<Rigidbody>().isKinematic = false;
                 heldObject.transform.SetParent(null);
                 heldObject.transform.rotation = originalRotation;
                 heldObject = null;
             }
+            if (pickUpObjectText.activeSelf)
+            {
+                pickUpObjectText.SetActive(false);
+            }
+            return;
+        };
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, pickupDistance))
+        {
+            if (hit.transform.gameObject != this.gameObject && hit.transform.gameObject.CompareTag("Gift"))
+            {
+                if (!pickUpObjectText.activeSelf)
+                {
+                    pickUpObjectText.SetActive(true);
+                }
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    heldObject = hit.transform.gameObject;
+                    originalRotation = heldObject.transform.rotation;
+                    heldObject.GetComponent<Rigidbody>().isKinematic = true;
+                    heldObject.transform.SetParent(transform);
+                    heldObject.transform.localPosition = heldObjectPosition;
+                }
+            }
+            else
+            {
+                // If the hit object is not a "Gift," set the text to inactive.
+                if (pickUpObjectText.activeSelf)
+                {
+                    pickUpObjectText.SetActive(false);
+                }
+            }
         }
+        else
+        {
+            // If no object is hit, set the text to inactive.
+            if (pickUpObjectText.activeSelf)
+            {
+                pickUpObjectText.SetActive(false);
+            }
+        }
+
     }
     public static bool HoldingObject()
     {
         return heldObject != null;
-    }
-
-    private void DisplayText(bool value)
-    {
-        pickUpObjectText.SetActive(value);
     }
 }
