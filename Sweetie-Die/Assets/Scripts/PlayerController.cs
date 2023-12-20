@@ -113,13 +113,13 @@ public class PlayerController : MonoBehaviour
                 {
                     if (enemyCollider.CompareTag("Enemy"))
                     {
-                        Debug.Log(vida);
                         if (vida < 1)
                         {
                             gameOver.GameOver();
                         }
                         else
                         {
+                            vida--;
                             if (MonsterVideo.isPlaying) return;
                             if (MonsterVideo != null)
                             {
@@ -127,9 +127,7 @@ public class PlayerController : MonoBehaviour
                                 MonsterVideo.Play();
                                 
                             }
-                            Invoke("DelayedTeleport", 1.6f);
-                            
-                            Debug.Log(vida);
+                            Invoke("DelayedTeleport", 1.6f);                        
                             break;
                         }
                     }
@@ -142,7 +140,6 @@ public class PlayerController : MonoBehaviour
     {
         if (waypoint != null)
         {
-            vida--;
             // Teleporta al jugador al waypoint
             characterController.enabled = false; // Desactiva temporalmente el CharacterController para evitar problemas de colisión
             transform.position = waypoint.position;
