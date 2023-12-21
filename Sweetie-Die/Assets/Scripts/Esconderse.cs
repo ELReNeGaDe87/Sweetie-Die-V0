@@ -48,10 +48,11 @@ public class Esconderse : MonoBehaviour
 
     IEnumerator Hide(Transform door)
     {
-        if (FindObjectOfType<AudioManager>().IsPlaying("PlayerSteps"))
+        
+        /*if (FindObjectOfType<AudioManager>().IsPlaying("PlayerSteps"))
         {
             FindObjectOfType<AudioManager>().Stop("PlayerSteps");
-        }
+        }*/
         canHide = false;
         hideTime = Time.time;
         originalRotation = door.localEulerAngles.y;
