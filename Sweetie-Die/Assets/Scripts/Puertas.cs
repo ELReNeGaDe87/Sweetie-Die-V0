@@ -28,7 +28,7 @@ public class Puertas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("OpenDoor"))
+        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.tag.Contains("OpenDoor"))
         {
             if (!openDoorText.activeSelf)
             {
@@ -40,7 +40,7 @@ public class Puertas : MonoBehaviour
             }
             return;
         }
-        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.tag.Contains("MonsterDoor"))
+        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.tag.Contains("MonsterDoor"))
         {
             if (!openDoorText.activeSelf)
             {
@@ -52,9 +52,9 @@ public class Puertas : MonoBehaviour
             }
             return;
         }
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
         {
-            GameObject nearestLockedDoor = FindNearestWithAnyTag(player.transform.position, "CloseDoor");
+            GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
             if (nearestLockedDoor != null)
             {
                 AudioSource audioSource = nearestLockedDoor.GetComponent<AudioSource>();
@@ -74,14 +74,16 @@ public class Puertas : MonoBehaviour
     IEnumerator OpenDoor(Transform door) 
     {
         canInteract = false;
-        GameObject nearestOpenDoor = FindNearestWithAnyTag(player.transform.position, "OpenDoorL", "OpenDoorR");
         originalRotation = door.localEulerAngles.y;
+        GameObject nearestOpenDoor = null;
         if (door.CompareTag("OpenDoorL"))
         {
+            nearestOpenDoor = FindNearestWithTag(player.transform.position, "OpenDoorL");
             currentRotation = originalRotation - 90f;
         }
         else if (door.CompareTag("OpenDoorR"))
         {
+            nearestOpenDoor = FindNearestWithTag(player.transform.position, "OpenDoorR");
             currentRotation = originalRotation + 90f;
         }
         if (nearestOpenDoor != null)
@@ -109,14 +111,16 @@ public class Puertas : MonoBehaviour
     IEnumerator OpenDoorM(Transform door)
     {
         canInteract = false;
-        GameObject nearestMonsterDoor = FindNearestWithAnyTag(player.transform.position, "MonsterDoorR", "MonsterDoorL");
+        GameObject nearestMonsterDoor = null;
         originalRotation = door.localEulerAngles.y;
         if (door.CompareTag("MonsterDoorL"))
         {
+            nearestMonsterDoor = FindNearestWithTag(player.transform.position, "MonsterDoorL");
             currentRotation = originalRotation - 90f;
         }
         else if (door.CompareTag("MonsterDoorR"))
         {
+            nearestMonsterDoor = FindNearestWithTag(player.transform.position, "MonsterDoorR");
             currentRotation = originalRotation + 90f;
         }
         if (nearestMonsterDoor != null)
@@ -156,26 +160,6 @@ public class Puertas : MonoBehaviour
             yield return null;
         }
         target.localEulerAngles = new Vector3(target.localEulerAngles.x, targetRotation, target.localEulerAngles.z);
-    }
-
-    GameObject FindNearestWithAnyTag(Vector3 position, params string[] tags)
-    {
-        GameObject nearestObject = null;
-        float minDistance = Mathf.Infinity;
-        foreach (string tag in tags)
-        {
-            GameObject obj = FindNearestWithTag(position, tag);
-            if (obj != null)
-            {
-                float distance = Vector3.Distance(position, obj.transform.position);
-                if (distance < minDistance)
-                {
-                    nearestObject = obj;
-                    minDistance = distance;
-                }
-            }
-        }
-        return nearestObject;
     }
 
     GameObject FindNearestWithTag(Vector3 position, string tag)
