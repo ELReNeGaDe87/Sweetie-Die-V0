@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class inspector : MonoBehaviour
@@ -31,69 +32,126 @@ public class inspector : MonoBehaviour
            // Verifica si el juego está pausado antes de procesar la entrada de teclado
         if (!PauseMenu.GameIsPaused)
         {
-            if (Input.GetKeyDown(KeyCode.E) && activa == true)
-            {               
-                if (!enModoInspeccion)
+            if (helperText.activeSelf)
+            {
+                aimDot.SetActive(false);
+            }
+
+            if (enModoInspeccion)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    Texto.SetActive(true);
-                    ObjetoInspect.SetActive(true);
-                    InspectCamera.SetActive(true);
-                    MainCamera.SetActive(false);
+                    UnInspectBook();
+                }
+                return;
+            }
 
-                    controlesActivos = false;
-                    playerController.enabled = false;
-                    enModoInspeccion = true;
-
-                    helperText.SetActive(false);
+            RaycastHit hit;
+            if (Physics.Raycast(MainCamera.transform.position, MainCamera.transform.forward, out hit, 2f))
+            {
+                if (hit.transform.gameObject != MainCamera && hit.transform.gameObject.CompareTag("PlayerBook"))
+                {
+                    if (!helperText.activeSelf)
+                    {
+                        helperText.SetActive(true);
+                        aimDot.SetActive(false);
+                    }
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (!enModoInspeccion)
+                        {
+                            InspectBook();
+                        }
+                        else
+                        {
+                            UnInspectBook();
+                        }
+                    }
                 }
                 else
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                    Texto.SetActive(false);
-                    ObjetoInspect.SetActive(false);
-                    InspectCamera.SetActive(false);
-                    MainCamera.SetActive(true);
-                    controlesActivos = true;
-                    playerController.enabled = true;
-                    enModoInspeccion = false;
-                    helperText.SetActive(true);
+                    // If the hit object is not a "PlayerBook," set the text to inactive.
+                    if (helperText.activeSelf)
+                    {
+                        helperText.SetActive(false);
+                        aimDot.SetActive(true);
+                    }
+                }
+            }
+            else
+            {
+                // If no object is hit, set the text to inactive.
+                if (helperText.activeSelf)
+                {
+                    helperText.SetActive(false);
+                    aimDot.SetActive(true);
                 }
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void InspectBook()
     {
-        if (other.tag == "Player")
-        {
-            activa = true;
-            showHelperText(true);
-        }
+        UnityEngine.Debug.Log("Inspect Book");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        helperText.SetActive(false);
+        Texto.SetActive(true);
+        ObjetoInspect.SetActive(true);
+        InspectCamera.SetActive(true);
+        MainCamera.SetActive(false);
+
+        controlesActivos = false;
+        playerController.enabled = false;
+        enModoInspeccion = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void UnInspectBook()
     {
-        if (other.tag == "Player")
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            activa = false;
-            Texto.SetActive(false);
-            ObjetoInspect.SetActive(false);
-            InspectCamera.SetActive(false);
-            objEnEscena.SetActive(true);
-            controlesActivos = true;
-            playerController.enabled = true;
-            showHelperText(false);
+        UnityEngine.Debug.Log("UnInspect Book");
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Texto.SetActive(false);
+        helperText.SetActive(true);
+        ObjetoInspect.SetActive(false);
+        InspectCamera.SetActive(false);
+        MainCamera.SetActive(true);
+        controlesActivos = true;
+        playerController.enabled = true;
+        enModoInspeccion = false;
 
-            // Asegúrate de que al salir del área de activación, la cámara principal se reactive
-            MainCamera.SetActive(true);
-            ChangeDoorTags();
-        }
+        ChangeDoorTags();
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        activa = true;
+    //        showHelperText(true);
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        Cursor.lockState = CursorLockMode.Locked;
+    //        Cursor.visible = false;
+    //        activa = false;
+    //        Texto.SetActive(false);
+    //        ObjetoInspect.SetActive(false);
+    //        InspectCamera.SetActive(false);
+    //        objEnEscena.SetActive(true);
+    //        controlesActivos = true;
+    //        playerController.enabled = true;
+    //        showHelperText(false);
+
+    //        // Asegúrate de que al salir del área de activación, la cámara principal se reactive
+    //        MainCamera.SetActive(true);
+    //        ChangeDoorTags();
+    //    }
+    //}
 
     private void showHelperText(bool value)
     {
