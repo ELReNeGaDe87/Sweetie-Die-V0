@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,10 +29,11 @@ public class Puertas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.tag.Contains("OpenDoor"))
+        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && (hit.transform.tag.Contains("OpenDoor") && !hit.transform.tag.Contains("OpenDoorPlayerRoom")))
         {
             if (!openDoorText.activeSelf)
             {
+                UnityEngine.Debug.Log("OpenDoor");
                 showOpenDoorText(true);
             }
             if (Input.GetKeyDown(KeyCode.E))
@@ -44,6 +46,7 @@ public class Puertas : MonoBehaviour
         {
             if (!openDoorText.activeSelf)
             {
+                UnityEngine.Debug.Log("MonsterDoor");
                 showOpenDoorText(true);
             }
             if (Input.GetKeyDown(KeyCode.E))
