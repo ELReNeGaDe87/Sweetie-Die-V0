@@ -24,10 +24,13 @@ public class MonsterAI : MonoBehaviour
     public float maxWaitBetweenLaughs = 15f;
     public float laughWaitTimeCountdown = -1f;
 
+    private ConversationStarter conversationStarter;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        conversationStarter = conversationStarter = FindObjectOfType<ConversationStarter>();
 
         // Inicializar patrolCoroutine al inicio
         patrolCoroutine = StartCoroutine(Patrol());
@@ -81,7 +84,7 @@ public class MonsterAI : MonoBehaviour
     {
         if (distanceToPlayer > laughRadius) return;
         if (FindObjectOfType<AudioManager>().IsPlaying("LaughterEntity")) return;
-        if (ConversationStarter.ConversationIsActive) return;
+        if (conversationStarter.ConversationIsActive) return;
         if (laughWaitTimeCountdown < 0f)
         {
             FindObjectOfType<AudioManager>().Play("LaughterEntity");

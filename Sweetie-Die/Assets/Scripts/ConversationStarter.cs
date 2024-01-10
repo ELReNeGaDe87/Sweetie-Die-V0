@@ -13,6 +13,10 @@ public class ConversationStarter : MonoBehaviour
     [SerializeField] private NPCConversation MiddleConversation;
     [SerializeField] private NPCConversation GoodEndingConversation;
     [SerializeField] private NPCConversation BadEndingConversation;
+    [SerializeField] private NPCConversation BadEndingConversationCard;
+    [SerializeField] private NPCConversation BadEndingConversationSpider;
+    [SerializeField] private NPCConversation BadEndingConversationEye;
+    [SerializeField] private NPCConversation BadEndingConversationRing;
 
     private bool hasHadFirstConversation = false;
 
@@ -24,7 +28,7 @@ public class ConversationStarter : MonoBehaviour
     public Sprite filledHeart;
     public Sprite unfilledHeart;
     public RecogerObjeto recogerObjeto;
-    public static bool ConversationIsActive = false;
+    public bool ConversationIsActive = false;
 
     public Transform teleportPosition;
 
@@ -68,15 +72,30 @@ public class ConversationStarter : MonoBehaviour
         }
         else
         {
-            if (recogerObjeto.HoldingObject())
+            if (recogerObjeto.HoldingObject() && recogerObjeto.heldObject.CompareTag("Gift"))
             {
-                if (recogerObjeto.heldObject.CompareTag("Gift") && recogerObjeto.heldObject.name == "Cone")
+                if (recogerObjeto.heldObject.name == "Cone")
                 {
                     ConversationManager.Instance.StartConversation(GoodEndingConversation);
                 }
                 else
                 {
-                    ConversationManager.Instance.StartConversation(BadEndingConversation);
+                    if (recogerObjeto.heldObject.name == "Valentines_card")
+                    {
+                        ConversationManager.Instance.StartConversation(BadEndingConversationCard);
+                    }
+                    else if (recogerObjeto.heldObject.name == "Valentines_ring")
+                    {
+                        ConversationManager.Instance.StartConversation(BadEndingConversationRing);
+                    }
+                    else if (recogerObjeto.heldObject.name == "Spider")
+                    {
+                        ConversationManager.Instance.StartConversation(BadEndingConversationSpider);
+                    }
+                    else if (recogerObjeto.heldObject.name == "Eye")
+                    {
+                        ConversationManager.Instance.StartConversation(BadEndingConversationEye);
+                    }
                 }
             }
             else if (gifts.Count != 0)

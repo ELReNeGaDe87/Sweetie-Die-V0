@@ -7,6 +7,12 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    private ConversationStarter conversationStarter;
+
+    void Start()
+    {
+        conversationStarter = FindObjectOfType<ConversationStarter>();
+    }
 
 
     // Update is called once per frame
@@ -30,7 +36,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         AudioListener.pause = false;
-        if (!ConversationStarter.ConversationIsActive)
+        if (!conversationStarter.ConversationIsActive)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }

@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public VideoPlayer MonsterVideo;
     private float timer = 0;
     private bool canExecute = true;
+    private ConversationStarter conversationStarter;
 
     private bool wasMoving = false;
 
@@ -31,13 +34,14 @@ public class PlayerController : MonoBehaviour
     {
         gameOver = GetComponent<GameOverScript>();
         characterController = GetComponent<CharacterController>();
+        conversationStarter = FindObjectOfType<ConversationStarter>();
         playerCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        if (PauseMenu.GameIsPaused | ConversationStarter.ConversationIsActive)
+        if (PauseMenu.GameIsPaused | conversationStarter.ConversationIsActive)
         {
             return;
         }
