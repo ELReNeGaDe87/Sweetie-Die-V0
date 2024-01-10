@@ -36,38 +36,63 @@ public class ConversationStarter : MonoBehaviour
     private List<string> laughters = new List<string> { "LaughterMonster1", "LaughterMonster2", "LaughterMonster3" };
     private string currentLaugh;
 
+    private List<string> gifts = new List<string>();
+
 
     private void Start()
     {
         heartImage = heart.GetComponent<Image>();
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Gift"))
         {
-            if (!hasHadFirstConversation)
+            gifts.Add(other.gameObject.name);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Gift"))
+        {
+            gifts.Remove(other.gameObject.name);
+        }
+    }
+
+    public void StartConversation()
+    {
+        if (!hasHadFirstConversation)
+        {
+            ConversationManager.Instance.StartConversation(FirstConversation);
+        }
+        else
+        {
+            if (recogerObjeto.HoldingObject())
             {
-                ConversationManager.Instance.StartConversation(FirstConversation);
-            }
-            else
-            {
-                if (recogerObjeto.HoldingObject())
+                if (recogerObjeto.heldObject.CompareTag("Gift") && recogerObjeto.heldObject.name == "Cone")
                 {
-                    if (recogerObjeto.heldObject.CompareTag("Gift") && recogerObjeto.heldObject.name == "Cone")
-                    {
-                        ConversationManager.Instance.StartConversation(GoodEndingConversation);
-                    }
-                    else
-                    {
-                        ConversationManager.Instance.StartConversation(BadEndingConversation);
-                    }
+                    ConversationManager.Instance.StartConversation(GoodEndingConversation);
                 }
                 else
                 {
-                    ConversationManager.Instance.StartConversation(MiddleConversation);
+                    ConversationManager.Instance.StartConversation(BadEndingConversation);
                 }
+            }
+            else if (gifts.Count != 0)
+            {
+                if (gifts.Contains("Cone"))
+                {
+                    ConversationManager.Instance.StartConversation(GoodEndingConversation);
+                }
+                else
+                {
+                    ConversationManager.Instance.StartConversation(BadEndingConversation);
+                }
+            }
+            else
+            {
+                ConversationManager.Instance.StartConversation(MiddleConversation);
             }
         }
     }
@@ -142,11 +167,13 @@ public class ConversationStarter : MonoBehaviour
 
     public void GameOver()
     {
+        ConversationIsActive = false;
         SceneManager.LoadScene("BadEnding");
     }
 
     public void GameWon()
     {
+        ConversationIsActive = false;
         SceneManager.LoadScene("GoodEnding");
     }
 

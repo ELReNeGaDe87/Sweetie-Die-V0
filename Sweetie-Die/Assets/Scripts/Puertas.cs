@@ -15,15 +15,21 @@ public class Puertas : MonoBehaviour
     private bool canInteract = true;
     private RecogerObjeto recogerObjeto;
     private float originalRotation;
+    private ConversationStarter conversationStarter;
+    private PlayerController playerController;
 
     [SerializeField]
     private GameObject openDoorText;
     [SerializeField]
     private GameObject aimDot;
+    [SerializeField]
+    private Transform talkToMonsterTransform;
 
     void Start()
     {
         recogerObjeto = FindObjectOfType<RecogerObjeto>();
+        conversationStarter = FindObjectOfType<ConversationStarter>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -52,6 +58,8 @@ public class Puertas : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 StartCoroutine(OpenDoorM(hit.transform));
+                playerController.Teleport(talkToMonsterTransform);
+                conversationStarter.StartConversation();
             }
             return;
         }
