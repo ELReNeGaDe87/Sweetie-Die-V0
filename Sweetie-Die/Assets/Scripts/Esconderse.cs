@@ -15,6 +15,8 @@ public class Esconderse : MonoBehaviour
     private float currentRotation;
     private float hideTime;
 
+    private HidingText hidingText;
+
     void Start()
     {
         switchCamera = FindObjectOfType<CambiarCamara>();
@@ -25,6 +27,8 @@ public class Esconderse : MonoBehaviour
         {
             roomTriggers.Add(roomTriggerObject.GetComponent<BoxCollider>());
         }
+
+        hidingText = FindObjectOfType<HidingText>();
     }
 
     void Update()
@@ -33,12 +37,18 @@ public class Esconderse : MonoBehaviour
         {
             return;
         }
-        if (canHide && Input.GetKeyDown(KeyCode.E))
+ 
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f) && hit.transform.tag.Contains("Hiding"))
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f) && hit.transform.tag.Contains("Hiding"))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(Hide(hit.transform));
+                if (canHide) StartCoroutine(Hide(hit.transform));
+                else
+                {
+                    if (!hidingText.IsShowing()) hidingText.Show();
+                }
             }
+            
         }
         else if (((!canHide && isHiding) && Input.GetKeyDown(KeyCode.E)) || ((!canHide && isHiding) && Time.time - hideTime >= 30f))
         {
@@ -114,5 +124,10 @@ public class Esconderse : MonoBehaviour
             yield return null;
         }
         target.localEulerAngles = new Vector3(target.localEulerAngles.x, targetRotation, target.localEulerAngles.z);
+    }
+
+    public bool CanHide()
+    {
+        return canHide;
     }
 }

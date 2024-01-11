@@ -18,6 +18,7 @@ public class Puertas : MonoBehaviour
     private ConversationStarter conversationStarter;
     private PlayerController playerController;
     private ReadBookText readBookText;
+    private Esconderse esconderse;
 
     [SerializeField]
     private GameObject openDoorText;
@@ -32,60 +33,76 @@ public class Puertas : MonoBehaviour
         conversationStarter = FindObjectOfType<ConversationStarter>();
         playerController = FindObjectOfType<PlayerController>();
         readBookText = FindObjectOfType<ReadBookText>();
+        esconderse = FindObjectOfType<Esconderse>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.tag.Contains("OpenDoorPlayerRoom") && Input.GetKeyDown(KeyCode.E))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
         {
-            if (!readBookText.IsShowing())
+            if (canInteract)
             {
-                readBookText.Show();
-            }
-        }
-
-        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && (hit.transform.tag.Contains("OpenDoor") && !hit.transform.tag.Contains("OpenDoorPlayerRoom")))
-        {
-            if (!openDoorText.activeSelf)
-            {
-                UnityEngine.Debug.Log("OpenDoor");
-                showOpenDoorText(true);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                StartCoroutine(OpenDoor(hit.transform));
-            }
-            return;
-        }
-        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.tag.Contains("MonsterDoor"))
-        {
-            if (!openDoorText.activeSelf)
-            {
-                UnityEngine.Debug.Log("MonsterDoor");
-                showOpenDoorText(true);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                StartCoroutine(OpenDoorM(hit.transform));
-                playerController.Teleport(talkToMonsterTransform);
-                conversationStarter.StartConversation();
-            }
-            return;
-        }
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
-        {
-            GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
-            if (nearestLockedDoor != null)
-            {
-                AudioSource audioSource = nearestLockedDoor.GetComponent<AudioSource>();
-                if (audioSource != null)
+                if (hit.transform.tag.Contains("OpenDoorPlayerRoom") && Input.GetKeyDown(KeyCode.E))
                 {
-                    audioSource.PlayOneShot(puertablock);
+                    if (!readBookText.IsShowing())
+                    {
+                        readBookText.Show();
+                    }
+                    return;
+                }
+                if (hit.transform.tag.Contains("Hiding") && esconderse.CanHide())
+                {
+                    if (!openDoorText.activeSelf)
+                    {
+                        showOpenDoorText(true);
+                    }
+                    return;
+                }
+
+                if (hit.transform.tag.Contains("OpenDoor") && !hit.transform.tag.Contains("OpenDoorPlayerRoom"))
+                {
+                    if (!openDoorText.activeSelf)
+                    {
+                        showOpenDoorText(true);
+                    }
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        StartCoroutine(OpenDoor(hit.transform));
+                    }
+                    return;
+                }
+                if (hit.transform.tag.Contains("MonsterDoor"))
+                {
+                    if (!openDoorText.activeSelf)
+                    {
+                        showOpenDoorText(true);
+                    }
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        StartCoroutine(OpenDoorM(hit.transform));
+                        playerController.Teleport(talkToMonsterTransform);
+                        conversationStarter.StartConversation();
+                    }
+                    return;
                 }
             }
-            return;
+           
+            if (hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
+            {
+                GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
+                if (nearestLockedDoor != null)
+                {
+                    AudioSource audioSource = nearestLockedDoor.GetComponent<AudioSource>();
+                    if (audioSource != null)
+                    {
+                        audioSource.PlayOneShot(puertablock);
+                    }
+                }
+                return;
+            }
         }
+        
         if (openDoorText.activeSelf)
         {
             showOpenDoorText(false);
