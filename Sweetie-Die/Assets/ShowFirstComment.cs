@@ -65,4 +65,9 @@ public class ShowFirstComment : MonoBehaviour
             textMeshProComponent.color = textColor;
         }
     }
+
+    public void HideText()
+    {
+        Destroy(gameObject);
+    }
 }

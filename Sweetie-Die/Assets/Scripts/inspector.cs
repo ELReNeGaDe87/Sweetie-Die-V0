@@ -16,6 +16,9 @@ public class inspector : MonoBehaviour
     private bool controlesActivos = true;
     private bool enModoInspeccion = false;
     private PlayerController playerController; // Referencia al script PlayerController
+    private ReadBookText readBookText;
+    private ShowFirstComment showFirstComment;
+
     [SerializeField]
     private GameObject helperText;
     [SerializeField]
@@ -24,7 +27,8 @@ public class inspector : MonoBehaviour
     void Start()
     {
         playerController = player.GetComponent<PlayerController>(); // Obtener la referencia al script PlayerController
-        
+        readBookText = FindObjectOfType<ReadBookText>();
+        showFirstComment = FindObjectOfType<ShowFirstComment>();
     }
 
     void Update()
@@ -93,6 +97,10 @@ public class inspector : MonoBehaviour
     private void InspectBook()
     {
         UnityEngine.Debug.Log("Inspect Book");
+
+        if (showFirstComment != null) showFirstComment.HideText();
+        readBookText.HideText();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         helperText.SetActive(false);

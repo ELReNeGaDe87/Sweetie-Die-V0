@@ -17,6 +17,7 @@ public class Puertas : MonoBehaviour
     private float originalRotation;
     private ConversationStarter conversationStarter;
     private PlayerController playerController;
+    private ReadBookText readBookText;
 
     [SerializeField]
     private GameObject openDoorText;
@@ -30,11 +31,20 @@ public class Puertas : MonoBehaviour
         recogerObjeto = FindObjectOfType<RecogerObjeto>();
         conversationStarter = FindObjectOfType<ConversationStarter>();
         playerController = FindObjectOfType<PlayerController>();
+        readBookText = FindObjectOfType<ReadBookText>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && hit.transform.tag.Contains("OpenDoorPlayerRoom") && Input.GetKeyDown(KeyCode.E))
+        {
+            if (!readBookText.IsShowing())
+            {
+                readBookText.Show();
+            }
+        }
+
         if (canInteract && Physics.Raycast(transform.position, transform.forward, out hit, 2f) && (hit.transform.tag.Contains("OpenDoor") && !hit.transform.tag.Contains("OpenDoorPlayerRoom")))
         {
             if (!openDoorText.activeSelf)
