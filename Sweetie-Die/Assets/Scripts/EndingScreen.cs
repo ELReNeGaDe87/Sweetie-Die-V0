@@ -7,6 +7,6 @@ public class EndingScreen : MonoBehaviour
 {
     public void goToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Credits");
     }
 }
