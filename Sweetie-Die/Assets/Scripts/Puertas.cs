@@ -19,6 +19,7 @@ public class Puertas : MonoBehaviour
     private PlayerController playerController;
     private ReadBookText readBookText;
     private Esconderse esconderse;
+    private BrokenDoorText brokenDoorText;
 
     [SerializeField]
     private GameObject openDoorText;
@@ -34,6 +35,7 @@ public class Puertas : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         readBookText = FindObjectOfType<ReadBookText>();
         esconderse = FindObjectOfType<Esconderse>();
+        brokenDoorText = FindObjectOfType<BrokenDoorText>();
     }
 
     // Update is called once per frame
@@ -90,6 +92,10 @@ public class Puertas : MonoBehaviour
            
             if (hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
             {
+                if (!brokenDoorText.IsShowing())
+                {
+                    brokenDoorText.Show();
+                }
                 GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
                 if (nearestLockedDoor != null)
                 {

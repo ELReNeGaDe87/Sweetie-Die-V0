@@ -18,17 +18,20 @@ public class HidingText : MonoBehaviour
     public float timer;
 
     private ShowFirstComment showFirstComment;
+    private BrokenDoorText brokenDoorText;
 
     // Start is called before the first frame update
     void Start()
     {
         textMeshProComponent = GetComponent<TextMeshProUGUI>();
         showFirstComment = FindObjectOfType<ShowFirstComment>();
+        brokenDoorText = FindObjectOfType<BrokenDoorText>();
     }
 
     public void Show()
     {
         if (showFirstComment != null) showFirstComment.HideText();
+        if (brokenDoorText.IsShowing()) brokenDoorText.HideText();
 
         timer = 0;
         currentFadeInDuration = fadeInDuration;
