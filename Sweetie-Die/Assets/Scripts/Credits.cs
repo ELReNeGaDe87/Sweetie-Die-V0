@@ -9,6 +9,7 @@ public class Credits : MonoBehaviour
     private float timer;
     [SerializeField]
     private GameObject button;
+    private float animationTime = 20f;
 
     // Update is called once per frame
     void Update()
@@ -18,6 +19,11 @@ public class Credits : MonoBehaviour
         if (timer > timeBeforeSkip && !button.activeSelf)
         {
             button.SetActive(true);
+        }
+
+        if (timer >= animationTime)
+        {
+            GoToMainMenu();
         }
     }
 

@@ -63,11 +63,13 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameIsPaused = false;
+        AudioListener.pause = false;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()
     {
+        AudioListener.pause = false;
         Debug.Log("Quitting game...");
         Application.Quit();
     }

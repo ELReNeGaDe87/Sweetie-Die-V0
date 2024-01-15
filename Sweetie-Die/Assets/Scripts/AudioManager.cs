@@ -77,10 +77,11 @@ public class AudioManager : MonoBehaviour
             this.scene = scene;
             StopAll();
             playInitSound();
+            UnityEngine.Debug.Log("Switched scenes");
             return;
         };
 
-        UnityEngine.Debug.Log("Re-Initializing", this);
+        UnityEngine.Debug.Log("Re-Initializing");
         playInitSound();
     }
 
