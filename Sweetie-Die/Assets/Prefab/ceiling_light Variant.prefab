@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8627591337240945208, guid: 3bfb1df5b041c4343b0ba07f555320e9, type: 3}
       propertyPath: m_Range
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8627591337240945208, guid: 3bfb1df5b041c4343b0ba07f555320e9, type: 3}
       propertyPath: m_Intensity
