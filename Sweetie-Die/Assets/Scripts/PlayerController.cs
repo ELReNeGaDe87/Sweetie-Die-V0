@@ -27,22 +27,39 @@ public class PlayerController : MonoBehaviour
     private float timer = 0;
     private bool canExecute = true;
     private ConversationStarter conversationStarter;
+    private ShowFantasmaComments showFantasmaComments;
+    private bool ControllerIsActive = true;
 
     private bool wasMoving = false;
+
+    public void Deactivate()
+    {
+        ControllerIsActive = false;
+    }
+
+    public void Activate()
+    {
+        ControllerIsActive = true;
+    }
 
     void Start()
     {
         gameOver = GetComponent<GameOverScript>();
         characterController = GetComponent<CharacterController>();
         conversationStarter = FindObjectOfType<ConversationStarter>();
+        showFantasmaComments = FindObjectOfType<ShowFantasmaComments>();
         playerCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        if (PauseMenu.GameIsPaused | conversationStarter.ConversationIsActive)
+        if (PauseMenu.GameIsPaused | conversationStarter.ConversationIsActive | !ControllerIsActive)
         {
+            if (FindObjectOfType<AudioManager>().IsPlaying("StepsPlayer"))
+            {
+                FindObjectOfType<AudioManager>().Pause("StepsPlayer");
+            }
             return;
         }
         if (!canExecute)
@@ -202,6 +219,8 @@ public class PlayerController : MonoBehaviour
     {
         MonsterVideo.Stop();
         TeleportToWaypoint();
+        if (vida == 3 || vida == 2) showFantasmaComments.ShowRandomComment();
+        else if (vida == 1) showFantasmaComments.ShowFourthComment();
+        else if (vida == 0) showFantasmaComments.ShowLastComment();
     }
-
 }
