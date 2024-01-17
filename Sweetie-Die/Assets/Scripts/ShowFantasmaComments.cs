@@ -39,29 +39,20 @@ public class ShowFantasmaComments : MonoBehaviour
     public void ShowFourthComment()
     {
         activeCommentObject = comment4;
-        activeCommentObject.SetActive(true);
         activeComment = comment4.GetComponent<TextMeshProUGUI>();
-        StartCommentRoutine();
+        StartCoroutine(FadeText(false));
     }
 
     public void ShowLastComment()
     {
         activeCommentObject = lastComment;
-        activeCommentObject.SetActive(true);
         activeComment = lastComment.GetComponent<TextMeshProUGUI>();
-        StartCommentRoutine();
+        StartCoroutine(FadeText(false));
     }
 
     public void ShowRandomComment()
     {
-        SetRandomComment();
-        StartCommentRoutine();
-    }
-
-    void StartCommentRoutine()
-    {
-        blackBackground.SetActive(true);
-        StartCoroutine(FadeText());
+        StartCoroutine(FadeText(true));
     }
 
     void SetRandomComment()
@@ -77,15 +68,20 @@ public class ShowFantasmaComments : MonoBehaviour
 
         // Set the random comment as the active comment
         activeCommentObject = availableComments[randomIndex];
-        activeCommentObject.SetActive(true);
         activeComment = activeCommentObject.GetComponent<TextMeshProUGUI>();
         availableComments.RemoveAt(randomIndex);
     }
 
-    IEnumerator FadeText()
+    IEnumerator FadeText(bool random)
     {
         // Deactivate player movement while text is showing
         playerController.Deactivate();
+
+        if (random) SetRandomComment();
+
+        // Activate the UI elements
+        blackBackground.SetActive(true);
+        activeCommentObject.SetActive(true);
 
         // Fade in
         yield return Fade(0f, 1f, 1f);
@@ -99,6 +95,7 @@ public class ShowFantasmaComments : MonoBehaviour
         // Optionally, you can perform additional actions after fading, if needed
         UnityEngine.Debug.Log("Fading completed!");
 
+        // Deactivate UI elements
         activeCommentObject.SetActive(false);
         blackBackground.SetActive(false);
 

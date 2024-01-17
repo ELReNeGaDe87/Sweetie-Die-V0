@@ -17,6 +17,7 @@ public class ConversationStarter : MonoBehaviour
     [SerializeField] private NPCConversation BadEndingConversationSpider;
     [SerializeField] private NPCConversation BadEndingConversationEye;
     [SerializeField] private NPCConversation BadEndingConversationRing;
+    [SerializeField] private NPCConversation BadEndingConversationRock;
 
     private bool hasHadFirstConversation = false;
 
@@ -95,6 +96,10 @@ public class ConversationStarter : MonoBehaviour
                     else if (recogerObjeto.heldObject.name == "Eye")
                     {
                         ConversationManager.Instance.StartConversation(BadEndingConversationEye);
+                    }
+                    else if (recogerObjeto.heldObject.name == "Rock")
+                    {
+                        ConversationManager.Instance.StartConversation(BadEndingConversationRock);
                     }
                 }
             }
