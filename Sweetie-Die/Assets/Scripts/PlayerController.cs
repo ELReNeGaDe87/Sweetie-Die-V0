@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Transform Waypoint_CommonArea3;
     public Transform Waypoint_MonsterRoom;
     public VideoPlayer MonsterVideo;
+    public RecogerObjeto recogerObjeto;
     private float timer = 0;
     private bool canExecute = true;
     private ConversationStarter conversationStarter;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        recogerObjeto = FindObjectOfType<RecogerObjeto>();
         gameOver = GetComponent<GameOverScript>();
         characterController = GetComponent<CharacterController>();
         conversationStarter = FindObjectOfType<ConversationStarter>();
@@ -153,6 +155,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (enemyCollider.CompareTag("Enemy"))
                     {
+                        canExecute = false;
                         Debug.Log(vida);
                         if (vida < 1)
                         {
@@ -167,14 +170,14 @@ public class PlayerController : MonoBehaviour
                             {
                                 Debug.Log("MonsterVideo ejecutado");
                                 MonsterVideo.Play();
-                                Debug.Log(vida);
+                                recogerObjeto.ReturnToSender();
                             }
                             Invoke("DelayedTeleport", 1.6f);
                             break;
                         }
                     }
                 }
-                canExecute = false;
+
             }
         }
     }
