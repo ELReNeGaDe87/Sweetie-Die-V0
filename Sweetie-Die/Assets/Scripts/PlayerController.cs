@@ -109,17 +109,28 @@ public class PlayerController : MonoBehaviour
             float moveX = Input.GetAxis("Horizontal") * moveSpeed;
             float moveZ = Input.GetAxis("Vertical") * moveSpeed;
             if (characterController.isGrounded)
-            {
-                moveDirection = transform.TransformDirection(new Vector3(moveX, 0, moveZ));
-            }
-            else
-            {
-                moveDirection = new Vector3(moveX, moveDirection.y, moveZ);
-            }
+        {
+            moveDirection = transform.TransformDirection(new Vector3(moveX, 0, moveZ));
 
+            // Realiza un raycast hacia abajo para obtener información sobre el terreno.
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, characterController.height / 2 + 0.1f))
+            {
+                // Calcula el ángulo entre la normal del terreno y el vector up.
+                float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
+
+                // Chequea la pendiente del terreno antes de aplicar movimiento vertical.
+                if (slopeAngle <= characterController.slopeLimit)
+                {
+                    moveDirection.y = 0.0f;
+                }
+            }
+        }
             moveDirection.y -= gravity * Time.deltaTime;
             characterController.Move(moveDirection * Time.deltaTime);
-
+             Vector3 newPosition = transform.position;
+            newPosition.y = 1.18f;
+            transform.position = newPosition;
             // Rotacion
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
