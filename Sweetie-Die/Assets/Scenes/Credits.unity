@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -699,6 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492e3afadeb7c4664924cca9adad23e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBeforeSkip: 5
   button: {fileID: 1751076251}
 --- !u!1 &1254514796
 GameObject:
@@ -736,7 +737,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -20, y: 0}
-  m_SizeDelta: {x: 659.153, y: 474.01}
+  m_SizeDelta: {x: 380, y: 474.01}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1254514798
 MonoBehaviour:
@@ -758,12 +759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Designers
-
-
-
-
-    Developers'
+  m_text: "Dise\xF1o\n\n\n\nProgramaci\xF3n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
@@ -876,7 +872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: -790}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1437912616
@@ -1160,7 +1156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "M\xC9NU"
+  m_text: "MEN\xDA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
