@@ -14,6 +14,7 @@ public class Esconderse : MonoBehaviour
     private float originalRotation;
     private float currentRotation;
     private float hideTime;
+    private AudioManager audioManager;
 
     private HidingText hidingText;
 
@@ -29,6 +30,7 @@ public class Esconderse : MonoBehaviour
         }
 
         hidingText = FindObjectOfType<HidingText>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -36,6 +38,10 @@ public class Esconderse : MonoBehaviour
         if (PauseMenu.GameIsPaused)
         {
             return;
+        }
+        if (isHiding && audioManager.IsPlaying("StepsPlayer"))
+        {
+            audioManager.Pause("StepsPlayer");
         }
  
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1f) && hit.transform.tag.Contains("Hiding"))

@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private ShowFantasmaComments showFantasmaComments;
     private bool ControllerIsActive = true;
 
+    private AudioSource monsterSteps;
+
     private bool wasMoving = false;
 
     public void Deactivate()
@@ -169,6 +171,8 @@ public class PlayerController : MonoBehaviour
                             if (MonsterVideo != null)
                             {
                                 Debug.Log("MonsterVideo ejecutado");
+                                monsterSteps = GameObject.Find("Monster").GetComponent<AudioSource>();
+                                monsterSteps.Pause();
                                 MonsterVideo.Play();
                                 recogerObjeto.ReturnToSender();
                             }
@@ -232,6 +236,7 @@ public class PlayerController : MonoBehaviour
     private void DelayedTeleport()
     {
         MonsterVideo.Stop();
+        monsterSteps.Play();
         TeleportToWaypoint();
         if (vida == 3) showFantasmaComments.ShowComment(1);
         else if (vida == 2) showFantasmaComments.ShowComment(2);
