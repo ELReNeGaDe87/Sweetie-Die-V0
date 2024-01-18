@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -159,36 +160,34 @@ public class PlayerController : MonoBehaviour
                 {
                     if (enemyCollider.CompareTag("Enemy"))
                     {
-                        canExecute = false;
-                        Debug.Log(vida);
-                        if (vida < 1)
-                        {
-                            monsterAudioManager = FindObjectOfType<MonsterAudioManager>();
-                            monsterAudioManager.PauseFootsteps();
-                            aimDot.SetActive(false);
-                            MonsterVideo.Play();
-                            gameOver.GameOver();
-                        }
-                        else
-                        {
-                            vida--;
-                            if (MonsterVideo.isPlaying) return;
-                            if (MonsterVideo != null)
-                            {
-                                Debug.Log("MonsterVideo ejecutado");
-                                monsterAudioManager = FindObjectOfType<MonsterAudioManager>();
-                                monsterAudioManager.PauseFootsteps();
-                                aimDot.SetActive(false);
-                                MonsterVideo.Play();
-                                recogerObjeto.ReturnToSender();
-                            }
-                            Invoke("DelayedTeleport", 1.6f);
-                            break;
-                        }
+                        PlayVideo();
                     }
                 }
 
             }
+        }
+    }
+
+    private void PlayVideo()
+    {
+        Invoke("DelayedTeleport", 0.3f);
+        canExecute = false;
+        UnityEngine.Debug.Log(vida);
+        if (MonsterVideo.isPlaying) return;
+        if (MonsterVideo != null)
+        {
+            UnityEngine.Debug.Log("MonsterVideo ejecutado");
+            monsterAudioManager = FindObjectOfType<MonsterAudioManager>();
+            monsterAudioManager.PauseFootsteps();
+            aimDot.SetActive(false);
+            MonsterVideo.Play();
+        }
+        if (vida < 1) gameOver.GameOver();
+        else
+        {
+            vida--;
+            recogerObjeto.ReturnToSender();
+            Invoke("ShowFantasmaComment", 1.6f);
         }
     }
 
@@ -239,12 +238,17 @@ public class PlayerController : MonoBehaviour
     {
         TeleportToWaypoint();
     }
+
     private void DelayedTeleport()
     {
-        aimDot.SetActive(true);
+        TeleportToWaypoint();
+    }
+
+    private void ShowFantasmaComment()
+    {
         MonsterVideo.Stop();
         monsterAudioManager.PlayFootsteps();
-        TeleportToWaypoint();
+        aimDot.SetActive(false);
         if (vida == 3) showFantasmaComments.ShowComment(1);
         else if (vida == 2) showFantasmaComments.ShowComment(2);
         else if (vida == 1) showFantasmaComments.ShowComment(4);
