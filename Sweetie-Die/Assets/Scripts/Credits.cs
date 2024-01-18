@@ -11,6 +11,11 @@ public class Credits : MonoBehaviour
     private GameObject button;
     private float animationTime = 20f;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     // Update is called once per frame
     void Update()
     {

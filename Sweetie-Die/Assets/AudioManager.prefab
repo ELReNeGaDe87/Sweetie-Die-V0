@@ -107,8 +107,14 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: StepsMonster
-    clip: {fileID: 8300000, guid: bc20f7bf9cdc19d469ab7f1a36c17adc, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 2cd04988f00d3429bac1ee9a8ddb15e4, type: 3}
+    volume: 0.304
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: MusicCredits
+    clip: {fileID: 8300000, guid: 991e13a6cf0da4e88b0d65675863c719, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     source: {fileID: 0}

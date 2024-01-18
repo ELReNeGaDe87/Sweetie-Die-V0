@@ -61,6 +61,10 @@ public class AudioManager : MonoBehaviour
         {
             Play("BackgroundNoise");
         }
+        else if (SceneManager.GetActiveScene().name == "Credits")
+        {
+            Play("MusicCredits");
+        }
     }
 
     private void OnDestroy()

@@ -36,48 +36,38 @@ public class ShowFantasmaComments : MonoBehaviour
         activeComment = comment1.GetComponent<TextMeshProUGUI>();
     }
 
-    public void ShowFourthComment()
+    public void ShowComment(int num)
     {
-        activeCommentObject = comment4;
-        activeComment = comment4.GetComponent<TextMeshProUGUI>();
-        StartCoroutine(FadeText(false));
-    }
-
-    public void ShowLastComment()
-    {
-        activeCommentObject = lastComment;
-        activeComment = lastComment.GetComponent<TextMeshProUGUI>();
-        StartCoroutine(FadeText(false));
-    }
-
-    public void ShowRandomComment()
-    {
-        StartCoroutine(FadeText(true));
-    }
-
-    void SetRandomComment()
-    {
-        // Check if the list is not empty
-        if (availableComments.Count == 0)
-        {
-            UnityEngine.Debug.LogWarning("The availableComments list is empty.");
+        GameObject name;
+        switch(num){
+            case 1:
+                name = comment1;
+                break;
+            case 2:
+                name = comment2;
+                break;
+            case 3:
+                name = comment3;
+                break;
+            case 4:
+                name = comment4;
+                break;
+            case 5:
+                name = lastComment;
+                break;
+            default:
+                name = comment1;
+                break;
         }
-
-        // Generate a random index within the bounds of the list
-        int randomIndex = UnityEngine.Random.Range(0, availableComments.Count);
-
-        // Set the random comment as the active comment
-        activeCommentObject = availableComments[randomIndex];
-        activeComment = activeCommentObject.GetComponent<TextMeshProUGUI>();
-        availableComments.RemoveAt(randomIndex);
+        activeCommentObject = name;
+        activeComment = name.GetComponent<TextMeshProUGUI>();
+        StartCoroutine(FadeText());
     }
 
-    IEnumerator FadeText(bool random)
+    IEnumerator FadeText()
     {
         // Deactivate player movement while text is showing
         playerController.Deactivate();
-
-        if (random) SetRandomComment();
 
         // Activate the UI elements
         blackBackground.SetActive(true);

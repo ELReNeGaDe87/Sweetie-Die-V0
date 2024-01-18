@@ -233,8 +233,9 @@ public class PlayerController : MonoBehaviour
     {
         MonsterVideo.Stop();
         TeleportToWaypoint();
-        if (vida == 3 || vida == 2) showFantasmaComments.ShowRandomComment();
-        else if (vida == 1) showFantasmaComments.ShowFourthComment();
-        else if (vida == 0) showFantasmaComments.ShowLastComment();
+        if (vida == 3) showFantasmaComments.ShowComment(1);
+        else if (vida == 2) showFantasmaComments.ShowComment(2);
+        else if (vida == 1) showFantasmaComments.ShowComment(4);
+        else if (vida == 0) showFantasmaComments.ShowComment(5);
     }
 }
