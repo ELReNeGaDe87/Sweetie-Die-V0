@@ -182,7 +182,26 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Andrea Espinosa Mateu\nElisa Cuenca Perera\nCristina Romero Mora\n\nOscar
-    Timm Marcussen\nRoberto Gomez Temprado\nAndreu Trull Mart\xED"
+    Timm Marcussen\nRoberto Gomez Temprado\nAndreu Trull Mart\xED\n\nLowpoly Modular
+    Walls - Daily Lowpoly\n\nLowpoly leather suitcase - Anton Zaikovskiy\r\nLuggage
+    rack - gbaglivo\r\nHotel bell - Muhammet Esat B\xDCY\xDCKBULUT\r\nCanon AT-1
+    Camera - Aleixo Alonso\r\nDesk table wooden - stonegamer\r\n\nCutlery Silverware
+    PBR - devotid\r\nWhite Porcelain Dish Set Demo - Stefan B\xFCttner\r\nPBR Little
+    Games Pack - 4K - Ferocious Industries\r\nLow Poly - Chess set - Happy Pixels\r\nOld
+    Television PBR FREE - Einthel\r\nArcade Machine Free - Ioan Stan\r\nPicture frames
+    with photos - 3Dfrk\r\nFurniture FREE Pack - Dexsoft Games\r\nBig Furniture Pack
+    - Vertex Studio\r\nPBR - Hospital Horror Pack. Free - DNK_DEV\r\nValentines Pack
+    - Robot Skeleton\r\nConstruction site column PBR - VIS Games\r\nLow poly rocks
+    collection - VIS Games\r\nRealistic fantasy eyes - Jaroslav Grafskiy\r\nAnimated
+    Spiders Pack - 3d.rina\r\n\nWall plaster 001 - Katsukagi\nWood 026 - Katsukagi\nWood
+    027 - Katsukagi\nWood Floor 009 - Katsukagi\n\nPapel de pared - GarryKillian\n\nPuerta
+    de madera marr\xF3n - Adi Goldstein\n\nPasos del personaje principal - Oliver,
+    Rei, Ahinoa y Ana Rodr\xEDguez\t\r\nmonster scream - Pixabay\r\nJumpscare sound
+    - Pixabay\r\nCreepy Laugh - Pixabay\r\nCartoon Laugh - Pixabay\r\nGlitched Atmosphere
+    - Pixabay\r\nDoor (Opening and Closing) - Pixabay \r\nLoud SIlence - Pixabay\r\nCOTTAGECORE
+    - Pixabay\r\nJoyful Calm Light Entertainment Kids Friendly Music - REDProductions
+    (pixabay.com)\r\nVoice of character (monter,villain) expressions - Liecio (pixabay.com)\r\nHeavy
+    step - Hair_fire22 (freesound.org)\r\nPuerta bloqueada - Fesliyan Studios"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
@@ -209,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -245,7 +264,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.3976897, w: -1.0424805}
+  m_margin: {x: 0, y: 0, z: -312.48212, w: -1.0424805}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -759,7 +778,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Dise\xF1o\n\n\n\nProgramaci\xF3n"
+  m_text: "Dise\xF1o\n\n\n\nProgramaci\xF3n\n\n\n\nItch.io\n\nCgtrader\n\n\n\n\n
+    \nUnity Asset Store\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3dtextures.me\n\n\n\n\nFreepik\n\nUnsplash\n\nSonido"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
   m_sharedMaterial: {fileID: -5431709521046431484, guid: 02765323d64dc9949ac1ebd91ddcb47e, type: 2}
@@ -786,8 +806,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -865,8 +885,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 400287396}
   - {fileID: 1254514797}
+  - {fileID: 400287396}
   m_Father: {fileID: 1231377940}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
