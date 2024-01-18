@@ -30,8 +30,10 @@ public class PlayerController : MonoBehaviour
     private ConversationStarter conversationStarter;
     private ShowFantasmaComments showFantasmaComments;
     private bool ControllerIsActive = true;
+    [SerializeField]
+    private GameObject aimDot;
 
-    private AudioSource monsterSteps;
+    private MonsterAudioManager monsterAudioManager;
 
     private bool wasMoving = false;
 
@@ -161,6 +163,9 @@ public class PlayerController : MonoBehaviour
                         Debug.Log(vida);
                         if (vida < 1)
                         {
+                            monsterAudioManager = FindObjectOfType<MonsterAudioManager>();
+                            monsterAudioManager.PauseFootsteps();
+                            aimDot.SetActive(false);
                             MonsterVideo.Play();
                             gameOver.GameOver();
                         }
@@ -171,8 +176,9 @@ public class PlayerController : MonoBehaviour
                             if (MonsterVideo != null)
                             {
                                 Debug.Log("MonsterVideo ejecutado");
-                                monsterSteps = GameObject.Find("Monster").GetComponent<AudioSource>();
-                                monsterSteps.Pause();
+                                monsterAudioManager = FindObjectOfType<MonsterAudioManager>();
+                                monsterAudioManager.PauseFootsteps();
+                                aimDot.SetActive(false);
                                 MonsterVideo.Play();
                                 recogerObjeto.ReturnToSender();
                             }
@@ -235,8 +241,9 @@ public class PlayerController : MonoBehaviour
     }
     private void DelayedTeleport()
     {
+        aimDot.SetActive(true);
         MonsterVideo.Stop();
-        monsterSteps.Play();
+        monsterAudioManager.PlayFootsteps();
         TeleportToWaypoint();
         if (vida == 3) showFantasmaComments.ShowComment(1);
         else if (vida == 2) showFantasmaComments.ShowComment(2);
