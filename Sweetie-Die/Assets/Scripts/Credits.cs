@@ -9,7 +9,7 @@ public class Credits : MonoBehaviour
     private float timer;
     [SerializeField]
     private GameObject button;
-    private float animationTime = 39f;
+    private float animationTime = 36f;
 
     void Start()
     {
