@@ -248,7 +248,7 @@ public class PlayerController : MonoBehaviour
     {
         MonsterVideo.Stop();
         monsterAudioManager.PlayFootsteps();
-        aimDot.SetActive(false);
+        aimDot.SetActive(true);
         if (vida == 3) showFantasmaComments.ShowComment(1);
         else if (vida == 2) showFantasmaComments.ShowComment(2);
         else if (vida == 1) showFantasmaComments.ShowComment(4);

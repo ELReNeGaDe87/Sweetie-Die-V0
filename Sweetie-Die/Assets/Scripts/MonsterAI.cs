@@ -83,11 +83,12 @@ public class MonsterAI : MonoBehaviour
     void handleLaughter(float distanceToPlayer)
     {
         if (distanceToPlayer > laughRadius) return;
-        if (FindObjectOfType<AudioManager>().IsPlaying("LaughterEntity")) return;
         if (conversationStarter.ConversationIsActive) return;
+
+        if (FindObjectOfType<MonsterAudioManager>().IsPlayingLaughter()) return;
         if (laughWaitTimeCountdown < 0f)
         {
-            FindObjectOfType<AudioManager>().Play("LaughterEntity");
+            FindObjectOfType<MonsterAudioManager>().PlayRandomLaughter();
             laughWaitTimeCountdown = UnityEngine.Random.Range(minWaitBetweenLaughs, maxWaitBetweenLaughs);
         }
         else
