@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.AI;  // Agrega el namespace necesario
+using UnityEngine.AI;
 using System.Collections;
 
 public class Entity1 : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public Transform[] waypoints;
+    public GameObject lamparaPrefab; // Prefab de la lámpara
+    public GameObject cuboPrefab;    // Prefab del cubo
     public float tiempoVisible = 120f;
     public float distanciaFlash = 5f;
     public float alturaSuelo = 1f;
@@ -22,13 +24,14 @@ public class Entity1 : MonoBehaviour
     private float tiempoEsperaDespuesFlash;
     private Image flashPanel;
     private Rigidbody rb;
-    private NavMeshAgent navMeshAgent;  // Agrega la referencia al NavMeshAgent
+    private NavMeshAgent navMeshAgent;
 
     void Start()
     {
         flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();
         rb = GetComponent<Rigidbody>();
-        navMeshAgent = GetComponent<NavMeshAgent>();  // Obtén la referencia al NavMeshAgent
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.enabled = false;  // Desactiva el NavMeshAgent inicialmente
         ElegirNuevoSpawnPoint();
         ElegirNuevoWaypoint();
         tiempoEsperaDespuesFlash = tiempoVisible;
@@ -55,23 +58,30 @@ public class Entity1 : MonoBehaviour
             rb.useGravity = false;
             navMeshAgent.enabled = false;
             Aparecer();
+            CambiarModelo(); // Cambia el modelo de la lámpara al cubo
         }
 
-        if (Vector3.Distance(transform.position, Camera.main.transform.position) < distanciaFlash)
+        if (flashPanel != null)
         {
-            FlashBlanco();
-            rb.useGravity = true;
+            if (Vector3.Distance(transform.position, Camera.main.transform.position) < distanciaFlash)
+            {
+                FlashBlanco();
+                rb.useGravity = true;
 
-            if (navMeshAgent != null)
-            {
-                StartCoroutine(EsperarYActivarNavMeshAgent()); // Establece el destino del NavMeshAgent
-            }
-            else
-            {
-                Debug.LogError("navMeshAgent es nulo. Asegúrate de que esté inicializado correctamente.");
+                if (navMeshAgent != null)
+                {
+                    StartCoroutine(EsperarYActivarNavMeshAgent()); // Establece el destino del NavMeshAgent
+                }
+                else
+                {
+                    Debug.LogError("navMeshAgent es nulo. Asegúrate de que esté inicializado correctamente.");
+                }
             }
         }
-
+        else
+        {
+            Debug.LogError("flashPanel es nulo. Asegúrate de que esté inicializado correctamente.");
+        }
     }
 
     void ElegirNuevoSpawnPoint()
@@ -111,13 +121,13 @@ public class Entity1 : MonoBehaviour
         StartCoroutine(HacerTransparente());
         flashActivo = true;
     }
+
     IEnumerator EsperarYActivarNavMeshAgent()
     {
         yield return new WaitForSeconds(0.8f);
 
         if (navMeshAgent != null)
         {
-            // Activa el NavMeshAgent y establece su destino si está en el NavMesh
             if (navMeshAgent.isOnNavMesh)
             {
                 navMeshAgent.enabled = true;
@@ -125,7 +135,8 @@ public class Entity1 : MonoBehaviour
             }
             else
             {
-                Debug.LogError("El NavMeshAgent no está en el NavMesh.");
+                Debug.LogWarning("El NavMeshAgent no está en el NavMesh. Reiniciando...");
+                ReiniciarNavMeshAgent();
             }
         }
         else
@@ -133,6 +144,17 @@ public class Entity1 : MonoBehaviour
             Debug.LogError("El NavMeshAgent es nulo.");
         }
     }
+
+    void ReiniciarNavMeshAgent()
+    {
+        navMeshAgent.enabled = false; // Desactiva el NavMeshAgent
+                                      // Puedes reinicializar el NavMeshAgent según tus necesidades
+                                      // Por ejemplo, podrías volver a obtener el componente y establecer sus propiedades
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.enabled = true;  // Vuelve a activar el NavMeshAgent
+        navMeshAgent.SetDestination(currentWaypoint.position);
+    }
+
     IEnumerator HacerTransparente()
     {
         float elapsedTime = 0f;
@@ -148,5 +170,17 @@ public class Entity1 : MonoBehaviour
 
         flashPanel.color = colorFinal;
     }
-}
 
+    void CambiarModelo()
+    {
+        // Crea un nuevo objeto del cubo en la posición actual de la lámpara
+        GameObject nuevoModelo = Instantiate(cuboPrefab, transform.position, Quaternion.identity);
+
+        // Copia la rotación y escala del objeto original al nuevo objeto
+        nuevoModelo.transform.rotation = transform.rotation;
+        nuevoModelo.transform.localScale = transform.localScale;
+
+        // Destruye el objeto original
+        Destroy(gameObject);
+    }
+}
