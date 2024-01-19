@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.Video;
-using UnityEngine.UI;
-using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float vibrationIntensity = 0.1f;
     private bool puedeMoverse = true;
     public float teleportDistance = 5.0f;
-    public Transform waypoint; // Asigna el Waypoint en el Inspector.
+    public Transform waypoint;
     public LayerMask EnemyLayer;
     public int vida = 4;
     private GameOverScript gameOver;
@@ -116,28 +114,31 @@ public class PlayerController : MonoBehaviour
             float moveX = Input.GetAxis("Horizontal") * moveSpeed;
             float moveZ = Input.GetAxis("Vertical") * moveSpeed;
             if (characterController.isGrounded)
-        {
-            moveDirection = transform.TransformDirection(new Vector3(moveX, 0, moveZ));
-
-            // Realiza un raycast hacia abajo para obtener información sobre el terreno.
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, characterController.height / 2 + 0.1f))
             {
-                // Calcula el ángulo entre la normal del terreno y el vector up.
-                float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
+                moveDirection = transform.TransformDirection(new Vector3(moveX, 0, moveZ));
 
-                // Chequea la pendiente del terreno antes de aplicar movimiento vertical.
-                if (slopeAngle <= characterController.slopeLimit)
+                // Realiza un raycast hacia abajo para obtener información sobre el terreno.
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, characterController.height / 2 + 0.1f))
                 {
-                    moveDirection.y = 0.0f;
+                    // Calcula el ángulo entre la normal del terreno y el vector up.
+                    float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
+
+                    // Chequea la pendiente del terreno antes de aplicar movimiento vertical.
+                    if (slopeAngle <= characterController.slopeLimit)
+                    {
+                        moveDirection.y = 0.0f;
+                    }
                 }
             }
-        }
             moveDirection.y -= gravity * Time.deltaTime;
             characterController.Move(moveDirection * Time.deltaTime);
-             Vector3 newPosition = transform.position;
-            newPosition.y = 1.18f;
+
+            // Limita la altura del jugador
+            Vector3 newPosition = transform.position;
+            newPosition.y = Mathf.Clamp(newPosition.y, 0.5f, 1.18f);
             transform.position = newPosition;
+
             // Rotacion
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -196,9 +197,9 @@ public class PlayerController : MonoBehaviour
         if (waypoint != null)
         {
             // Teleporta al jugador al waypoint
-            characterController.enabled = false; // Desactiva temporalmente el CharacterController para evitar problemas de colisión
+            characterController.enabled = false;
             transform.position = waypoint.position;
-            characterController.enabled = true; // Vuelve a activar el CharacterController
+            characterController.enabled = true;
         }
     }
 
@@ -207,25 +208,24 @@ public class PlayerController : MonoBehaviour
         if (teleportPosition != null)
         {
             // Teleporta al jugador al waypoint
-            characterController.enabled = false; // Desactiva temporalmente el CharacterController para evitar problemas de colisión
+            characterController.enabled = false;
             transform.position = teleportPosition.position;
-            characterController.enabled = true; // Vuelve a activar el CharacterController
+            characterController.enabled = true;
         }
     }
 
     private void ToggleCrouch()
     {
         isCrouching = !isCrouching;
-        // Ajusta la altura del CharacterController y la velocidad de movimiento según sea necesario.
         if (isCrouching)
         {
-            characterController.height = 1.0f; // Establece la altura del jugador cuando está agachado.
-            moveSpeed = 2.0f; // Reduzca la velocidad de movimiento cuando está agachado (ajuste según sus necesidades).
+            characterController.height = 1.0f;
+            moveSpeed = 2.0f;
         }
         else
         {
-            characterController.height = 2.0f; // Restablece la altura normal del jugador.
-            moveSpeed = 5.0f; // Restablece la velocidad de movimiento normal (ajuste según sus necesidades).
+            characterController.height = 2.0f;
+            moveSpeed = 5.0f;
         }
     }
 
