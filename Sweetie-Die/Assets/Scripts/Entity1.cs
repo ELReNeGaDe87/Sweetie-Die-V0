@@ -62,8 +62,16 @@ public class Entity1 : MonoBehaviour
             FlashBlanco();
             rb.useGravity = true;
 
-            StartCoroutine(EsperarYActivarNavMeshAgent()); // Establece el destino del NavMeshAgent
+            if (navMeshAgent != null)
+            {
+                StartCoroutine(EsperarYActivarNavMeshAgent()); // Establece el destino del NavMeshAgent
+            }
+            else
+            {
+                Debug.LogError("navMeshAgent es nulo. Asegúrate de que esté inicializado correctamente.");
+            }
         }
+
     }
 
     void ElegirNuevoSpawnPoint()
@@ -106,8 +114,24 @@ public class Entity1 : MonoBehaviour
     IEnumerator EsperarYActivarNavMeshAgent()
     {
         yield return new WaitForSeconds(0.8f);
-        navMeshAgent.enabled = true;
-        navMeshAgent.SetDestination(currentWaypoint.position);
+
+        if (navMeshAgent != null)
+        {
+            // Activa el NavMeshAgent y establece su destino si está en el NavMesh
+            if (navMeshAgent.isOnNavMesh)
+            {
+                navMeshAgent.enabled = true;
+                navMeshAgent.SetDestination(currentWaypoint.position);
+            }
+            else
+            {
+                Debug.LogError("El NavMeshAgent no está en el NavMesh.");
+            }
+        }
+        else
+        {
+            Debug.LogError("El NavMeshAgent es nulo.");
+        }
     }
     IEnumerator HacerTransparente()
     {
