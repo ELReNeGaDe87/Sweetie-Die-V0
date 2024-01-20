@@ -7,8 +7,8 @@ public class Entity1 : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public Transform[] waypoints;
-    public GameObject lamparaPrefab; // Prefab de la lámpara
-    public GameObject cuboPrefab;    // Prefab del cubo
+    public GameObject lamparaPrefab;
+    public GameObject cuboPrefab;
     public float tiempoVisible = 120f;
     public float distanciaFlash = 5f;
     public float alturaSuelo = 1f;
@@ -31,7 +31,7 @@ public class Entity1 : MonoBehaviour
         flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();
         rb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.enabled = false;  // Desactiva el NavMeshAgent inicialmente
+        navMeshAgent.enabled = false;
         ElegirNuevoSpawnPoint();
         ElegirNuevoWaypoint();
         tiempoEsperaDespuesFlash = tiempoVisible;
@@ -44,7 +44,7 @@ public class Entity1 : MonoBehaviour
         if (tiempoRestante <= 0f && !flashActivo)
         {
             Desaparecer();
-            ElegirNuevoSpawnPoint();
+            TeleportarASpawnPoint();
             ElegirNuevoWaypoint();
             tiempoEsperaDespuesFlash = tiempoVisible;
             MoverEntidad();
@@ -52,13 +52,13 @@ public class Entity1 : MonoBehaviour
 
         if (Vector3.Distance(transform.position, currentWaypoint.position) < 1f)
         {
-            ElegirNuevoSpawnPoint();
+            ReiniciarEntidad();
             ElegirNuevoWaypoint();
             tiempoEsperaDespuesFlash = tiempoVisible;
             rb.useGravity = false;
             navMeshAgent.enabled = false;
             Aparecer();
-            CambiarModelo(); // Cambia el modelo de la lámpara al cubo
+            CambiarModelo();
         }
 
         if (flashPanel != null)
@@ -70,7 +70,7 @@ public class Entity1 : MonoBehaviour
 
                 if (navMeshAgent != null)
                 {
-                    StartCoroutine(EsperarYActivarNavMeshAgent()); // Establece el destino del NavMeshAgent
+                    StartCoroutine(EsperarYActivarNavMeshAgent());
                 }
                 else
                 {
@@ -92,6 +92,23 @@ public class Entity1 : MonoBehaviour
         Aparecer();
     }
 
+    void TeleportarASpawnPoint()
+    {
+        transform.position = currentSpawnPoint.position;
+    }
+
+    void ReiniciarEntidad()
+    {
+        navMeshAgent.enabled = false;
+        isVisible = true;
+        flashActivo = false;
+        rb.useGravity = false;
+        ElegirNuevoSpawnPoint();
+        ElegirNuevoWaypoint();
+        tiempoEsperaDespuesFlash = tiempoVisible;
+        Aparecer();
+    }
+
     void ElegirNuevoWaypoint()
     {
         currentWaypoint = waypoints[Random.Range(0, waypoints.Length)];
@@ -103,16 +120,22 @@ public class Entity1 : MonoBehaviour
         cuboPrefab.SetActive(false);
         isVisible = true;
         flashActivo = false;
+
+        // Desactivar el componente Rigidbody cuando aparece el modelo lamparaPrefab
+        rb.isKinematic = true;
     }
 
     void Desaparecer()
     {
         isVisible = false;
+
+        // Activar el componente Rigidbody cuando desaparece el modelo lamparaPrefab
+        rb.isKinematic = false;
     }
 
     void MoverEntidad()
     {
-        if (isVisible && !flashActivo && tiempoRestante > tiempoEsperaDespuesFlash)
+        if (isVisible && !flashActivo && navMeshAgent.enabled && tiempoRestante > tiempoEsperaDespuesFlash)
         {
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, velocidadEntidad * Time.deltaTime);
         }
@@ -123,7 +146,6 @@ public class Entity1 : MonoBehaviour
         StartCoroutine(HacerTransparente());
         flashActivo = true;
 
-        // Activar el objeto "monstruo" (cuboPrefab) al inicio del flash
         if (cuboPrefab != null)
         {
             lamparaPrefab.SetActive(false);
@@ -160,11 +182,9 @@ public class Entity1 : MonoBehaviour
 
     void ReiniciarNavMeshAgent()
     {
-        navMeshAgent.enabled = false; // Desactiva el NavMeshAgent
-                                      // Puedes reinicializar el NavMeshAgent según tus necesidades
-                                      // Por ejemplo, podrías volver a obtener el componente y establecer sus propiedades
+        navMeshAgent.enabled = false;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.enabled = true;  // Vuelve a activar el NavMeshAgent
+        navMeshAgent.enabled = true;
         navMeshAgent.SetDestination(currentWaypoint.position);
     }
 
@@ -183,27 +203,25 @@ public class Entity1 : MonoBehaviour
 
         flashPanel.color = colorFinal;
 
-        // Desactiva el objeto "cristal" (lamparaPrefab)
         if (lamparaPrefab != null)
-    {
-        lamparaPrefab.SetActive(false);
+        {
+            lamparaPrefab.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("lamparaPrefab es nulo. Asegúrate de que esté inicializado correctamente.");
+        }
     }
-    else
-    {
-        Debug.LogError("lamparaPrefab es nulo. Asegúrate de que esté inicializado correctamente.");
-    }
-}
 
     void CambiarModelo()
     {
-        // Crea un nuevo objeto del cubo en la posición actual de la lámpara
         GameObject nuevoModelo = Instantiate(cuboPrefab, transform.position, Quaternion.identity);
-
-        // Copia la rotación y escala del objeto original al nuevo objeto
         nuevoModelo.transform.rotation = transform.rotation;
         nuevoModelo.transform.localScale = transform.localScale;
 
-        // Destruye el objeto original
-        Destroy(gameObject);
+        // Desactivar el componente Rigidbody en el objeto original (lamparaPrefab)
+        rb.isKinematic = true;
+
+        
     }
 }
