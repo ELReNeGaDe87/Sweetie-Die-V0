@@ -25,9 +25,11 @@ public class Entity1 : MonoBehaviour
     private Image flashPanel;
     private Rigidbody rb;
     private NavMeshAgent navMeshAgent;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();
         rb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -145,7 +147,7 @@ public class Entity1 : MonoBehaviour
     {
         StartCoroutine(HacerTransparente());
         flashActivo = true;
-
+        ReproducirSonido();
         if (cuboPrefab != null)
         {
             lamparaPrefab.SetActive(false);
@@ -223,5 +225,9 @@ public class Entity1 : MonoBehaviour
         rb.isKinematic = true;
 
         
+    }
+    void ReproducirSonido()
+    {
+        audioSource.Play();
     }
 }
