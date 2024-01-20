@@ -99,6 +99,8 @@ public class Entity1 : MonoBehaviour
 
     void Aparecer()
     {
+        lamparaPrefab.SetActive(true);
+        cuboPrefab.SetActive(false);
         isVisible = true;
         flashActivo = false;
     }
@@ -120,6 +122,17 @@ public class Entity1 : MonoBehaviour
     {
         StartCoroutine(HacerTransparente());
         flashActivo = true;
+
+        // Activar el objeto "monstruo" (cuboPrefab) al inicio del flash
+        if (cuboPrefab != null)
+        {
+            lamparaPrefab.SetActive(false);
+            cuboPrefab.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("cuboPrefab es nulo. Asegúrate de que esté inicializado correctamente.");
+        }
     }
 
     IEnumerator EsperarYActivarNavMeshAgent()
@@ -169,7 +182,17 @@ public class Entity1 : MonoBehaviour
         }
 
         flashPanel.color = colorFinal;
+
+        // Desactiva el objeto "cristal" (lamparaPrefab)
+        if (lamparaPrefab != null)
+    {
+        lamparaPrefab.SetActive(false);
     }
+    else
+    {
+        Debug.LogError("lamparaPrefab es nulo. Asegúrate de que esté inicializado correctamente.");
+    }
+}
 
     void CambiarModelo()
     {
