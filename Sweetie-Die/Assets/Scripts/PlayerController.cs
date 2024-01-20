@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     private ConversationStarter conversationStarter;
     private ShowFantasmaComments showFantasmaComments;
     private bool ControllerIsActive = true;
-    [SerializeField]
-    private GameObject aimDot;
+
+    private UIManager uIManager;
 
     private MonsterAudioManager monsterAudioManager;
 
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         conversationStarter = FindObjectOfType<ConversationStarter>();
         showFantasmaComments = FindObjectOfType<ShowFantasmaComments>();
+        uIManager = FindObjectOfType<UIManager>();
         playerCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -180,7 +181,7 @@ public class PlayerController : MonoBehaviour
             UnityEngine.Debug.Log("MonsterVideo ejecutado");
             monsterAudioManager = FindObjectOfType<MonsterAudioManager>();
             monsterAudioManager.PauseFootsteps();
-            aimDot.SetActive(false);
+            uIManager.HideAimDot();
             MonsterVideo.Play();
         }
         if (vida < 1) gameOver.GameOver();
@@ -248,7 +249,7 @@ public class PlayerController : MonoBehaviour
     {
         MonsterVideo.Stop();
         monsterAudioManager.PlayFootsteps();
-        aimDot.SetActive(true);
+        uIManager.ShowAimDot();
         if (vida == 3) showFantasmaComments.ShowComment(1);
         else if (vida == 2) showFantasmaComments.ShowComment(2);
         else if (vida == 1) showFantasmaComments.ShowComment(4);

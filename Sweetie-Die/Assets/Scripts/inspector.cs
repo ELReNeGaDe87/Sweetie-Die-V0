@@ -16,19 +16,15 @@ public class inspector : MonoBehaviour
     private bool controlesActivos = true;
     private bool enModoInspeccion = false;
     private PlayerController playerController; // Referencia al script PlayerController
-    private ReadBookText readBookText;
-    private ShowFirstComment showFirstComment;
 
-    [SerializeField]
-    private GameObject helperText;
-    [SerializeField]
-    private GameObject aimDot;
+    private UIManager uIManager;
+
+    private bool lookedAtBook;
    
     void Start()
     {
         playerController = player.GetComponent<PlayerController>(); // Obtener la referencia al script PlayerController
-        readBookText = FindObjectOfType<ReadBookText>();
-        showFirstComment = FindObjectOfType<ShowFirstComment>();
+        uIManager = FindObjectOfType<UIManager>();
     }
 
     void Update()
@@ -36,13 +32,9 @@ public class inspector : MonoBehaviour
            // Verifica si el juego está pausado antes de procesar la entrada de teclado
         if (!PauseMenu.GameIsPaused)
         {
-            if (helperText.activeSelf)
-            {
-                aimDot.SetActive(false);
-            }
-
             if (enModoInspeccion)
             {
+                uIManager.HideEAndAimDot();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     UnInspectBook();
@@ -51,45 +43,29 @@ public class inspector : MonoBehaviour
             }
 
             RaycastHit hit;
-            if (Physics.Raycast(MainCamera.transform.position, MainCamera.transform.forward, out hit, 2f))
+            if (Physics.Raycast(MainCamera.transform.position, MainCamera.transform.forward, out hit, 2f) && hit.transform.gameObject.CompareTag("PlayerBook"))
             {
-                if (hit.transform.gameObject != MainCamera && hit.transform.gameObject.CompareTag("PlayerBook"))
+                uIManager.ShowE(true);
+                lookedAtBook = true;
+
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (!helperText.activeSelf)
+                    if (!enModoInspeccion)
                     {
-                        helperText.SetActive(true);
-                        aimDot.SetActive(false);
+                        InspectBook();
                     }
-                    if (Input.GetKeyDown(KeyCode.E))
+                    else
                     {
-                        if (!enModoInspeccion)
-                        {
-                            InspectBook();
-                        }
-                        else
-                        {
-                            UnInspectBook();
-                        }
+                        UnInspectBook();
                     }
                 }
-                else
-                {
-                    // If the hit object is not a "PlayerBook," set the text to inactive.
-                    if (helperText.activeSelf)
-                    {
-                        helperText.SetActive(false);
-                        aimDot.SetActive(true);
-                    }
-                }
+                return;
             }
-            else
+                // If the hit object is not a "PlayerBook," set the text to inactive.
+            if (lookedAtBook)
             {
-                // If no object is hit, set the text to inactive.
-                if (helperText.activeSelf)
-                {
-                    helperText.SetActive(false);
-                    aimDot.SetActive(true);
-                }
+                uIManager.ShowE(false);
+                lookedAtBook = false;
             }
         }
     }
@@ -98,12 +74,11 @@ public class inspector : MonoBehaviour
     {
         UnityEngine.Debug.Log("Inspect Book");
 
-        if (showFirstComment != null) showFirstComment.HideText();
-        readBookText.HideText();
+        uIManager.HideAllTexts();
+        uIManager.HideAimDot();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        helperText.SetActive(false);
         Texto.SetActive(true);
         ObjetoInspect.SetActive(true);
         InspectCamera.SetActive(true);
@@ -117,10 +92,12 @@ public class inspector : MonoBehaviour
     private void UnInspectBook()
     {
         UnityEngine.Debug.Log("UnInspect Book");
+
+        uIManager.ShowAimDot();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Texto.SetActive(false);
-        helperText.SetActive(true);
         ObjetoInspect.SetActive(false);
         InspectCamera.SetActive(false);
         MainCamera.SetActive(true);
@@ -161,11 +138,6 @@ public class inspector : MonoBehaviour
     //    }
     //}
 
-    private void showHelperText(bool value)
-    {
-        helperText.SetActive(value);
-        aimDot.SetActive(!value);
-    }
     private void ChangeDoorTags()
     {
         GameObject[] doors = GameObject.FindGameObjectsWithTag("OpenDoorPlayerRoom");

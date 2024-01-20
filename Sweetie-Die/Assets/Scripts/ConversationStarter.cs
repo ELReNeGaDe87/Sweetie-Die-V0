@@ -33,20 +33,22 @@ public class ConversationStarter : MonoBehaviour
 
     public Transform teleportPosition;
 
-    public GameObject aimDot;
-
-    public float minWaitBetweenPlays = 3f;
-    public float maxWaitBetweenPlays = 15f;
-    public float waitTimeCountdown = -1f;
-    private List<string> laughters = new List<string> { "LaughterMonster1", "LaughterMonster2", "LaughterMonster3" };
-    private string currentLaugh;
-
     private List<string> gifts = new List<string>();
 
+    private UIManager uIManager;
+
+    void Update()
+    {
+        if (ConversationIsActive)
+        {
+            uIManager.HideEAndAimDot();
+        }
+    }
 
     private void Start()
     {
         heartImage = heart.GetComponent<Image>();
+        uIManager = FindObjectOfType<UIManager>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -138,8 +140,8 @@ public class ConversationStarter : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         ConversationIsActive = true;
+        uIManager.HideAllTexts();
         UnityEngine.Debug.Log("A conversation has begun.");
-        aimDot.SetActive(false);
         heartMonitor.SetActive(true);
         FindObjectOfType<AudioManager>().handlePause(true);
         FindObjectOfType<AudioManager>().Play("Music");
@@ -148,7 +150,7 @@ public class ConversationStarter : MonoBehaviour
     private void ConversationEnd()
     {
         ConversationIsActive = false;
-        aimDot.SetActive(true);
+        uIManager.ShowAimDot();
         heartMonitor.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -205,23 +207,4 @@ public class ConversationStarter : MonoBehaviour
     {
         heartImage.sprite = filledHeart;
     }
-
-    //public void Update()
-    //{
-    //    if (!ConversationIsActive) return;
-    //    foreach (string laugh in laughters)
-    //    {
-    //        if (audioManager.IsPlaying(laugh)) return;
-    //    }
-    //    if (ConversationIsActive && waitTimeCountdown < 0f)
-    //    {
-    //        currentLaugh = laughters[UnityEngine.Random.Range(0, laughters.Count)];
-    //        audioManager.Play(currentLaugh);
-    //        waitTimeCountdown = UnityEngine.Random.Range(minWaitBetweenPlays, maxWaitBetweenPlays);
-    //    }
-    //    else
-    //    {
-    //        waitTimeCountdown -= Time.deltaTime;
-    //    }
-    //}
 }

@@ -17,57 +17,46 @@ public class Puertas : MonoBehaviour
     private float originalRotation;
     private ConversationStarter conversationStarter;
     private PlayerController playerController;
-    private ReadBookText readBookText;
     private Esconderse esconderse;
-    private BrokenDoorText brokenDoorText;
 
     [SerializeField]
-    private GameObject openDoorText;
-    [SerializeField]
-    private GameObject aimDot;
-    [SerializeField]
     private Transform talkToMonsterTransform;
+
+    private UIManager uIManager;
+
+    private bool hitSomething = true;
 
     void Start()
     {
         recogerObjeto = FindObjectOfType<RecogerObjeto>();
         conversationStarter = FindObjectOfType<ConversationStarter>();
         playerController = FindObjectOfType<PlayerController>();
-        readBookText = FindObjectOfType<ReadBookText>();
         esconderse = FindObjectOfType<Esconderse>();
-        brokenDoorText = FindObjectOfType<BrokenDoorText>();
+        uIManager = FindObjectOfType<UIManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 2f) && ( hit.transform.tag.Contains("Door") || hit.transform.tag.Contains("Hiding")))
         {
+            hitSomething = true;
             if (canInteract)
             {
                 if (hit.transform.tag.Contains("OpenDoorPlayerRoom") && Input.GetKeyDown(KeyCode.E))
                 {
-                    if (!readBookText.IsShowing())
-                    {
-                        readBookText.Show();
-                    }
+                    uIManager.ShowReadBookText();
                     return;
                 }
                 if (hit.transform.tag.Contains("Hiding") && esconderse.CanHide())
                 {
-                    if (!openDoorText.activeSelf)
-                    {
-                        showOpenDoorText(true);
-                    }
+                    uIManager.ShowE(true);
                     return;
                 }
 
                 if (hit.transform.tag.Contains("OpenDoor") && !hit.transform.tag.Contains("OpenDoorPlayerRoom"))
                 {
-                    if (!openDoorText.activeSelf)
-                    {
-                        showOpenDoorText(true);
-                    }
+                    uIManager.ShowE(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         StartCoroutine(OpenDoor(hit.transform));
@@ -76,10 +65,7 @@ public class Puertas : MonoBehaviour
                 }
                 if (hit.transform.tag.Contains("MonsterDoor"))
                 {
-                    if (!openDoorText.activeSelf)
-                    {
-                        showOpenDoorText(true);
-                    }
+                    uIManager.ShowE(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         StartCoroutine(OpenDoorM(hit.transform));
@@ -92,10 +78,7 @@ public class Puertas : MonoBehaviour
            
             if (hit.transform.CompareTag("CloseDoor") && Input.GetKeyDown(KeyCode.E))
             {
-                if (!brokenDoorText.IsShowing())
-                {
-                    brokenDoorText.Show();
-                }
+                uIManager.ShowBrokenDoorText();
                 GameObject nearestLockedDoor = FindNearestWithTag(player.transform.position, "CloseDoor");
                 if (nearestLockedDoor != null)
                 {
@@ -108,10 +91,10 @@ public class Puertas : MonoBehaviour
                 return;
             }
         }
-        
-        if (openDoorText.activeSelf)
+        if (hitSomething)
         {
-            showOpenDoorText(false);
+            uIManager.ShowE(false);
+            hitSomething = false;
         }
     }
 
@@ -222,11 +205,5 @@ public class Puertas : MonoBehaviour
             }
         }
         return nearestObject;
-    }
-
-    private void showOpenDoorText(bool value)
-    {
-        openDoorText.SetActive(value);
-        aimDot.SetActive(!value);
     }
 }

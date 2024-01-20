@@ -13,15 +13,14 @@ public class RecogerObjeto : MonoBehaviour
     private UnityEngine.Quaternion originalRotation;
     private UnityEngine.Vector3 originalPosition;
     private Transform originalParent;
-    [SerializeField]
-    private GameObject pickUpObjectText;
-    [SerializeField]
-    private GameObject switchObjectText;
+
+    private UIManager uIManager;
 
     void Start()
     {
         switchCamera = FindObjectOfType<CambiarCamara>();
         itemsDeVuelta = FindObjectOfType<ItemsDeVuelta>();
+        uIManager = FindObjectOfType<UIManager>();
     }
 
     void Update()
@@ -30,26 +29,29 @@ public class RecogerObjeto : MonoBehaviour
         bool isRaycastHit = Physics.Raycast(transform.position, transform.forward, out hit, pickupDistance);
         bool canPickupObject = isRaycastHit && hit.transform != null && hit.transform.gameObject != this.gameObject && hit.transform.gameObject.CompareTag("Gift");
 
-        if (heldObject != null)
+        if (canPickupObject)
         {
-            switchObjectText.SetActive(canPickupObject);
-            pickUpObjectText.SetActive(false);
-
-            if (canPickupObject && Input.GetMouseButtonDown(0))
+            if (heldObject != null)
             {
-                SwitchObjects(hit);
+                uIManager.ShowSwitchObjectText();
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SwitchObjects(hit);
+                }
+            }
+            else
+            {
+                uIManager.ShowPickupObjectText();
+
+                if (Input.GetMouseButtonDown(0) && hit.transform.gameObject.GetComponent<Rigidbody>() != null)
+                {
+                    PickupObject(hit);
+                }
             }
         }
-        else
-        {
-            switchObjectText.SetActive(false);
-            pickUpObjectText.SetActive(canPickupObject);
 
-            if (canPickupObject && Input.GetMouseButtonDown(0) && hit.transform.gameObject.GetComponent<Rigidbody>() != null)
-            {
-                PickupObject(hit);
-            }
-        }
+        uIManager.HideObjectTexts();
     }
 
     void PickupObject(RaycastHit hit)
@@ -98,6 +100,7 @@ public class RecogerObjeto : MonoBehaviour
     {
         return heldObject != null;
     }
+
     public void ReturnToSender()
     {
         if (heldObject != null)

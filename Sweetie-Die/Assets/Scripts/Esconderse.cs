@@ -15,6 +15,7 @@ public class Esconderse : MonoBehaviour
     private float currentRotation;
     private float hideTime;
     private AudioManager audioManager;
+    private UIManager uIManager;
 
     private HidingText hidingText;
 
@@ -31,6 +32,7 @@ public class Esconderse : MonoBehaviour
 
         hidingText = FindObjectOfType<HidingText>();
         audioManager = FindObjectOfType<AudioManager>();
+        uIManager = FindObjectOfType<UIManager>();
     }
 
     void Update()
@@ -51,7 +53,7 @@ public class Esconderse : MonoBehaviour
                 if (canHide) StartCoroutine(Hide(hit.transform));
                 else
                 {
-                    if (!hidingText.IsShowing()) hidingText.Show();
+                    uIManager.ShowHidingText();
                 }
             }
             
