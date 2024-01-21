@@ -39,6 +39,7 @@ public class RecogerObjeto : MonoBehaviour
                 {
                     SwitchObjects(hit);
                 }
+                return;
             }
             else
             {
@@ -48,6 +49,7 @@ public class RecogerObjeto : MonoBehaviour
                 {
                     PickupObject(hit);
                 }
+                return;
             }
         }
 

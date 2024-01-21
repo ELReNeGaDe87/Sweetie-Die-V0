@@ -137,7 +137,7 @@ public class UIManager : MonoBehaviour
         if (!text.activeSelf)
         {
             HideAllTexts();
-            pickupObjectText.SetActive(true);
+            text.SetActive(true);
         }
     }
 
