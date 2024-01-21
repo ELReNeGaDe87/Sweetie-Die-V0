@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         if (!canExecute)
         {
             timer += Time.deltaTime;
-            if (timer >= 20)
+            if (timer >= 7)
             {
                 canExecute = true;
                 timer = 0;
