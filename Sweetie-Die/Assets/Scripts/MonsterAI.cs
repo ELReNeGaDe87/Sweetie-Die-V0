@@ -30,7 +30,7 @@ public class MonsterAI : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        conversationStarter = conversationStarter = FindObjectOfType<ConversationStarter>();
+        conversationStarter = FindObjectOfType<ConversationStarter>();
 
         // Inicializar patrolCoroutine al inicio
         patrolCoroutine = StartCoroutine(Patrol());
@@ -40,7 +40,7 @@ public class MonsterAI : MonoBehaviour
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        handleLaughter(distanceToPlayer);
+        handleLaughter();
 
         if (distanceToPlayer < detectionRadius && IsPlayerVisible())
     {
@@ -80,9 +80,8 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    void handleLaughter(float distanceToPlayer)
+    void handleLaughter()
     {
-        if (distanceToPlayer > laughRadius) return;
         if (conversationStarter.ConversationIsActive) return;
 
         if (FindObjectOfType<MonsterAudioManager>().IsPlayingLaughter()) return;

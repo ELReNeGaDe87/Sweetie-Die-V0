@@ -29,7 +29,6 @@ public class Entity1 : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();
         rb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -41,6 +40,7 @@ public class Entity1 : MonoBehaviour
 
     void Update()
     {
+
         tiempoRestante -= Time.deltaTime;
 
         if (tiempoRestante <= 0f && !flashActivo)
@@ -76,13 +76,13 @@ public class Entity1 : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("navMeshAgent es nulo. Asegúrate de que esté inicializado correctamente.");
+                    Debug.LogError("navMeshAgent es nulo. Asegï¿½rate de que estï¿½ inicializado correctamente.");
                 }
             }
         }
         else
         {
-            Debug.LogError("flashPanel es nulo. Asegúrate de que esté inicializado correctamente.");
+            Debug.LogError("flashPanel es nulo. Asegï¿½rate de que estï¿½ inicializado correctamente.");
         }
     }
 
@@ -147,7 +147,7 @@ public class Entity1 : MonoBehaviour
     {
         StartCoroutine(HacerTransparente());
         flashActivo = true;
-        ReproducirSonido();
+        StartCoroutine(ReproducirSonido());
         if (cuboPrefab != null)
         {
             lamparaPrefab.SetActive(false);
@@ -155,7 +155,7 @@ public class Entity1 : MonoBehaviour
         }
         else
         {
-            Debug.LogError("cuboPrefab es nulo. Asegúrate de que esté inicializado correctamente.");
+            Debug.LogError("cuboPrefab es nulo. Asegï¿½rate de que estï¿½ inicializado correctamente.");
         }
     }
 
@@ -172,7 +172,7 @@ public class Entity1 : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("El NavMeshAgent no está en el NavMesh. Reiniciando...");
+                Debug.LogWarning("El NavMeshAgent no estï¿½ en el NavMesh. Reiniciando...");
                 ReiniciarNavMeshAgent();
             }
         }
@@ -211,7 +211,7 @@ public class Entity1 : MonoBehaviour
         }
         else
         {
-            Debug.LogError("lamparaPrefab es nulo. Asegúrate de que esté inicializado correctamente.");
+            Debug.LogError("lamparaPrefab es nulo. Asegï¿½rate de que estï¿½ inicializado correctamente.");
         }
     }
 
@@ -226,8 +226,10 @@ public class Entity1 : MonoBehaviour
 
         
     }
-    void ReproducirSonido()
+    IEnumerator ReproducirSonido()
     {
-        audioSource.Play();
+        GetComponent<EntidadAudioManager>().PlayJumpscare();
+        yield return new WaitForSeconds(2f);
+        GetComponent<EntidadAudioManager>().PlayLaughter();
     }
 }

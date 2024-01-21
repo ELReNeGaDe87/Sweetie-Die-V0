@@ -32,8 +32,6 @@ public class PlayerController : MonoBehaviour
 
     private UIManager uIManager;
 
-    private MonsterAudioManager monsterAudioManager;
-
     private bool wasMoving = false;
 
     public void Deactivate()
@@ -179,8 +177,6 @@ public class PlayerController : MonoBehaviour
         if (MonsterVideo != null)
         {
             UnityEngine.Debug.Log("MonsterVideo ejecutado");
-            monsterAudioManager = FindObjectOfType<MonsterAudioManager>();
-            monsterAudioManager.PauseFootsteps();
             uIManager.HideAimDot();
             MonsterVideo.Play();
         }
@@ -248,7 +244,6 @@ public class PlayerController : MonoBehaviour
     private void ShowFantasmaComment()
     {
         MonsterVideo.Stop();
-        monsterAudioManager.PlayFootsteps();
         uIManager.ShowAimDot();
         if (vida == 3) showFantasmaComments.ShowComment(1);
         else if (vida == 2) showFantasmaComments.ShowComment(2);

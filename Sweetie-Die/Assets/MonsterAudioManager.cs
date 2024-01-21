@@ -5,8 +5,6 @@ using UnityEngine;
 public class MonsterAudioManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource footsteps;
-    [SerializeField]
     private AudioSource laughter1;
     [SerializeField]
     private AudioSource laughter2;
@@ -23,16 +21,6 @@ public class MonsterAudioManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void PlayFootsteps()
-    {
-        footsteps.Play();
-    }
-
-    public void PauseFootsteps()
-    {
-        footsteps.Pause();
     }
 
     public void PlayRandomLaughter()
